@@ -1,7 +1,4 @@
-"use client";
-
 import { Separator } from "@/components/ui/separator";
-import { set } from "date-fns";
 import {
   House,
   BookMarked,
@@ -14,46 +11,51 @@ import {
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 const NavLink = () => {
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   const navLinks = [
     {
       name: "Home",
-      icon: <House className="size-5" />,
+      icon: <House strokeWidth={1.5} className="size-5" />,
       href: "/",
       group: "left",
     },
     {
       name: "About",
-      icon: <UserCircle2 className="size-5 mr-2" />,
+      icon: <UserCircle2 strokeWidth={1.5} className="size-5 mr-2" />,
       href: "/about",
       group: "center",
     },
     {
       name: "Blog",
-      icon: <BookMarked className="size-5 mr-2" />,
+      icon: <BookMarked strokeWidth={1.5} className="size-5 mr-2" />,
       href: "/blog",
       group: "center",
     },
     {
       name: "Project",
-      icon: <FolderSymlink className="size-5 mr-2" />,
+      icon: <FolderSymlink strokeWidth={1.5} className="size-5 mr-2" />,
       href: "/project",
       group: "center",
     },
     {
       name: "Community",
-      icon: <Users className="size-5 mr-2" />,
+      icon: <Users strokeWidth={1.5} className="size-5 mr-2" />,
       href: "/community",
       group: "center",
     },
   ];
 
   return (
-    <div className="flex items-center gap-1 border-[#E0E0E0] rounded-2xl py-1 px-2 shadow-[0px_2px_4px_rgba(0,0,0,0.12),0px_8px_12px_rgba(0,0,0,0.08),0px_8px_16px_rgba(0,0,0,0.08)]">
+    <div
+      className={`flex items-center backdrop-blur-lg  gap-1 border rounded-2xl py-1 px-2 shadow-[0px_2px_4px_rgba(0,0,0,0.12),0px_8px_12px_rgba(0,0,0,0.08),0px_8px_16px_rgba(0,0,0,0.08)] 
+        border-[var(--phuc-border-navlink)] bg-[var(--phuc-bg-navlink)]           
+      }`}
+    >
       {navLinks.map((link, index) => {
         const nextGroup = navLinks[index + 1]?.group;
         const isActive = pathname === link.href;
@@ -62,10 +64,10 @@ const NavLink = () => {
           <div key={index} className="flex items-center">
             <Link
               href={link.href}
-              className={`flex items-center cursor-pointer text-sm py-1 px-3 border border-transparent rounded-xl transition-all duration-200
+              className={`flex items-center cursor-pointer text-sm py-1.5 px-3 border border-transparent rounded-xl transition-all duration-200
                 ${
                   isActive
-                    ? "bg-[#9595954D]"
+                    ? "bg-[#95959530] !border-[#9595954D]"
                     : "hover:border hover:border-[#9595954D] hover:bg-[#9595951A]"
                 }`}
             >
@@ -76,24 +78,31 @@ const NavLink = () => {
             </Link>
 
             {nextGroup && nextGroup !== link.group && (
-              <Separator orientation="vertical" className="!h-6 mx-1" />
+              <Separator
+                orientation="vertical"
+                
+                className={`!h-6 ml-1 !bg-[var(--phuc-separator)]`}
+              />
             )}
           </div>
         );
       })}
 
       {/* Separator cho dark mode */}
-      <Separator orientation="vertical" className="!h-6 mx-1" />
+      <Separator
+        orientation="vertical"
+        className={`!h-6 !bg-[var(--phuc-separator)]`}
+      />
 
       {/* Dark Mode Toggle */}
       <button
-        onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
+        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
         className="flex items-center cursor-pointer text-sm py-1 px-3 border border-transparent rounded-xl transition-all duration-200 hover:border hover:border-[#9595954D] hover:bg-[#9595951A]"
       >
-        {theme === "dark" ? (
-          <Sun className="size-5" />
+        {resolvedTheme === "dark" ? (
+          <Moon strokeWidth={1.5} className="size-5" />
         ) : (
-          <Moon className="size-5" />
+          <Sun strokeWidth={1.5} className="size-5" />
         )}
       </button>
     </div>
