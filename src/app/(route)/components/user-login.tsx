@@ -25,7 +25,7 @@ import { LogOut } from "lucide-react";
 const UserLogin = () => {
   const pathname = usePathname();
   const clerkInstance = useClientContext();
-  const { signOut, user} = useClerk();
+  const { signOut, user } = useClerk();
 
   const loginWith = ({ strategy }: { strategy: OAuthStrategy }) => {
     clerkInstance?.signIn.authenticateWithRedirect({
@@ -37,8 +37,9 @@ const UserLogin = () => {
   return (
     <div className="flex items-center">
       {user ? (
-        <DropdownMenu >
-          <DropdownMenuTrigger asChild className="cursor-pointer" >
+        // User is logged in
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild className="cursor-pointer">
             <Image
               src={user?.imageUrl || "/image/default-avt.png"}
               width={36}
@@ -63,15 +64,31 @@ const UserLogin = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
+        //User is not logged in
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="outline">Login</Button>
+            <Button
+              variant="outline"
+              className="cursor-pointer rounded-2xl py-5 shadow-[0px_2px_4px_rgba(0,0,0,0.12),0px_8px_12px_rgba(0,0,0,0.08),0px_8px_16px_rgba(0,0,0,0.08)]"
+            >
+              Login
+            </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[350px]">
+          <DialogContent className="sm:max-w-[350px] rounded-2xl">
             <DialogHeader>
               <DialogTitle className="flex justify-center">Login</DialogTitle>
-              <DialogDescription className="flex justify-center">
-                Sign in for more fun experiences
+              <DialogDescription className="flex flex-col items-center justify-center text-center">
+                <span className="mb-2">
+                  Sign in for more fun experiences. 🤪
+                </span>
+                <Image
+                  src="/image/gif/hutao-meme.gif"
+                  width={75}
+                  height={75}
+                  alt="hutao-meme"
+                  className="drop-shadow-sm drop-shadow-amber-500"
+                  priority={true}
+                />
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-2 grid-cols-2 w-full">
@@ -82,6 +99,13 @@ const UserLogin = () => {
                 className="w-full"
                 variant="outline"
               >
+                <Image
+                  src="/image/gif/logo-github-in-reveal.gif"
+                  width={25}
+                  height={25}
+                  alt="github_login"
+                  priority={true}
+                />
                 Github
               </Button>
               <Button
@@ -91,6 +115,13 @@ const UserLogin = () => {
                 className="w-full"
                 variant="outline"
               >
+                <Image
+                  src="/image/gif/logo-google-in-reveal.gif"
+                  width={25}
+                  height={25}
+                  priority={true}
+                  alt="google_login"
+                />
                 Google
               </Button>
             </div>

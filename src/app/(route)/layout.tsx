@@ -8,7 +8,7 @@ export default function HomeLayout({
 }) {
   return (
     <div className="w-full h-full">
-      <div className="w-full fixed top-0 left-0  p-4">
+      <div className="w-full fixed top-0 left-0  p-4 z-50">
         <Navbar />
       </div>
       <div className="h-full w-full">{children}</div>
