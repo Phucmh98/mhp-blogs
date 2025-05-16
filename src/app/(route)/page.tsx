@@ -1,6 +1,7 @@
-import Image from "next/image";
-import Navbar from "./components/navbar";
+'use client'
 import Banner from "./components/banner";
+import About from "./about/page";
+import AnimatedContent from "@/components/animated-content";
 interface FallingTextProps {
   text?: string;
   highlightWords?: string[];
@@ -12,11 +13,12 @@ interface FallingTextProps {
   fontSize?: string;
 }
 export default function Home() {
-
-  
   return (
     <section className="container w-full h-full mx-auto">
       <Banner />
+      <AnimatedContent >      
+        <About />
+      </AnimatedContent>
     </section>
   );
 }
