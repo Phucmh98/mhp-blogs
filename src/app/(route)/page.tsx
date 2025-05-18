@@ -1,7 +1,9 @@
-'use client'
+"use client";
+import About from "./components/about";
 import Banner from "./components/banner";
-import About from "./about/page";
 import AnimatedContent from "@/components/animated-content";
+import StackGallery from "./components/stack-gallery";
+import { technologies } from "./components/technologies";
 interface FallingTextProps {
   text?: string;
   highlightWords?: string[];
@@ -14,10 +16,13 @@ interface FallingTextProps {
 }
 export default function Home() {
   return (
-    <section className="container w-full h-full mx-auto">
+    <section className="container w-full h-full mx-auto max-w-5xl px-10">
       <Banner />
-      <AnimatedContent >      
+      <AnimatedContent>
         <About />
+      </AnimatedContent>
+      <AnimatedContent>
+        <StackGallery autoplay={true} pauseOnHover={true} data={technologies}/>
       </AnimatedContent>
     </section>
   );

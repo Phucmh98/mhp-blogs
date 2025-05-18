@@ -21,7 +21,7 @@ const FocusFrame: React.FC<FocusFrameProps> = ({
   borderColor = "rgb(34,197,94)",
   glowColor = "rgba(34,197,94,0.5)",
   animationDuration = 0.5,
-  interval = 2000, // 2 giây đổi focus
+  interval = 2000, // 2.5 giây đổi focus
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [focusRect, setFocusRect] = useState<FocusRect>({
@@ -86,34 +86,66 @@ const FocusFrame: React.FC<FocusFrameProps> = ({
           } as React.CSSProperties
         }
       >
+        {/* Góc trên trái */}
         <span
-          className="absolute w-4 h-4 border-[3px] rounded-[3px] top-[-10px] left-[-10px] border-r-0 border-b-0"
+          className="absolute w-3 h-3 border-[2px] rounded-[2px] top-[-7px] left-[-7px] border-r-0 border-b-0"
           style={{
             borderColor: "var(--border-color)",
             filter: "drop-shadow(0 0 4px var(--border-color))",
           }}
-        ></span>
+        />
+        {/* Đường top */}
         <span
-          className="absolute w-4 h-4 border-[3px] rounded-[3px] top-[-10px] right-[-10px] border-l-0 border-b-0"
+          className="absolute w-full h-3  border-[1px]  top-[-4px] left-[-4px] border-r-0 border-b-0"
+          style={{
+            borderColor: "var(--border-color)",
+          }}
+        />
+        {/* Góc trên phải */}
+        <span
+          className="absolute w-3 h-3 border-[2px] rounded-[2px] top-[-7px] right-[-7px] border-l-0 border-b-0"
           style={{
             borderColor: "var(--border-color)",
             filter: "drop-shadow(0 0 4px var(--border-color))",
           }}
-        ></span>
+        />
+        {/* Đường phải */}
         <span
-          className="absolute w-4 h-4 border-[3px] rounded-[3px] bottom-[-10px] left-[-10px] border-r-0 border-t-0"
+          className="absolute h-full w-2  border-[1px]  top-[-4px] right-[-4px] border-l-0 border-b-0"
+          style={{
+            borderColor: "var(--border-color)",
+          }}
+        />
+        {/* Góc dưới trái */}
+        <span
+          className="absolute w-3 h-3 border-[2px] rounded-[2px] bottom-[-7px] left-[-7px] border-r-0 border-t-0"
           style={{
             borderColor: "var(--border-color)",
             filter: "drop-shadow(0 0 4px var(--border-color))",
           }}
-        ></span>
+        />
+        {/* Đường trái*/}
         <span
-          className="absolute w-4 h-4 border-[3px] rounded-[3px] bottom-[-10px] right-[-10px] border-l-0 border-t-0"
+          className="absolute w-3 h-full  border-[1px] bottom-[-4px] left-[-4px] border-r-0 border-t-0"
+          style={{
+            borderColor: "var(--border-color)",
+          }}
+        />
+        {/* Góc dưới phải */}
+        <span
+          className="absolute w-3 h-3 border-[2px] rounded-[2px] bottom-[-7px] right-[-7px] border-l-0 border-t-0"
           style={{
             borderColor: "var(--border-color)",
             filter: "drop-shadow(0 0 4px var(--border-color))",
           }}
-        ></span>
+        />
+        {/* đường dưới */}
+        <span
+          className="absolute w-full h-3 border-[1px] bottom-[-4px] right-[-4px] border-l-0 border-t-0"
+          style={{
+            borderColor: "var(--border-color)",
+          }}
+        />
       </motion.div>
     </div>
   );
