@@ -11,6 +11,7 @@ type InteractiveIconProps = {
   animationHover?: string;
   classNameContainer?: string;
   classNameLabel?: string;
+  isLoop?: boolean;
 };
 
 export const InteractiveIcon = ({
@@ -22,6 +23,7 @@ export const InteractiveIcon = ({
   animationHover = "hover-roll",
   classNameContainer = "focusable ml-3.5 mt-1.5 font-medium flex w-fit items-center cursor-pointer",
   classNameLabel = "ml-2",
+  isLoop = false,
 }: InteractiveIconProps) => {
   const [iconData, setIconData] = useState<any>(null);
   const [animation, setAnimation] = useState(animationState);
@@ -57,7 +59,13 @@ export const InteractiveIcon = ({
         size={sizeIcon}
         state={animation}
         colors={colors}
-        onComplete={() => playerRef.current?.pause()}
+        onComplete={() => {
+          if (isLoop) {
+            playerRef.current?.playFromBeginning();
+          } else {
+            playerRef.current?.pause();
+          }
+        }}
       />
       <div className={classNameLabel}>{label}</div>
     </div>

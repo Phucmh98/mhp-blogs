@@ -109,7 +109,7 @@ const StackGallery = ({
 
   return (
     <>
-      <div className="relative flex justify-center text-4xl font-semibold text-gray-500">
+      <div className="relative flex justify-center text-4xl font-semibold text-gray-500 my-2">
         <Image
           src="/image/gif/arrow-animate.gif"
           alt="tech-stack-1"
