@@ -4,6 +4,7 @@ import Banner from "./components/banner";
 import AnimatedContent from "@/components/animated-content";
 import StackGallery from "./components/stack-gallery";
 import { technologies } from "./components/technologies";
+import SelectProject from "./components/project";
 interface FallingTextProps {
   text?: string;
   highlightWords?: string[];
@@ -22,7 +23,10 @@ export default function Home() {
         <About />
       </AnimatedContent>
       <AnimatedContent>
-        <StackGallery autoplay={true} pauseOnHover={true} data={technologies}/>
+        <StackGallery autoplay={true} pauseOnHover={true} data={technologies} />
+      </AnimatedContent>
+      <AnimatedContent>
+        <SelectProject />
       </AnimatedContent>
     </section>
   );

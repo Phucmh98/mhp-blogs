@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -140,3 +139,4 @@ body {
   padding: 0;
    font-family: var(--font-kanit), sans-serif;
 }
+

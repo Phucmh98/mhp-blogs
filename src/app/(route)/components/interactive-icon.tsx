@@ -1,10 +1,10 @@
 // components/InteractiveIcon.tsx
 import { Player } from "@lordicon/react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 type InteractiveIconProps = {
   iconUrl: string;
-  label: string;
+  label: React.ReactNode;
   colors?: string;
   sizeIcon?: number;
   animationState?: string;
@@ -12,6 +12,7 @@ type InteractiveIconProps = {
   classNameContainer?: string;
   classNameLabel?: string;
   isLoop?: boolean;
+  onClick?: () => void;
 };
 
 export const InteractiveIcon = ({
@@ -24,6 +25,7 @@ export const InteractiveIcon = ({
   classNameContainer = "focusable ml-3.5 mt-1.5 font-medium flex w-fit items-center cursor-pointer",
   classNameLabel = "ml-2",
   isLoop = false,
+  onClick = () => {},
 }: InteractiveIconProps) => {
   const [iconData, setIconData] = useState<any>(null);
   const [animation, setAnimation] = useState(animationState);
@@ -52,6 +54,7 @@ export const InteractiveIcon = ({
         setAnimation(animationState);
         playerRef.current?.play();
       }}
+      onClick={onClick}
     >
       <Player
         ref={playerRef}
