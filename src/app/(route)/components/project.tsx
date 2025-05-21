@@ -1,15 +1,18 @@
-import GlitchText from "@/components/commons/reactbits/glitch-text";
-import PixelCard from "@/components/commons/reactbits/pixel-card";
+'use client'
 import SpotlightCard from "@/components/commons/reactbits/spotlight-card";
 import Image from "next/image";
 import { InteractiveIcon } from "./interactive-icon";
 import { selectProjects } from "../utils/select-project";
 import Link from "next/link";
+import BlurImage from "@/components/commons/image/blur-image";
+import { useRouter } from "next/navigation";
+import PhucSignature from "@/components/commons/signature/phuc-signature";
 
 const SelectProject = () => {
+    const router = useRouter();
   return (
     <>
-      <div className="flex items-center justify-center text-4xl font-semibold text-gray-500 mb-5">
+      <div className="flex items-center justify-center text-4xl font-semibold text-gray-500 mb-7">
         <Image
           src="/image/gif/sparkles-animate.gif"
           alt="sparkles"
@@ -29,28 +32,26 @@ const SelectProject = () => {
         {selectProjects.map((project, index) => (
           <SpotlightCard
             key={index}
-            className="w-full"
+            className="w-full cursor-pointer"
             spotlightColor="rgba(254, 154, 0, 0.3)"
+            onClick={() => router.push("/about")}
           >
-            <div className="w-full h-[250px] overflow-hidden">
-              <Image
-                src={project.image}
-                alt={project.name}
-                width={500}
-                height={300}
-                className="object-fit"
-                unoptimized
-              />
-            </div>
+            <BlurImage
+              width={1280}
+              height={832}
+              src={project.image || ""}
+              alt={project.name}
+              className="h-[250px]"
+            />
 
-            <div className="flex justify-between">
+            <div className="flex justify-between border-t border-gray-300">
               <div className="my-2 mx-3">
                 <div className="text-xl font-medium">{project.name}</div>
                 <div className="text-gray-500">{project.description}</div>
               </div>
               <div className="flex items-center justify-center mr-2">
                 {/* Icon Demo */}
-                <Link href={project.urlDemo || "/"} target="_blank">
+                <Link href={project.urlDemo || "/about"} target="_blank">
                   <InteractiveIcon
                     animationState="in-reveal"
                     animationHover="hover-pinch"
@@ -58,9 +59,9 @@ const SelectProject = () => {
                     sizeIcon={28}
                     label="Demo"
                     colors="primary:#fe9a00,secondary:#fe9a00"
-                    classNameContainer="relative group flex items-center cursor-pointer"
+                    classNameContainer="relative group/icon flex items-center cursor-pointer"
                     classNameLabel="max-w-0 opacity-0 overflow-hidden translate-x-full text-neutral-100 text-xs font-light 
-             group-hover:max-w-xs group-hover:opacity-100 group-hover:translate-x-0 bg border rounded-full bg-amber-500 px-1.5 py-0.5
+             group-hover/icon:max-w-xs group-hover/icon:opacity-100 group-hover/icon:translate-x-0 bg border rounded-full bg-amber-500 px-1.5 py-0.5
              transition-all duration-500 whitespace-nowrap"
                   />
                 </Link>
@@ -74,9 +75,9 @@ const SelectProject = () => {
                     sizeIcon={28}
                     label="Github"
                     colors="primary:#fe9a00,secondary:#fe9a00"
-                    classNameContainer="relative group flex items-center cursor-pointer"
+                    classNameContainer="relative group/icon flex items-center cursor-pointer"
                     classNameLabel="max-w-0 opacity-0 overflow-hidden translate-x-full text-neutral-100 text-xs font-light 
-             group-hover:max-w-xs group-hover:opacity-100 group-hover:translate-x-0  rounded-full bg-amber-500 group-hover:px-1.5 group-hover:py-0.5
+             group-hover/icon:max-w-xs group-hover/icon:opacity-100 group-hover/icon:translate-x-0 bg border rounded-full bg-amber-500 px-1.5 py-0.5
              transition-all duration-500 whitespace-nowrap"
                   />
                 </Link>
@@ -85,52 +86,22 @@ const SelectProject = () => {
           </SpotlightCard>
         ))}
 
-        <SpotlightCard
-          className="w-full"
-          spotlightColor="rgba(254, 154, 0, 0.3)"
-        >
-          <Image
-            src="/image/projects/banner-mhp-movie.png"
-            alt="mhp-movie-banner"
-            width={500}
-            height={300}
-          />
-          <div className="flex justify-between">
-            <div className="my-2 mx-3">
-              <div className="text-xl font-medium">MHP Cinema</div>
-              <div className="text-gray-500">
-                Front End Course Completion Project
-              </div>
-            </div>
-            <div className="flex items-center justify-center mr-2">
-              <InteractiveIcon
-                animationState="in-reveal"
-                animationHover="hover-pinch"
-                iconUrl="https://cdn.lordicon.com/ubpgwkmy.json"
-                sizeIcon={28}
-                label="Demo"
-                colors="primary:#fe9a00,secondary:#fe9a00"
-                classNameContainer="relative group flex items-center cursor-pointer"
-                classNameLabel="max-w-0 opacity-0 overflow-hidden translate-x-full text-neutral-100 text-xs font-light 
-             group-hover:max-w-xs group-hover:opacity-100 group-hover:translate-x-0 bg border rounded-full bg-amber-500 px-1.5 py-0.5
-             transition-all duration-500 whitespace-nowrap"
-              />
-              <InteractiveIcon
-                animationState="in-reveal"
-                animationHover="hover-pinch"
-                iconUrl="https://cdn.lordicon.com/jjxzcivr.json"
-                sizeIcon={28}
-                label="Github"
-                colors="primary:#fe9a00,secondary:#fe9a00"
-                classNameContainer="relative group flex items-center cursor-pointer"
-                classNameLabel="max-w-0 opacity-0 overflow-hidden translate-x-full text-neutral-100 text-xs font-light 
-             group-hover:max-w-xs group-hover:opacity-100 group-hover:translate-x-0  rounded-full bg-amber-500 group-hover:px-1.5 group-hover:py-0.5
-             transition-all duration-500 whitespace-nowrap"
-              />
-            </div>
-          </div>
-        </SpotlightCard>
+  
       </div>
+
+      <div className="flex items-center justify-center my-5">
+          <InteractiveIcon
+            iconUrl="https://cdn.lordicon.com/fiytezjs.json"
+            label="See all projects"
+            sizeIcon={32}
+            colors="primary:#ffffff,secondary:#ffffff"
+            animationState="in-reveal"
+            animationHover="hover-launch"
+            classNameContainer="pl-3.5 pr-1.5 py-1.5 text-white flex items-center cursor-pointer flex-row-reverse bg-amber-500 rounded-full hover:bg-amber-600 transition-all duration-300"
+            classNameLabel="p-0"
+          />
+        </div>
+        <PhucSignature svgSrc='/svg/svgviewer-output-test.svg'/>
     </>
   );
 };

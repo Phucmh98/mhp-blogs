@@ -1,3 +1,4 @@
+'use client'
 import React, { useRef, useState } from "react";
 
 interface Position {
@@ -8,12 +9,14 @@ interface Position {
 interface SpotlightCardProps extends React.PropsWithChildren {
   className?: string;
   spotlightColor?: `rgba(${number}, ${number}, ${number}, ${number})`;
+  onClick?: () => void
 }
 
 const SpotlightCard: React.FC<SpotlightCardProps> = ({
   children,
   className = "",
-  spotlightColor = "rgba(255, 255, 255, 0.25)"
+  spotlightColor = "rgba(255, 255, 255, 0.25)",
+  onClick = () => {},
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -53,10 +56,11 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
       className={`relative rounded-3xl border  overflow-hidden  ${className}`}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out z-[100]"
         style={{
           opacity,
           background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,

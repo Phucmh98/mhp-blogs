@@ -17,8 +17,9 @@ type ImageProps = {
 } & React.ComponentPropsWithoutRef<typeof Image>
 
 const BlurImage = forwardRef<HTMLImageElement, ImageProps>((props, ref) => {
+
 	const { theme } = useTheme()
-	const fallbackSrc = '/images/fallback/img-fallback-light.jpg'
+	const fallbackSrc = '/image/fallback/img-fallback-light.jpg'
 	const { alt, src, className, imageClassName, lazy = true, ...rest } = props
 	const [isLoading, setIsLoading] = useState(true)
 	const [currentSrc, setCurrentSrc] = useState(src || fallbackSrc)
@@ -66,13 +67,7 @@ const BlurImage = forwardRef<HTMLImageElement, ImageProps>((props, ref) => {
 				{...rest}
 			/>
 
-			{rest?.description && (
-				<div className="pointer-events-none absolute inset-0 flex flex-col items-start justify-end bg-gradient-to-b from-transparent to-black p-3 text-xs font-semibold italic text-white opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
-					{/* <div className="line-clamp-2">{rest?.description}</div> */}
-					{rest?.description}
-				</div>
-			)}
-
+		
 			{isLoading && (
 				<div
 					className={cn('absolute left-0 top-0 flex size-full items-center justify-center backdrop-blur-md')}
