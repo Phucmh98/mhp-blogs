@@ -6,7 +6,7 @@ import { selectProjects } from "../utils/select-project";
 import Link from "next/link";
 import BlurImage from "@/components/commons/image/blur-image";
 import { useRouter } from "next/navigation";
-import PhucSignature from "@/components/commons/signature/phuc-signature";
+import Signature from "@/components/commons/signature/signature";
 
 const SelectProject = () => {
     const router = useRouter();
@@ -92,7 +92,7 @@ const SelectProject = () => {
       <div className="flex items-center justify-center my-5">
           <InteractiveIcon
             iconUrl="https://cdn.lordicon.com/fiytezjs.json"
-            label="See all projects"
+            label="View All Projects"
             sizeIcon={32}
             colors="primary:#ffffff,secondary:#ffffff"
             animationState="in-reveal"
@@ -101,7 +101,6 @@ const SelectProject = () => {
             classNameLabel="p-0"
           />
         </div>
-        <PhucSignature svgSrc='/svg/svgviewer-output-test.svg'/>
     </>
   );
 };

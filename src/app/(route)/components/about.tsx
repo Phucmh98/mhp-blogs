@@ -98,7 +98,7 @@ const About = () => {
   return (
     <FocusFrame glowColor="#ff990080" borderColor="#fe9a00" animationDuration={0.3} interval={2500}>
       {/* About Header */}
-      <div className="w-full relative flex items-center justify-center py-4">
+      <div className="w-full relative flex items-center justify-center my-8">
         <Image
           src="/image/gif/fire.gif"
           alt="fire-about"
@@ -110,8 +110,8 @@ const About = () => {
         <span className="text-4xl font-semibold text-gray-500">About me</span>
       </div>
       {/* About Header */}
-      <div className="py-4  text-gray-500">
-        <div className=" border-1 border-gray-300 rounded-lg p-4 shadow-md">
+      <div className="mb-10 pt-8 text-gray-500">
+        <div className=" border rounded-lg p-4 shadow-md">
           <div className="w-full flex items-center justify-between">
             <div className="focusable w-fit text-amber-700 border-1 rounded-2xl px-2.5 py-0.5 font-medium">
               {timeOfDay}
@@ -119,7 +119,7 @@ const About = () => {
 
             <span className="text-amber-700" ref={timeRef}></span>
           </div>
-          <div className="focusable mt-2">
+          <div className="focusable text-xl my-3 font-normal">
             I'm a frontend developer who loves building weird, fun, and
             sometimes ridiculous things on the web — stuff that spins, blinks,
             moves, and makes people smile. I use React, TypeScript, and a little

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-interface PhucSignatureProps {
+interface SignatureProps {
   width?: number;
   height?: number;
   color?: string;
@@ -8,13 +8,13 @@ interface PhucSignatureProps {
   svgSrc: string; // đường dẫn file SVG
 }
 
-const PhucSignature = ({
+const Signature = ({
   width = 200,
   height = 50,
   color = "#ff6900",
   timeStep = 0.3,
   svgSrc,
-}: PhucSignatureProps) => {
+}: SignatureProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [animationKey, setAnimationKey] = useState(0);
   const [svgElement, setSvgElement] = useState<SVGSVGElement | null>(null);
@@ -59,26 +59,26 @@ const PhucSignature = ({
     if (!svg) return;
 
     const paths = svg.querySelectorAll<SVGPathElement>("path");
-    paths.forEach((path, index) => {
+
+    // Reset nét vẽ
+    paths.forEach((path) => {
       const length = path.getTotalLength();
       path.style.stroke = color;
+      path.style.transition = "none";
       path.style.strokeDasharray = `${length}px`;
-      path.style.strokeDashoffset = `${length}px`; // ẩn hết
+      path.style.strokeDashoffset = `${length}px`; // Ẩn hết
+    });
+
+    // Force reflow để trình duyệt nhận style reset
+    paths.forEach((path) => path.getBoundingClientRect());
+
+    // Sau đó set lại transition và cho offset về 0
+    paths.forEach((path, index) => {
       path.style.transition = `stroke-dashoffset ${timeStep}s linear ${
         index * timeStep
       }s`;
-      path.style.webkitTransition = path.style.transition;
+      path.style.strokeDashoffset = "0"; // Bắt đầu vẽ
     });
-
-    // Force reflow để trình duyệt nhận style trên
-    paths.forEach((path) => path.getBoundingClientRect());
-
-    // Sau delay, bắt đầu animation vẽ nét (offset giảm từ length về 0)
-    setTimeout(() => {
-      paths.forEach((path) => {
-        path.style.strokeDashoffset = "0"; // hiện đầy đủ
-      });
-    }, 50);
   }, [animationKey, color, timeStep, svgElement]);
 
   const handleClick = () => {
@@ -87,6 +87,7 @@ const PhucSignature = ({
 
   return (
     <div
+    className="w-fit"
       ref={containerRef}
       onClick={handleClick}
       style={{ cursor: "pointer" }}
@@ -94,4 +95,4 @@ const PhucSignature = ({
   );
 };
 
-export default PhucSignature;
+export default Signature;
