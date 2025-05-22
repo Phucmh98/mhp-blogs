@@ -47,12 +47,16 @@ export const InteractiveIcon = ({
     <div
       className={classNameContainer}
       onMouseEnter={() => {
-        setAnimation(animationHover);
-        playerRef.current?.play();
+        if (playerRef.current && iconData) {
+          setAnimation(animationHover);
+          playerRef.current.play();
+        }
       }}
       onMouseLeave={() => {
-        setAnimation(animationState);
-        playerRef.current?.play();
+        if (playerRef.current && iconData) {
+          setAnimation(animationState);
+          playerRef.current.play();
+        }
       }}
       onClick={onClick}
     >
