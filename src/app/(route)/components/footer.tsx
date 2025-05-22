@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <AnimatedContent>
       <div className="container w-full h-full mx-auto max-w-5xl px-10">
-        <div className="h-[300px] rounded-lg border">
+        <div className="py-10 px-5 rounded-lg border">
           <Magnet
             padding={5}
             disabled={false}
@@ -18,11 +18,11 @@ const Footer = () => {
             {/* Signature */}
             <Signature svgSrc="/svg/svgviewer-output-test.svg" height={50} timeStep={1}/>
 
-            <div className="text-5xl font-semibold text-gray-500 text-center uppercase mt-3">
+            <div className="text-5xl font-extrabold tracking-wide text-gray-500 text-center uppercase mt-3">
               Wanna create something fun and exciting?
             </div>
 
-            <div className="flex items-center justify-center my-5">
+            <div className="flex items-center justify-center my-5 rounded-full shadow-md">
               <InteractiveIcon
                 iconUrl="https://cdn.lordicon.com/fiytezjs.json"
                 label="Contact me now"

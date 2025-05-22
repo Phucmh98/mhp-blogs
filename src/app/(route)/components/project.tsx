@@ -12,7 +12,7 @@ const SelectProject = () => {
     const router = useRouter();
   return (
     <>
-      <div className="flex items-center justify-center text-4xl font-semibold text-gray-500 mb-7">
+      <div className="flex items-center justify-center text-4xl font-semibold text-gray-500 mt-10 mb-6">
         <Image
           src="/image/gif/sparkles-animate.gif"
           alt="sparkles"
@@ -27,12 +27,12 @@ const SelectProject = () => {
           height={40}
         />
       </div>
-      <div className="grid grid-cols-2  w-full  gap-4">
+      <div className="grid grid-cols-2  w-full  gap-5">
         {/* Render Card */}
         {selectProjects.map((project, index) => (
           <SpotlightCard
             key={index}
-            className="w-full cursor-pointer"
+            className="w-full cursor-pointer rounded-xl shadow-md"
             spotlightColor="rgba(254, 154, 0, 0.3)"
             onClick={() => router.push("/about")}
           >
