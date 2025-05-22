@@ -38,7 +38,7 @@ const StackGallery = ({
   }, []);
 
   // 3D geometry
-  const cylinderWidth = isScreenSizeSm ? 700 : 1300;
+  const cylinderWidth = isScreenSizeSm ? 700 : 1400;
   const faceCount = data.length;
   const faceWidth = (cylinderWidth / faceCount) * 1;
   const radius = cylinderWidth / (2 * Math.PI);
@@ -109,7 +109,7 @@ const StackGallery = ({
 
   return (
     <>
-      <div className="relative flex justify-center text-4xl font-semibold text-gray-500 my-2">
+      <div className="relative flex justify-center text-4xl font-semibold text-gray-500 my-5">
         <Image
           src="/image/gif/arrow-animate.gif"
           alt="tech-stack-1"
@@ -124,7 +124,7 @@ const StackGallery = ({
           width={100}
           height={100}
         />
-        <span className="z-0"> Tech Stack</span>
+        <span className="z-0">Tech Stack</span>
       </div>
       <div className="relative w-full overflow-hidden">
         <div className="flex h-[100px] items-center justify-center [perspective:1000px] [transform-style:preserve-3d]">

@@ -7,6 +7,7 @@ import { technologies } from "./components/technologies";
 import SelectProject from "./components/project";
 import { Button } from "@/components/ui/button";
 import { InteractiveIcon } from "./components/interactive-icon";
+import Footer from "./components/footer";
 interface FallingTextProps {
   text?: string;
   highlightWords?: string[];
@@ -42,6 +43,7 @@ export default function Home() {
       <AnimatedContent>
         <SelectProject />
       </AnimatedContent>
+ 
     </section>
   );
 }
