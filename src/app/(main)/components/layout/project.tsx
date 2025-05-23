@@ -6,7 +6,7 @@ import { selectProjects } from "../../lib/select-project";
 import Link from "next/link";
 import BlurImage from "@/components/commons/image/blur-image";
 import { useRouter } from "next/navigation";
-import Signature from "@/components/commons/signature/signature";
+
 
 const SelectProject = () => {
     const router = useRouter();
@@ -97,7 +97,7 @@ const SelectProject = () => {
             colors="primary:#ffffff,secondary:#ffffff"
             animationState="in-reveal"
             animationHover="hover-launch"
-            classNameContainer="pl-3.5 pr-1.5 py-1.5 text-white flex items-center cursor-pointer flex-row-reverse bg-amber-500 rounded-full hover:bg-amber-600 transition-all duration-300"
+            classNameContainer="pl-3.5 pr-1.5 py-1.5 text-white flex items-center cursor-pointer shadow-md flex-row-reverse bg-amber-500 rounded-full hover:bg-amber-600 transition-all duration-300"
             classNameLabel="p-0"
           />
         </div>

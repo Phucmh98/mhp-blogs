@@ -20,8 +20,8 @@ interface FallingTextProps {
 }
 export default function Home() {
   return (
-    <section className="container w-full h-full mx-auto max-w-5xl px-10">
-      <Banner />
+    <section className="container w-full h-full mx-auto max-w-5xl px-3 sm:px-10 ">
+        <Banner />
       <AnimatedContent>
         <About />
       </AnimatedContent>
@@ -35,7 +35,7 @@ export default function Home() {
             colors="primary:#ffffff,secondary:#ffffff"
             animationState="in-reveal"
             animationHover="hover-launch"
-            classNameContainer="pl-3.5 pr-1.5 py-1.5 text-white flex items-center cursor-pointer flex-row-reverse bg-amber-500 rounded-full hover:bg-amber-600 transition-all duration-300"
+            classNameContainer="pl-3.5 pr-1.5 py-1.5 text-white flex items-center shadow-md cursor-pointer flex-row-reverse bg-amber-500 rounded-full hover:bg-amber-600 transition-all duration-300 "
             classNameLabel="p-0"
           />
         </div>
@@ -43,7 +43,6 @@ export default function Home() {
       <AnimatedContent>
         <SelectProject />
       </AnimatedContent>
- 
     </section>
   );
 }

@@ -1,3 +1,4 @@
+"use client";
 import { Separator } from "@/components/ui/separator";
 import {
   House,
@@ -13,13 +14,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { InteractiveIcon } from "../../../../../components/commons/interactive-icon/interactive-icon";
 import clsx from "clsx";
-const NavLink = () => {
+import { useEffect, useState } from "react";
+const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
-  
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return;
+
   const navLinks = [
     {
-      name: "",
+      name: "Home",
       icon: <House strokeWidth={1.5} className="size-5" />,
       href: "/",
       group: "left",
@@ -68,9 +77,9 @@ const NavLink = () => {
 
   return (
     <div
-      className={`flex items-center backdrop-blur-lg  gap-1 border rounded-2xl py-1 px-2 shadow-[0px_2px_4px_rgba(0,0,0,0.12),0px_8px_12px_rgba(0,0,0,0.08),0px_8px_16px_rgba(0,0,0,0.08)] 
-        border-[var(--phuc-border-navlink)] bg-[var(--phuc-bg-navlink)]           
-      }`}
+      className={clsx("flex items-center  gap-1", {
+        "max-sm:hidden": !isBottom,
+      })}
     >
       {navLinks.map((link, index) => {
         const nextGroup = navLinks[index + 1]?.group;
@@ -90,14 +99,25 @@ const NavLink = () => {
               {/* {link.icon} */}
 
               <InteractiveIcon
+                key={resolvedTheme}
                 iconUrl={link.urlIcon}
                 animationState={link.iconState}
                 animationHover={link.iconHover}
                 sizeIcon={24}
-                label={link.name}
-                classNameContainer="flex items-center cursor-pointer"
+                label={!isBottom && index == 0 ? "" : link.name}
+                colors={`${
+                  resolvedTheme === "dark"
+                    ? "primary:#ff9d00,secondary:#ff9d00"
+                    : "primary:#ff6900,secondary:#ff6900"
+                }`}
+                classNameContainer={clsx("flex items-center cursor-pointer", {
+                  "text-neutral-200": resolvedTheme === "dark",
+                  "text-neutral-700": resolvedTheme === "light",
+                  "flex-col ": isBottom,
+                })}
                 classNameLabel={clsx({
-                  "ml-2": link.name !== "",
+                  "ml-2": link.name !== "" && !isBottom && index !== 0,
+                  "max-[500px]:hidden": isBottom,
                 })}
               />
             </Link>
@@ -125,23 +145,43 @@ const NavLink = () => {
       >
         {resolvedTheme === "dark" ? (
           <InteractiveIcon
+            key={resolvedTheme}
             iconUrl="https://cdn.lordicon.com/yodwgokk.json"
             animationState="in-reveal"
             animationHover="hover-pinch"
             sizeIcon={24}
-            label=""
-            classNameContainer="flex items-center cursor-pointer"
-            classNameLabel=""
+            label={!isBottom ? "" : "Dark"}
+            colors={`${
+              resolvedTheme === "dark"
+                ? "primary:#ff9d00,secondary:#ff9d00"
+                : "primary:#ff6900,secondary:#ff6900"
+            }`}
+            classNameContainer={clsx("flex items-center cursor-pointer", {
+              "flex-col": isBottom,
+            })}
+            classNameLabel={clsx({
+              "max-[500px]:hidden": isBottom,
+            })}
           />
         ) : (
           <InteractiveIcon
+            key={resolvedTheme}
             iconUrl="https://cdn.lordicon.com/iwjzoila.json"
             animationState="in-reveal"
             animationHover="hover-pinch"
             sizeIcon={24}
-            label=""
-            classNameContainer="flex items-center cursor-pointer"
-            classNameLabel=""
+            label={!isBottom ? "" : "Light"}
+            colors={`${
+              resolvedTheme === "dark"
+                ? "primary:#ff9d00,secondary:#ff9d00"
+                : "primary:#ff6900,secondary:#ff6900"
+            }`}
+            classNameContainer={clsx("flex items-center cursor-pointer", {
+              "flex-col": isBottom,
+            })}
+            classNameLabel={clsx({
+              "max-[500px]:hidden": isBottom,
+            })}
           />
         )}
       </button>

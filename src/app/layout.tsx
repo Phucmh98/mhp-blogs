@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Kanit } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
+import AppProvider from "@/components/commons/providers/app-provider/approvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,14 +37,9 @@ export default function RootLayout({
           suppressHydrationWarning
           className={`${geistSans.variable} ${geistMono.variable} ${kanit.variable} antialiased`}
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem={true}
-            disableTransitionOnChange
-          >
+          <AppProvider>
             {children}
-          </ThemeProvider>
+          </AppProvider>
         </body>
       </html>
     </ClerkProvider>
