@@ -69,7 +69,7 @@ const UserLogin = () => {
           <DialogTrigger asChild>
             <Button
               variant="outline"
-              className="cursor-pointer rounded-2xl py-5 shadow-[0px_2px_4px_rgba(0,0,0,0.12),0px_8px_12px_rgba(0,0,0,0.08),0px_8px_16px_rgba(0,0,0,0.08)]"
+              className="cursor-pointer rounded-xl py-3"
             >
               Login
             </Button>
