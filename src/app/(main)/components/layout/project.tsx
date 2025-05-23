@@ -1,8 +1,8 @@
 'use client'
 import SpotlightCard from "@/components/commons/reactbits/spotlight-card";
 import Image from "next/image";
-import { InteractiveIcon } from "./interactive-icon";
-import { selectProjects } from "../utils/select-project";
+import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
+import { selectProjects } from "../../lib/select-project";
 import Link from "next/link";
 import BlurImage from "@/components/commons/image/blur-image";
 import { useRouter } from "next/navigation";

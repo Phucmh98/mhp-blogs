@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
-import NavLink from "./navbar-link";
-import UserLogin from "./user-login";
+import NavLink from "../common/navbar/navbar-link";
+import UserLogin from "../common/navbar/user-login";
+
 
 const Navbar = () => {
   return (

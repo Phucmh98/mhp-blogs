@@ -11,7 +11,7 @@ import {
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { InteractiveIcon } from "./interactive-icon";
+import { InteractiveIcon } from "../../../../../components/commons/interactive-icon/interactive-icon";
 import clsx from "clsx";
 const NavLink = () => {
   const pathname = usePathname();

@@ -1,13 +1,13 @@
 "use client";
-import About from "./components/about";
-import Banner from "./components/banner";
+import About from "./components/layout/about";
+import Banner from "./components/layout/banner";
 import AnimatedContent from "@/components/animated-content";
-import StackGallery from "./components/stack-gallery";
-import { technologies } from "./components/technologies";
-import SelectProject from "./components/project";
+import StackGallery from "./components/layout/stack-gallery";
+import { technologies } from "./lib/technologies";
+import SelectProject from "./components/layout/project";
 import { Button } from "@/components/ui/button";
-import { InteractiveIcon } from "./components/interactive-icon";
-import Footer from "./components/footer";
+import { InteractiveIcon } from "../../components/commons/interactive-icon/interactive-icon";
+import Footer from "./components/layout/footer";
 interface FallingTextProps {
   text?: string;
   highlightWords?: string[];

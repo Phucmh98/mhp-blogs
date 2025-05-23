@@ -5,7 +5,7 @@ import {
   useAnimation,
   useTransform,
 } from "framer-motion";
-import { Technology } from "./technologies";
+import { Technology } from "../../lib/technologies";
 import { SVGIcons } from "@/components/commons/icons/svg-icons";
 import {
   Tooltip,

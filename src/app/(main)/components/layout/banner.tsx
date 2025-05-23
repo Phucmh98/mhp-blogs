@@ -1,10 +1,10 @@
 "use client";
 import AnimatedContent from "@/components/animated-content";
-import FallingText from "./falling-text";
+import FallingText from "../common/banner/falling-text";
 import ThreeScene from "@/components/commons/view/threejs/threejs-scene";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { InteractiveIcon } from "./interactive-icon";
+import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
 
 const Banner = () => {
   const [actionIndexs, setActionIndexs] = useState<number[]>([0, 1]);

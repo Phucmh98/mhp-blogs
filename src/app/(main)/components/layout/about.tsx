@@ -5,7 +5,7 @@ import FocusFrame from "@/components/true-focus";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { Player } from "@lordicon/react";
-import { InteractiveIcon } from "./interactive-icon";
+import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
 import { Wind, Droplet } from "lucide-react";
 
 const About = () => {
