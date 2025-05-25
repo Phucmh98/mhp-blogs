@@ -70,32 +70,36 @@ const About = () => {
       "Friday",
       "Saturday",
     ];
-
-
   }, []);
 
-
-
   useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date();
-      const timeVN = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Asia/Ho_Chi_Minh",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      }).format(now);
+    // Chỉ chạy ở phía client
+    if (typeof window !== "undefined") {
+      const interval = setInterval(() => {
+        const now = new Date();
+        const timeVN = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Asia/Ho_Chi_Minh",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        }).format(now);
 
-      if (timeRef.current) {
-        timeRef.current.textContent = `${timeVN}`;
-      }
-    }, 1000);
+        if (timeRef.current) {
+          timeRef.current.textContent = `${timeVN}`;
+        }
+      }, 1000);
 
-    return () => clearInterval(interval); // cleanup khi component unmount
+      return () => clearInterval(interval);
+    }
   }, []);
 
   return (
-    <FocusFrame glowColor="#ff990080" borderColor="#fe9a00" animationDuration={0.3} interval={2500}>
+    <FocusFrame
+      glowColor="#ff990080"
+      borderColor="#fe9a00"
+      animationDuration={0.3}
+      interval={2500}
+    >
       {/* About Header */}
       <div className="w-full relative flex items-center justify-center my-8">
         <Image
@@ -135,7 +139,6 @@ const About = () => {
                 sizeIcon={24}
                 animationHover="hover-bounce"
                 classNameContainer="font-medium flex w-fit items-center select-none"
-                
               />
 
               {/* Icon Github */}
@@ -164,35 +167,25 @@ const About = () => {
             </div>
 
             <div className="col-span-1 flex flex-col items-end mr-0 sm:mr-6 truncate">
-              <div
-                className="focusable select-none flex w-fit bg-amber-500 px-2 py-1 rounded-3xl text-white items-center"
-                
-              >
+              <div className="focusable select-none flex w-fit bg-amber-500 px-2 py-1 rounded-3xl text-white items-center">
                 {/* Icon Location */}
-                {/* <Player
-                  ref={playerRefIconLocation}
-                  icon={iconLocation}
-                  size={24}
-                  colors="primary:#ffffff,secondary:#ffffff"
-                  state={animationData}
-                  onComplete={() => {
-                    playerRefIconLocation.current?.pause();
-                  }}
-                />
-                <span className="text-lg"> {weather?.location.country}</span> */}
-                   <InteractiveIcon
-                iconUrl="https://cdn.lordicon.com/onmwuuox.json"
-                colors="primary:#ffffff,secondary:#ffffff"
-                animationState="in-roll-calm"
-                animationHover="hover-jump-roll"
-                classNameContainer="focusable flex items-center"
-                classNameLabel="text-lg"
-                label={weather?.location.country}
-              />
 
+                <InteractiveIcon
+                  iconUrl="https://cdn.lordicon.com/onmwuuox.json"
+                  colors="primary:#ffffff,secondary:#ffffff"
+                  animationState="in-roll-calm"
+                  animationHover="hover-jump-roll"
+                  classNameContainer="focusable flex items-center"
+                  classNameLabel="text-lg"
+                  label={weather?.location.country}
+                />
               </div>
-              <div className="focusable w-fit text-end mt-1.5 truncate">{weather?.location.name}</div>
-              <div className="focusable w-fit text-end mt-1.5 truncate">{today}</div>
+              <div className="focusable w-fit text-end mt-1.5 truncate">
+                {weather?.location.name}
+              </div>
+              <div className="focusable w-fit text-end mt-1.5 truncate">
+                {today}
+              </div>
               <div className="flex">
                 {weather?.current?.condition?.icon && (
                   <Image
@@ -206,12 +199,12 @@ const About = () => {
                   {weather?.current?.temp_c}°C
                 </div>
               </div>
-              <div className="w-full text-end truncate">{weather?.current.condition.text}</div>
-
+              <div className="w-full text-end truncate">
+                {weather?.current.condition.text}
+              </div>
             </div>
           </div>
         </div>
-       
       </div>
     </FocusFrame>
   );
