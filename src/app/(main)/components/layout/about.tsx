@@ -4,7 +4,6 @@ import { getCurrentWeather } from "@/api/weatherApi";
 import FocusFrame from "@/components/true-focus";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { Player } from "@lordicon/react";
 import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
 
 type Weather = {
@@ -27,11 +26,6 @@ const About = () => {
   const [weather, setWeather] = useState<Weather | null>(null);
   const [today, setToday] = useState<string>("");
 
-  //Location
-  const [iconLocation, setIconLocation] = useState(null);
-  const [animationData, setAnimationData] = useState("loop-roll");
-
-  const playerRefIconLocation = useRef<Player>(null);
   const timeRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -77,18 +71,10 @@ const About = () => {
       "Saturday",
     ];
 
-    fetch("https://cdn.lordicon.com/onmwuuox.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setIconLocation(data);
-      });
+
   }, []);
 
-  useEffect(() => {
-    if (iconLocation) {
-      playerRefIconLocation?.current?.playFromBeginning();
-    }
-  }, [iconLocation]);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -180,17 +166,10 @@ const About = () => {
             <div className="col-span-1 flex flex-col items-end mr-0 sm:mr-6 truncate">
               <div
                 className="focusable select-none flex w-fit bg-amber-500 px-2 py-1 rounded-3xl text-white items-center"
-                onMouseEnter={() => {
-                  setAnimationData("hover-jump-roll");
-                  playerRefIconLocation.current?.play();
-                }}
-                onMouseLeave={() => {
-                  setAnimationData("loop-roll");
-                  playerRefIconLocation.current?.play();
-                }}
+                
               >
                 {/* Icon Location */}
-                <Player
+                {/* <Player
                   ref={playerRefIconLocation}
                   icon={iconLocation}
                   size={24}
@@ -200,7 +179,17 @@ const About = () => {
                     playerRefIconLocation.current?.pause();
                   }}
                 />
-                <span className="text-lg"> {weather?.location.country}</span>
+                <span className="text-lg"> {weather?.location.country}</span> */}
+                   <InteractiveIcon
+                iconUrl="https://cdn.lordicon.com/onmwuuox.json"
+                colors="primary:#ffffff,secondary:#ffffff"
+                animationState="in-roll-calm"
+                animationHover="hover-jump-roll"
+                classNameContainer="focusable flex items-center"
+                classNameLabel="text-lg"
+                label={weather?.location.country}
+              />
+
               </div>
               <div className="focusable w-fit text-end mt-1.5 truncate">{weather?.location.name}</div>
               <div className="focusable w-fit text-end mt-1.5 truncate">{today}</div>
