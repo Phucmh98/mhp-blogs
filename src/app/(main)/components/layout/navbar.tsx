@@ -5,13 +5,11 @@ import UserLogin from "../common/navbar/user-login";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
-  const [scrollY, setScrollY] = useState(0);
   const [width, setWidth] = useState(1280);
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
       
-      setScrollY(y);
       const newWidth = Math.max(640, 1280 - y * 5); // tốc độ giảm
       setWidth(newWidth);
     };

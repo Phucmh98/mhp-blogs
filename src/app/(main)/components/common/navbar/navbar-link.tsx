@@ -6,8 +6,7 @@ import {
   UserCircle2,
   FolderSymlink,
   Users,
-  Moon,
-  Sun,
+
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";

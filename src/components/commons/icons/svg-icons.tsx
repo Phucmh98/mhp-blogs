@@ -1,4 +1,3 @@
-import { Html } from "next/document";
 import type React from "react";
 
 type TSVGIconsProps = React.HtmlHTMLAttributes<SVGElement>;

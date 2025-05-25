@@ -6,12 +6,26 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { Player } from "@lordicon/react";
 import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
-import { Wind, Droplet } from "lucide-react";
+
+type Weather = {
+  location: {
+    name: string;
+    country: string;
+    localtime: string;
+  };
+  current: {
+    temp_c: number;
+    condition: {
+      text: string;
+      icon: string;
+    };
+  };
+};
 
 const About = () => {
   const [timeOfDay, setTimeOfDay] = useState("");
-  const [weather, setWeather] = useState<any>(null);
-  const [today, setToday] = useState("");
+  const [weather, setWeather] = useState<Weather | null>(null);
+  const [today, setToday] = useState<string>("");
 
   //Location
   const [iconLocation, setIconLocation] = useState(null);
@@ -39,7 +53,6 @@ const About = () => {
             month < 10 ? "0" + month : month
           }/${year}`
         );
-        console.log("Today in Vietnam is:", today);
       }
     });
 
@@ -110,7 +123,7 @@ const About = () => {
         <span className="text-4xl font-semibold text-gray-500">About me</span>
       </div>
       {/* About Header */}
-      <div className="mb-10 pt-8 text-gray-500">
+      <div className="mb-10 pt-8 text-[var(--phuc-text-primary-1)]">
         <div className=" border rounded-lg p-4 shadow-md">
           <div className="w-full flex items-center justify-between">
             <div className="focusable w-fit text-amber-700 border-1 rounded-2xl px-2.5 py-0.5 font-medium">
@@ -119,23 +132,24 @@ const About = () => {
 
             <span className="text-amber-700" ref={timeRef}></span>
           </div>
-          <div className="focusable text-xl my-3 font-normal">
-            I'm a frontend developer who loves building weird, fun, and
+          <div className="focusable text-base md:text-xl my-3 font-normal">
+            I&#39;m a frontend developer who loves building weird, fun, and
             sometimes ridiculous things on the web — stuff that spins, blinks,
             moves, and makes people smile. I use React, TypeScript, and a little
             bit of beautiful nonsense to keep the internet interesting.
           </div>
 
-          <div className=" grid grid-cols-8 gap-2 mt-3">
-            <div className="ml-8 col-span-5  h-full justify-between items-center">
+          <div className=" grid grid-cols-2 gap-2 mt-3">
+            <div className=" col-span-1  h-full justify-between items-center ml-0 sm:ml-8">
               {/* Icon Link */}
               <InteractiveIcon
                 iconUrl="https://cdn.lordicon.com/gsjfryhc.json"
                 label="Connect"
                 animationState="in-reveal"
+                sizeIcon={24}
                 animationHover="hover-bounce"
                 classNameContainer="font-medium flex w-fit items-center select-none"
-                sizeIcon={24}
+                
               />
 
               {/* Icon Github */}
@@ -163,7 +177,7 @@ const About = () => {
               />
             </div>
 
-            <div className="col-span-3 flex flex-col items-end mr-6">
+            <div className="col-span-1 flex flex-col items-end mr-0 sm:mr-6 truncate">
               <div
                 className="focusable select-none flex w-fit bg-amber-500 px-2 py-1 rounded-3xl text-white items-center"
                 onMouseEnter={() => {
@@ -188,8 +202,8 @@ const About = () => {
                 />
                 <span className="text-lg"> {weather?.location.country}</span>
               </div>
-              <div className="focusable w-fit mt-1.5">{weather?.location.name}</div>
-              <div className="focusable w-fit mt-1.5">{today}</div>
+              <div className="focusable w-fit text-end mt-1.5 truncate">{weather?.location.name}</div>
+              <div className="focusable w-fit text-end mt-1.5 truncate">{today}</div>
               <div className="flex">
                 {weather?.current?.condition?.icon && (
                   <Image
@@ -199,11 +213,11 @@ const About = () => {
                     height={54}
                   />
                 )}
-                <div className="text-[28px] font-semibold flex items-center justify-center">
+                <div className="text-xl sm:text-[28px] font-semibold flex items-center justify-center">
                   {weather?.current?.temp_c}°C
                 </div>
               </div>
-              <div className="w-fit">{weather?.current.condition.text}</div>
+              <div className="w-full text-end truncate">{weather?.current.condition.text}</div>
 
             </div>
           </div>

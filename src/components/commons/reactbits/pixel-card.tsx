@@ -107,11 +107,11 @@ class Pixel {
   }
 }
 
-function getEffectiveSpeed(value: any, reducedMotion: any) {
+function getEffectiveSpeed(value: number | string, reducedMotion: boolean) {
   const min = 0;
   const max = 100;
   const throttle = 0.001;
-  const parsed = parseInt(value, 10);
+  const parsed = parseInt(value as string, 10);
 
   if (parsed <= min || reducedMotion) {
     return min;
@@ -186,7 +186,7 @@ export default function PixelCard({
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pixelsRef = useRef<Pixel[]>([]);
-  const animationRef = useRef<any>(null);
+  const animationRef = useRef<number | null>(null);
   const timePreviousRef = useRef(performance.now());
   const reducedMotion = useRef(
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -256,8 +256,11 @@ export default function PixelCard({
     let allIdle = true;
     for (let i = 0; i < pixelsRef.current.length; i++) {
       const pixel = pixelsRef.current[i];
-      // @ts-ignore
-      pixel[fnName]();
+      // Ép kiểu rõ ràng cho method
+      const fn = pixel[fnName] as (this: Pixel) => void;
+      if (typeof fn === "function") {
+        fn.call(pixel);
+      }
       if (!pixel.isIdle) {
         allIdle = false;
       }
@@ -268,7 +271,9 @@ export default function PixelCard({
   };
 
   const handleAnimation = (name: keyof Pixel) => {
-    cancelAnimationFrame(animationRef.current);
+    if (animationRef.current !== null) {
+      cancelAnimationFrame(animationRef.current);
+    }
     animationRef.current = requestAnimationFrame(() => doAnimate(name));
   };
 
@@ -293,7 +298,9 @@ export default function PixelCard({
     }
     return () => {
       observer.disconnect();
-      cancelAnimationFrame(animationRef.current);
+      if (animationRef.current !== null) {
+        cancelAnimationFrame(animationRef.current);
+      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [finalGap, finalSpeed, finalColors, finalNoFocus]);

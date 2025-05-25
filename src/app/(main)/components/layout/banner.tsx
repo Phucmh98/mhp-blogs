@@ -26,7 +26,7 @@ const Banner = () => {
     >
       <FallingText key={fallingTextKey} />
 
-      <div className="absolute top-0 right-0 w-[500px] h-full pt-20 ">
+      <div className="absolute top-0 right-0 w-full max-w-[500px] h-full pt-20 ">
         <ThreeScene
           indexActions={actionIndexs}
           autoStop={isAnimationPaused}

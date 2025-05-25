@@ -19,9 +19,8 @@ const ThreeScene = ({
   const actionsRef = useRef<THREE.AnimationAction[]>([]);
   const animationIdRef = useRef<number | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const fovRef = useRef(60); // FOV mặc định ban đầu
 
-  // ref giữ vị trí chuột 3D trong scene (world coords)
-  const mousePosRef = useRef(new THREE.Vector3(0, 0, 0));
   // ref giữ model để quay
   const modelRef = useRef<THREE.Object3D | null>(null);
 
@@ -39,7 +38,15 @@ const ThreeScene = ({
     }
 
     // Camera setup
-    const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
+    if (width < 500) {
+      const t = (500 - width) / 500;
+      const newFov = 60 + 60 * t;
+      fovRef.current = newFov;
+    }
+   
+
+    // 👉 Tạo camera với FOV đã tính
+    const camera = new THREE.PerspectiveCamera(fovRef.current, width / height, 0.1, 1000);
     // camera.position.set(0, 0, 5);
     camera.position.set(1.1, 0.85, 1.45);
     camera.quaternion.set(-0.25, 0.36, 0.07, 0.1);
@@ -88,11 +95,6 @@ const ThreeScene = ({
       }
     );
 
-    const plane = new THREE.Plane(new THREE.Vector3(0, -1, 0), -10); // mặt phẳng XZ tại y=0
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
-    const pointOfIntersection = new THREE.Vector3();
-
     // Hàm chạy chuỗi animation
     const startSequence = () => {
       if (!mixerRef.current || actionsRef.current.length === 0) return;
@@ -125,6 +127,33 @@ const ThreeScene = ({
       playNext(0);
     };
 
+    // Resize handler
+    const handleResize = () => {
+      if (mountRef.current) {
+        const newWidth = mountRef.current.clientWidth;
+        const newHeight = mountRef.current.clientHeight;
+
+        camera.aspect = newWidth / newHeight;
+
+        if (newWidth < 500) {
+          const t = (500 - newWidth) / 500;
+          const newFov = 60 + 60 * t;
+          fovRef.current = newFov;
+          camera.fov = newFov;
+        } else {
+          fovRef.current = 60;
+          camera.fov = 60;
+        }
+
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(newWidth, newHeight);
+      }
+    };
+
+    // Gắn listener resize
+    window.addEventListener("resize", handleResize);
+
     // Animation loop
     const animate = () => {
       animationIdRef.current = requestAnimationFrame(animate);
@@ -133,7 +162,6 @@ const ThreeScene = ({
       controls.update();
 
       // Cập nhật góc quay model theo chuột mỗi frame
-
       renderer.render(scene, camera);
     };
     animate();
@@ -162,6 +190,7 @@ const ThreeScene = ({
       mixerRef.current = null;
       actionsRef.current = [];
       modelRef.current = null;
+      window.removeEventListener("resize", handleResize);
     };
   }, [indexActions, durations, autoStop]);
 
