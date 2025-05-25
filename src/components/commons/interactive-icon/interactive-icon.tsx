@@ -1,4 +1,4 @@
-// components/InteractiveIcon.tsx
+"use client"
 import { Player } from "@lordicon/react";
 import React, { useEffect, useRef, useState } from "react";
 
