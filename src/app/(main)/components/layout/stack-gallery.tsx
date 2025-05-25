@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import {
   motion,
@@ -18,7 +19,6 @@ import { TooltipArrow } from "@radix-ui/react-tooltip";
 import type { PanInfo } from "framer-motion";
 import Image from "next/image";
 
-
 interface StackGalleryProps {
   autoplay?: boolean;
   pauseOnHover?: boolean;
@@ -33,10 +33,12 @@ const StackGallery = ({
   const [isScreenSizeSm, setIsScreenSizeSm] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsScreenSizeSm(window.innerWidth <= 640);
-    handleResize(); // Gọi lần đầu khi component mount
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    if (typeof window !== "undefined") {
+      const handleResize = () => setIsScreenSizeSm(window.innerWidth <= 640);
+      handleResize(); // Gọi lần đầu khi component mount
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
   }, []);
 
   // 3D geometry

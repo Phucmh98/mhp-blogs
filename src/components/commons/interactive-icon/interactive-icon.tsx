@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Player } from "@lordicon/react";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -31,6 +31,7 @@ export const InteractiveIcon = ({
   const [animation, setAnimation] = useState(animationState);
   const playerRef = useRef<Player>(null);
 
+;
   useEffect(() => {
     fetch(iconUrl)
       .then((res) => res.json())

@@ -1,3 +1,4 @@
+'use client';
 import Magnet from "@/components/commons/reactbits/magnet";
 import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
 import Signature from "@/components/commons/signature/signature";

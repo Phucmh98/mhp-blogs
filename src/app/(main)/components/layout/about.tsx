@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { getCurrentWeather } from "@/api/weatherApi";
 import FocusFrame from "@/components/true-focus";
