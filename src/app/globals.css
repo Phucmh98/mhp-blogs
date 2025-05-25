@@ -81,6 +81,8 @@
   
   --phuc-bg-navlink: #ffffff4d;
   --phuc-separator: #e7e3e4;
+
+  --phuc-text-primary-1:#6a7282;
 }
 
 .dark {
@@ -120,6 +122,8 @@
   --phuc-bg-navlink: #0000004d;
 
   --phuc-separator: #3f3f3f;
+
+  --phuc-text-primary-1:#a1a1a1;
 }
 
 @layer base {

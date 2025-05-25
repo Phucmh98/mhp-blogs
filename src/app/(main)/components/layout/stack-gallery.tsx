@@ -15,7 +15,9 @@ import {
 } from "@/components/ui/tooltip";
 import Link from "next/link";
 import { TooltipArrow } from "@radix-ui/react-tooltip";
+import type { PanInfo } from "framer-motion";
 import Image from "next/image";
+
 
 interface StackGalleryProps {
   autoplay?: boolean;
@@ -81,12 +83,12 @@ const StackGallery = ({
     }
   };
 
-  const handleDrag = (_: unknown, info: any) => {
+  const handleDrag = (_: MouseEvent | TouchEvent, info: PanInfo) => {
     controls.stop();
     rotation.set(rotation.get() + info.offset.x * dragFactor);
   };
 
-  const handleDragEnd = (_: unknown, info: any) => {
+  const handleDragEnd = (_: MouseEvent | TouchEvent, info: PanInfo) => {
     const finalAngle = rotation.get() + info.velocity.x * dragFactor;
     rotation.set(finalAngle);
 

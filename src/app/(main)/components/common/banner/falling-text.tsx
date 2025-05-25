@@ -15,7 +15,7 @@ interface FallingTextProps {
 
 const FallingText: React.FC<FallingTextProps> = ({
   text = " Hey, there\n I'm Phuc \n a Frontend Developer \n Turning ideas into exciting experiences",
-  highlightWords = ["Phuc","Frontend","Developer"],
+  highlightWords = ["Phuc", "Frontend", "Developer"],
   trigger = "click",
   backgroundColor = "transparent",
   wireframes = false,
@@ -31,13 +31,13 @@ const FallingText: React.FC<FallingTextProps> = ({
 
   useEffect(() => {
     if (!textRef.current) return;
-  
+
     const lines = text.split("\n");
-  
+
     const newHTML = lines
       .map((line, index) => {
         const words = line.split(" ");
-  
+
         const styledWords = words
           .map((word) => {
             const isHighlighted = highlightWords.some((hw) =>
@@ -52,23 +52,26 @@ const FallingText: React.FC<FallingTextProps> = ({
             </span>`;
           })
           .join("");
-  
+
         // CSS cho từng dòng + flex + gap riêng biệt
         const lineClass = (() => {
-          if (index === 0) return "text-[14px] md:text-[18px] lgtext-[28px] flex flex-wrap gap-x-2 mb-2 text-neutral-300 ";
-          if (index === 1) return "text-[28px] md:text-[38px] lg:text-[48px] flex flex-wrap gap-x-2 text-neutral-400 mb-2";
-          if (index === 2) return "text-[28px] md:text-[38px] lg:text-[48px] flex flex-wrap gap-x-1.5 text-neutral-400 mb-2";
-          if (index === 3) return "text-[18px] md:text-[28px] lg:text-[36px] flex flex-wrap gap-x-1.5 text-neutral-400";
+          if (index === 0)
+            return "text-[14px] md:text-[18px] lgtext-[28px] flex flex-wrap gap-x-2 mb-2 text-neutral-300 ";
+          if (index === 1)
+            return "text-[28px] md:text-[38px] lg:text-[48px] flex flex-wrap gap-x-2 text-neutral-400 mb-2";
+          if (index === 2)
+            return "text-[28px] md:text-[38px] lg:text-[48px] flex flex-wrap gap-x-1.5 text-neutral-400 mb-2";
+          if (index === 3)
+            return "text-[18px] md:text-[28px] lg:text-[36px] flex flex-wrap gap-x-1.5 text-neutral-400";
           return "flex flex-wrap gap-x-2 mb-2";
         })();
-  
+
         return `<div class="${lineClass}">${styledWords}</div>`;
       })
       .join("");
-  
+
     textRef.current.innerHTML = newHTML;
   }, [text, highlightWords]);
-  
 
   useEffect(() => {
     if (trigger === "auto") {
@@ -92,7 +95,8 @@ const FallingText: React.FC<FallingTextProps> = ({
 
   useEffect(() => {
     if (!effectStarted) return;
-
+    // Lưu lại giá trị ref hiện tại
+    const canvasContainer = canvasContainerRef.current;
     const { Engine, Render, World, Bodies, Runner, Mouse, MouseConstraint } =
       Matter;
 
@@ -223,8 +227,8 @@ const FallingText: React.FC<FallingTextProps> = ({
     return () => {
       Render.stop(render);
       Runner.stop(runner);
-      if (render.canvas && canvasContainerRef.current) {
-        canvasContainerRef.current.removeChild(render.canvas);
+      if (render.canvas && canvasContainer) {
+        canvasContainer.removeChild(render.canvas);
       }
       World.clear(engine.world, false);
       Engine.clear(engine);

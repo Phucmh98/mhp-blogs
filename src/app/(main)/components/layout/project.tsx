@@ -19,7 +19,7 @@ const SelectProject = () => {
           width={40}
           height={40}
         />
-        <span className="mx-2">Select Project</span>
+        <span className="mx-2 text-center">Select Project</span>
         <Image
           src="/image/gif/sparkles-animate.gif"
           alt="sparkles"
@@ -27,7 +27,7 @@ const SelectProject = () => {
           height={40}
         />
       </div>
-      <div className="grid grid-cols-2  w-full  gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2  w-full  gap-5">
         {/* Render Card */}
         {selectProjects.map((project, index) => (
           <SpotlightCard
@@ -45,11 +45,11 @@ const SelectProject = () => {
             />
 
             <div className="flex justify-between border-t border-gray-300">
-              <div className="my-2 mx-3">
-                <div className="text-xl font-medium">{project.name}</div>
-                <div className="text-gray-500">{project.description}</div>
+              <div className="my-2 mx-3 flex-1 min-w-0">
+                <div className="text-sm sm:text-base lg:text-xl font-medium truncate">{project.name}</div>
+                <div className="text-xs md:text-sm lg:text-base text-gray-500 truncate">{project.description}</div>
               </div>
-              <div className="flex items-center justify-center mr-2">
+              <div className="flex items-center justify-end mr-2">
                 {/* Icon Demo */}
                 <Link href={project.urlDemo || "/about"} target="_blank">
                   <InteractiveIcon

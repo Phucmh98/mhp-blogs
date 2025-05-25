@@ -6,7 +6,7 @@ import AnimatedContent from "@/components/animated-content";
 const Footer = () => {
   return (
     <AnimatedContent>
-      <div className="container w-full h-full mx-auto max-w-5xl px-10">
+      <div className="container w-full h-full mx-auto max-w-5xl px-3 sm:px-10 pb-20 sm:pb-0">
         <div className="py-10 px-5 rounded-lg border">
           <Magnet
             padding={5}
@@ -18,7 +18,7 @@ const Footer = () => {
             {/* Signature */}
             <Signature svgSrc="/svg/svgviewer-output-test.svg" height={50} timeStep={1}/>
 
-            <div className="text-5xl font-extrabold tracking-wide text-gray-500 text-center uppercase mt-3">
+            <div className="min-[320px]:text-lg min-[448px]:text-2xl min-[576px]:text-3xl md:text-5xl font-extrabold tracking-wide text-gray-500 text-center uppercase mt-3">
               Wanna create something fun and exciting?
             </div>
 
@@ -37,8 +37,8 @@ const Footer = () => {
           </Magnet>
         </div>
         <div className="flex justify-between items-center w-full py-3">
-          <span className="text-sm text-gray-500">
-            © 2025 Phuc. All rights reserved.
+          <span className="text-sm text-[var(--phuc-text-primary-1)]">
+            © 2025 by Phuc. All rights reserved.
           </span>
           <span className="flex gap-2">
             <InteractiveIcon

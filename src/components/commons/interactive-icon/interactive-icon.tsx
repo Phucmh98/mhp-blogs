@@ -27,7 +27,7 @@ export const InteractiveIcon = ({
   isLoop = false,
   onClick = () => {},
 }: InteractiveIconProps) => {
-  const [iconData, setIconData] = useState<any>(null);
+  const [iconData, setIconData] = useState<object | null>(null);
   const [animation, setAnimation] = useState(animationState);
   const playerRef = useRef<Player>(null);
 

@@ -1,5 +1,4 @@
 import React, {
-  useState,
   useEffect,
   useRef,
   ReactNode,
@@ -22,8 +21,6 @@ const Magnet: React.FC<MagnetProps> = ({
   padding = 100,
   disabled = false,
   magnetStrength = 2,
-  activeTransition = "transform 0.3s ease-out",
-  inactiveTransition = "transform 0.5s ease-in-out",
   wrapperClassName = "",
   innerClassName = "",
   ...props
