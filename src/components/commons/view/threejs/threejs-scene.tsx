@@ -1,7 +1,8 @@
+"use client";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export interface ThreeSceneProps {
   indexActions: number[]; // danh sách index action muốn play theo thứ tự
@@ -20,178 +21,186 @@ const ThreeScene = ({
   const animationIdRef = useRef<number | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const fovRef = useRef(60); // FOV mặc định ban đầu
-
   // ref giữ model để quay
   const modelRef = useRef<THREE.Object3D | null>(null);
 
   useEffect(() => {
-    const scene = new THREE.Scene();
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    if (typeof window !== "undefined") {
+      const scene = new THREE.Scene();
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
 
-    let width = 0;
-    let height = 0;
-    if (mountRef.current) {
-      mountRef.current.innerHTML = "";
-      mountRef.current.appendChild(renderer.domElement);
-      width = mountRef.current.clientWidth;
-      height = mountRef.current.clientHeight;
-    }
-
-    // Camera setup
-    if (width < 500) {
-      const t = (500 - width) / 500;
-      const newFov = 60 + 60 * t;
-      fovRef.current = newFov;
-    }
-   
-
-    // 👉 Tạo camera với FOV đã tính
-    const camera = new THREE.PerspectiveCamera(fovRef.current, width / height, 0.1, 1000);
-    // camera.position.set(0, 0, 5);
-    camera.position.set(1.1, 0.85, 1.45);
-    camera.quaternion.set(-0.25, 0.36, 0.07, 0.1);
-
-    renderer.setSize(width, height);
-
-    // Controls (optional, bạn dùng cũng được hoặc tắt đi nếu muốn)
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.rotateSpeed = 0.5;
-
-    // Lights
-    scene.add(new THREE.AmbientLight(0xffffff, 0.8));
-    scene.add(new THREE.DirectionalLight(0xffffff, 1.5));
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x888888, 1));
-
-    const clock = new THREE.Clock();
-
-    // Load model
-    const loader = new GLTFLoader();
-    loader.load(
-      "/glb/kawaiimeka.glb",
-      (gltf) => {
-        // Center model
-        const box = new THREE.Box3().setFromObject(gltf.scene);
-        const center = new THREE.Vector3();
-        box.getCenter(center);
-        gltf.scene.position.sub(center);
-
-        scene.add(gltf.scene);
-        modelRef.current = gltf.scene;
-
-        // Animation setup
-        const mixer = new THREE.AnimationMixer(gltf.scene);
-        mixerRef.current = mixer;
-
-        const actions = gltf.animations.map((clip) => mixer.clipAction(clip));
-        actionsRef.current = actions;
-
-        startSequence();
-      },
-      undefined,
-      (error) => {
-        console.error("Error loading model:", error);
+      let width = 0;
+      let height = 0;
+      if (mountRef.current) {
+        mountRef.current.innerHTML = "";
+        mountRef.current.appendChild(renderer.domElement);
+        width = mountRef.current.clientWidth;
+        height = mountRef.current.clientHeight;
       }
-    );
 
-    // Hàm chạy chuỗi animation
-    const startSequence = () => {
-      if (!mixerRef.current || actionsRef.current.length === 0) return;
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      // Camera setup
+      if (width < 500) {
+        const t = (500 - width) / 500;
+        const newFov = 60 + 60 * t;
+        fovRef.current = newFov;
+      }
 
-      const playNext = (idx: number) => {
-        const actionIndex = indexActions[idx];
-        const duration = durations[idx];
+      // 👉 Tạo camera với FOV đã tính
+      const camera = new THREE.PerspectiveCamera(
+        fovRef.current,
+        width / height,
+        0.1,
+        1000
+      );
+      // camera.position.set(0, 0, 5);
+      camera.position.set(1.1, 0.85, 1.45);
+      camera.quaternion.set(-0.25, 0.36, 0.07, 0.1);
 
-        actionsRef.current.forEach((action, i) => {
-          if (i === actionIndex) {
-            action.reset().fadeIn(0.3).play();
-          } else {
-            action.fadeOut(0.3);
-          }
-        });
+      renderer.setSize(width, height);
 
-        mixerRef.current!.timeScale = 1;
+      // Controls (optional, bạn dùng cũng được hoặc tắt đi nếu muốn)
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.rotateSpeed = 0.5;
 
-        timeoutRef.current = setTimeout(() => {
-          if (autoStop) {
-            mixerRef.current!.timeScale = 0;
-          } else {
-            const nextIdx = (idx + 1) % indexActions.length;
-            playNext(nextIdx);
-          }
-        }, duration);
+      // Lights
+      scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+      scene.add(new THREE.DirectionalLight(0xffffff, 1.5));
+      scene.add(new THREE.HemisphereLight(0xffffff, 0x888888, 1));
+
+      const clock = new THREE.Clock();
+
+      // Load model
+      const loader = new GLTFLoader();
+      loader.load(
+        "/glb/kawaiimeka.glb",
+        (gltf) => {
+          // Center model
+          const box = new THREE.Box3().setFromObject(gltf.scene);
+          const center = new THREE.Vector3();
+          box.getCenter(center);
+          gltf.scene.position.sub(center);
+
+          scene.add(gltf.scene);
+          modelRef.current = gltf.scene;
+
+          // Animation setup
+          const mixer = new THREE.AnimationMixer(gltf.scene);
+          mixerRef.current = mixer;
+
+          const actions = gltf.animations.map((clip) => mixer.clipAction(clip));
+          actionsRef.current = actions;
+
+          startSequence();
+        },
+        undefined,
+        (error) => {
+          console.error("Error loading model:", error);
+        }
+      );
+
+      // Hàm chạy chuỗi animation
+      const startSequence = () => {
+        if (!mixerRef.current || actionsRef.current.length === 0) return;
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+        const playNext = (idx: number) => {
+          const actionIndex = indexActions[idx];
+          const duration = durations[idx];
+
+          actionsRef.current.forEach((action, i) => {
+            if (i === actionIndex) {
+              action.reset().fadeIn(0.3).play();
+            } else {
+              action.fadeOut(0.3);
+            }
+          });
+
+          mixerRef.current!.timeScale = 1;
+
+          timeoutRef.current = setTimeout(() => {
+            if (autoStop) {
+              mixerRef.current!.timeScale = 0;
+            } else {
+              const nextIdx = (idx + 1) % indexActions.length;
+              playNext(nextIdx);
+            }
+          }, duration);
+        };
+
+        playNext(0);
       };
 
-      playNext(0);
-    };
+      // Resize handler
+      const handleResize = () => {
+        if (mountRef.current) {
+          const newWidth = mountRef.current.clientWidth;
+          const newHeight = mountRef.current.clientHeight;
 
-    // Resize handler
-    const handleResize = () => {
-      if (mountRef.current) {
-        const newWidth = mountRef.current.clientWidth;
-        const newHeight = mountRef.current.clientHeight;
+          camera.aspect = newWidth / newHeight;
 
-        camera.aspect = newWidth / newHeight;
+          if (newWidth < 500) {
+            const t = (500 - newWidth) / 500;
+            const newFov = 60 + 60 * t;
+            fovRef.current = newFov;
+            camera.fov = newFov;
+          } else {
+            fovRef.current = 60;
+            camera.fov = 60;
+          }
 
-        if (newWidth < 500) {
-          const t = (500 - newWidth) / 500;
-          const newFov = 60 + 60 * t;
-          fovRef.current = newFov;
-          camera.fov = newFov;
-        } else {
-          fovRef.current = 60;
-          camera.fov = 60;
+          camera.updateProjectionMatrix();
+
+          renderer.setSize(newWidth, newHeight);
         }
+      };
 
-        camera.updateProjectionMatrix();
+      // Gắn listener resize
+      window.addEventListener("resize", handleResize);
 
-        renderer.setSize(newWidth, newHeight);
-      }
-    };
+      // Animation loop
+      const animate = () => {
+        animationIdRef.current = requestAnimationFrame(animate);
+        const delta = clock.getDelta();
+        mixerRef.current?.update(delta);
+        controls.update();
 
-    // Gắn listener resize
-    window.addEventListener("resize", handleResize);
+        // Cập nhật góc quay model theo chuột mỗi frame
+        renderer.render(scene, camera);
+      };
+      animate();
 
-    // Animation loop
-    const animate = () => {
-      animationIdRef.current = requestAnimationFrame(animate);
-      const delta = clock.getDelta();
-      mixerRef.current?.update(delta);
-      controls.update();
+      // Nhấn P để log camera info
+      // window.addEventListener("keydown", (event) => {
+      //   if (event.key === "p") {
+      //     console.log("Camera FOV:", camera.fov);
+      //     console.log("Camera Position:", camera.position);
+      //     console.log("Camera Rotation:", camera.rotation);
+      //     console.log("Camera Quaternion:", camera.quaternion);
+      //   }
+      // });
 
-      // Cập nhật góc quay model theo chuột mỗi frame
-      renderer.render(scene, camera);
-    };
-    animate();
-
-    // Nhấn P để log camera info
-    // window.addEventListener("keydown", (event) => {
-    //   if (event.key === "p") {
-    //     console.log("Camera FOV:", camera.fov);
-    //     console.log("Camera Position:", camera.position);
-    //     console.log("Camera Rotation:", camera.rotation);
-    //     console.log("Camera Quaternion:", camera.quaternion);
-    //   }
-    // });
-
-    return () => {
-      if (animationIdRef.current !== null) {
-        cancelAnimationFrame(animationIdRef.current);
-      }
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-      if (mixerRef.current) {
-        mixerRef.current.stopAllAction();
-      }
-      renderer.dispose();
-      mixerRef.current = null;
-      actionsRef.current = [];
-      modelRef.current = null;
-      window.removeEventListener("resize", handleResize);
-    };
+      return () => {
+        if (animationIdRef.current !== null) {
+          cancelAnimationFrame(animationIdRef.current);
+        }
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+        if (mixerRef.current) {
+          mixerRef.current.stopAllAction();
+        }
+        renderer.dispose();
+        mixerRef.current = null;
+        actionsRef.current = [];
+        modelRef.current = null;
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, [indexActions, durations, autoStop]);
 
   return <div ref={mountRef} className="w-full h-full" />;

@@ -7,26 +7,27 @@ import { useEffect, useState } from "react";
 const Navbar = () => {
   const [width, setWidth] = useState(1280);
   useEffect(() => {
-    const handleScroll = () => {
-      const y = window.scrollY;
-      
-      const newWidth = Math.max(640, 1280 - y * 5); // tốc độ giảm
-      setWidth(newWidth);
-    };
-        window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    if (typeof window !== "undefined") {
+      const handleScroll = () => {
+        const y = window.scrollY;
+
+        const newWidth = Math.max(640, 1280 - y * 5); // tốc độ giảm
+        setWidth(newWidth);
+      };
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   return (
     <nav
-     style={{ maxWidth: `${width}px` }} 
-    className=" w-full flex items-center justify-between sm:backdrop-blur-lg sm:border sm:rounded-3xl sm:py-1 sm:px-3 sm:shadow-md sm:border-[var(--phuc-border-navlink)] sm:bg-[var(--phuc-bg-navlink)]">
-    
+      style={{ maxWidth: `${width}px` }}
+      className=" w-full flex items-center justify-between sm:backdrop-blur-lg sm:border sm:rounded-3xl sm:py-1 sm:px-3 sm:shadow-md sm:border-[var(--phuc-border-navlink)] sm:bg-[var(--phuc-bg-navlink)]"
+    >
       <Image
         className="cursor-pointer"
         src="/image/logo_mhp.png"
         alt="logo_mhp"
-        
         priority={true}
         width={42}
         height={42}

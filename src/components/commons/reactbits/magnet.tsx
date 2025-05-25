@@ -1,9 +1,4 @@
-import React, {
-  useEffect,
-  useRef,
-  ReactNode,
-  HTMLAttributes,
-} from "react";
+import React, { useEffect, useRef, ReactNode, HTMLAttributes } from "react";
 
 interface MagnetProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
@@ -32,47 +27,48 @@ const Magnet: React.FC<MagnetProps> = ({
 
   useEffect(() => {
     if (disabled) return;
+    if (typeof window !== "undefined") {
+      const updatePosition = () => {
+        if (!magnetInnerRef.current) return;
+        const { x, y } = positionRef.current;
+        magnetInnerRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      };
 
-    const updatePosition = () => {
-      if (!magnetInnerRef.current) return;
-      const { x, y } = positionRef.current;
-      magnetInnerRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    };
+      const handleMouseMove = (e: MouseEvent) => {
+        if (!magnetRef.current) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!magnetRef.current) return;
+        const { left, top, width, height } =
+          magnetRef.current.getBoundingClientRect();
+        const centerX = left + width / 2;
+        const centerY = top + height / 2;
 
-      const { left, top, width, height } =
-        magnetRef.current.getBoundingClientRect();
-      const centerX = left + width / 2;
-      const centerY = top + height / 2;
+        const distX = Math.abs(centerX - e.clientX);
+        const distY = Math.abs(centerY - e.clientY);
 
-      const distX = Math.abs(centerX - e.clientX);
-      const distY = Math.abs(centerY - e.clientY);
+        if (distX < width / 2 + padding && distY < height / 2 + padding) {
+          const offsetX = (e.clientX - centerX) / magnetStrength;
+          const offsetY = (e.clientY - centerY) / magnetStrength;
+          positionRef.current = { x: offsetX, y: offsetY };
+        } else {
+          positionRef.current = { x: 0, y: 0 };
+        }
 
-      if (distX < width / 2 + padding && distY < height / 2 + padding) {
-        const offsetX = (e.clientX - centerX) / magnetStrength;
-        const offsetY = (e.clientY - centerY) / magnetStrength;
-        positionRef.current = { x: offsetX, y: offsetY };
-      } else {
-        positionRef.current = { x: 0, y: 0 };
-      }
+        if (!animationFrameRef.current) {
+          animationFrameRef.current = requestAnimationFrame(() => {
+            updatePosition();
+            animationFrameRef.current = null;
+          });
+        }
+      };
 
-      if (!animationFrameRef.current) {
-        animationFrameRef.current = requestAnimationFrame(() => {
-          updatePosition();
-          animationFrameRef.current = null;
-        });
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
+      window.addEventListener("mousemove", handleMouseMove);
+      return () => {
+        window.removeEventListener("mousemove", handleMouseMove);
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+        }
+      };
+    }
   }, [padding, disabled, magnetStrength]);
 
   return (
