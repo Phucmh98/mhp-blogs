@@ -2,7 +2,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export interface ThreeSceneProps {
   indexActions: number[]; // danh sách index action muốn play theo thứ tự
