@@ -10,9 +10,12 @@ import {
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { InteractiveIcon } from "../../../../../components/commons/interactive-icon/interactive-icon";
+// import { InteractiveIcon } from "../../../../../components/commons/interactive-icon/interactive-icon";
+const InteractiveIcon = dynamic(() => import("../../../../../components/commons/interactive-icon/interactive-icon"), { ssr: false });
+
 import clsx from "clsx";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();

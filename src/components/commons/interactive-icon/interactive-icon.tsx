@@ -15,7 +15,7 @@ type InteractiveIconProps = {
   onClick?: () => void;
 };
 
-export const InteractiveIcon = ({
+ const InteractiveIcon = ({
   iconUrl,
   label,
   sizeIcon = 32,
@@ -87,3 +87,4 @@ export const InteractiveIcon = ({
     </div>
   );
 };
+export default InteractiveIcon;

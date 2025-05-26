@@ -1,7 +1,11 @@
 'use client'
+import dynamic from "next/dynamic";
+
 import SpotlightCard from "@/components/commons/reactbits/spotlight-card";
 import Image from "next/image";
-import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
+// import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
+const InteractiveIcon = dynamic(() => import("../../../../components/commons/interactive-icon/interactive-icon"), { ssr: false });
+
 import { selectProjects } from "../../lib/select-project";
 import Link from "next/link";
 import BlurImage from "@/components/commons/image/blur-image";
