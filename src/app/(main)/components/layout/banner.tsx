@@ -4,7 +4,7 @@ import FallingText from "../common/banner/falling-text";
 import ThreeScene from "@/components/commons/view/threejs/threejs-scene";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-// import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
+import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
 
 const Banner = () => {
   const [actionIndexs, setActionIndexs] = useState<number[]>([0, 1]);
@@ -48,7 +48,7 @@ const Banner = () => {
                 setFallingTextKey((k) => k + 1);
               }}
             >
-              {/* <InteractiveIcon
+              <InteractiveIcon
                 iconUrl="https://cdn.lordicon.com/jxhgzthg.json"
                 colors="primary:#ffffff,secondary:#ffffff"
                 animationHover="in-reveal"
@@ -57,7 +57,7 @@ const Banner = () => {
                 isLoop={true}
                 classNameContainer="flex items-center justify-center py-2"
                 sizeIcon={28}
-              /> */}
+              />
             </Button>
           </AnimatedContent>
         </div>

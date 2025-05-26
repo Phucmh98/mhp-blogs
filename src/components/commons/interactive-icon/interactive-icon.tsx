@@ -29,20 +29,28 @@ export const InteractiveIcon = ({
 }: InteractiveIconProps) => {
   const [iconData, setIconData] = useState<object | null>(null);
   const [animation, setAnimation] = useState(animationState);
+  const [isClient, setIsClient] = useState(false);
   const playerRef = useRef<Player>(null);
 
-;
   useEffect(() => {
-    fetch(iconUrl)
-      .then((res) => res.json())
-      .then((data) => setIconData(data));
-  }, [iconUrl]);
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      fetch(iconUrl)
+        .then((res) => res.json())
+        .then((data) => setIconData(data));
+    }
+  }, [iconUrl, isClient]);
 
   useEffect(() => {
     if (iconData) {
       playerRef.current?.playFromBeginning();
     }
   }, [iconData]);
+
+  if (!isClient) return null;
 
   return (
     <div

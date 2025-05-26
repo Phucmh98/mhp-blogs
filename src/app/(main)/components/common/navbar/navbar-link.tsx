@@ -6,12 +6,11 @@ import {
   UserCircle2,
   FolderSymlink,
   Users,
-
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-// import { InteractiveIcon } from "../../../../../components/commons/interactive-icon/interactive-icon";
+import { InteractiveIcon } from "../../../../../components/commons/interactive-icon/interactive-icon";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
@@ -97,7 +96,7 @@ const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
             >
               {/* {link.icon} */}
 
-              {/* <InteractiveIcon
+              <InteractiveIcon
                 key={resolvedTheme}
                 iconUrl={link.urlIcon}
                 animationState={link.iconState}
@@ -118,7 +117,7 @@ const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
                   "ml-2": link.name !== "" && !isBottom && index !== 0,
                   "max-[500px]:hidden": isBottom,
                 })}
-              /> */}
+              />
             </Link>
 
             {nextGroup && nextGroup !== link.group && (
@@ -143,47 +142,45 @@ const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
         className="flex items-center cursor-pointer text-sm py-1 px-3 border border-transparent rounded-xl transition-all duration-200 hover:border hover:border-[#9595954D] hover:bg-[#9595951A]"
       >
         {resolvedTheme === "dark" ? (
-          // <InteractiveIcon
-          //   key={resolvedTheme}
-          //   iconUrl="https://cdn.lordicon.com/yodwgokk.json"
-          //   animationState="in-reveal"
-          //   animationHover="hover-pinch"
-          //   sizeIcon={24}
-          //   label={!isBottom ? "" : "Dark"}
-          //   colors={`${
-          //     resolvedTheme === "dark"
-          //       ? "primary:#ff9d00,secondary:#ff9d00"
-          //       : "primary:#ff6900,secondary:#ff6900"
-          //   }`}
-          //   classNameContainer={clsx("flex items-center cursor-pointer", {
-          //     "flex-col": isBottom,
-          //   })}
-          //   classNameLabel={clsx({
-          //     "max-[500px]:hidden": isBottom,
-          //   })}
-          // />
-          <></>
+          <InteractiveIcon
+            key={resolvedTheme}
+            iconUrl="https://cdn.lordicon.com/yodwgokk.json"
+            animationState="in-reveal"
+            animationHover="hover-pinch"
+            sizeIcon={24}
+            label={!isBottom ? "" : "Dark"}
+            colors={`${
+              resolvedTheme === "dark"
+                ? "primary:#ff9d00,secondary:#ff9d00"
+                : "primary:#ff6900,secondary:#ff6900"
+            }`}
+            classNameContainer={clsx("flex items-center cursor-pointer", {
+              "flex-col": isBottom,
+            })}
+            classNameLabel={clsx({
+              "max-[500px]:hidden": isBottom,
+            })}
+          />
         ) : (
-          // <InteractiveIcon
-          //   key={resolvedTheme}
-          //   iconUrl="https://cdn.lordicon.com/iwjzoila.json"
-          //   animationState="in-reveal"
-          //   animationHover="hover-pinch"
-          //   sizeIcon={24}
-          //   label={!isBottom ? "" : "Light"}
-          //   colors={`${
-          //     resolvedTheme === "dark"
-          //       ? "primary:#ff9d00,secondary:#ff9d00"
-          //       : "primary:#ff6900,secondary:#ff6900"
-          //   }`}
-          //   classNameContainer={clsx("flex items-center cursor-pointer", {
-          //     "flex-col": isBottom,
-          //   })}
-          //   classNameLabel={clsx({
-          //     "max-[500px]:hidden": isBottom,
-          //   })}
-          // />
-          <></>
+          <InteractiveIcon
+            key={resolvedTheme}
+            iconUrl="https://cdn.lordicon.com/iwjzoila.json"
+            animationState="in-reveal"
+            animationHover="hover-pinch"
+            sizeIcon={24}
+            label={!isBottom ? "" : "Light"}
+            colors={`${
+              resolvedTheme === "dark"
+                ? "primary:#ff9d00,secondary:#ff9d00"
+                : "primary:#ff6900,secondary:#ff6900"
+            }`}
+            classNameContainer={clsx("flex items-center cursor-pointer", {
+              "flex-col": isBottom,
+            })}
+            classNameLabel={clsx({
+              "max-[500px]:hidden": isBottom,
+            })}
+          />
         )}
       </button>
     </div>
