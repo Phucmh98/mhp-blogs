@@ -1,10 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { getCurrentWeather } from "@/api/weatherApi";
 import FocusFrame from "@/components/true-focus";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
+// import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
+const InteractiveIcon = dynamic(() => import("../../../../components/commons/interactive-icon/interactive-icon"), { ssr: false });
 
 type Weather = {
   location: {

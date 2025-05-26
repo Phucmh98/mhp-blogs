@@ -1,12 +1,13 @@
 "use client";
+import dynamic from "next/dynamic";
 import About from "./components/layout/about";
 import Banner from "./components/layout/banner";
 import AnimatedContent from "@/components/animated-content";
 import StackGallery from "./components/layout/stack-gallery";
 import { technologies } from "./lib/technologies";
 import SelectProject from "./components/layout/project";
-import { InteractiveIcon } from "../../components/commons/interactive-icon/interactive-icon";
-
+// import { InteractiveIcon } from "../../components/commons/interactive-icon/interactive-icon";
+const InteractiveIcon = dynamic(() => import("../../components/commons/interactive-icon/interactive-icon"), { ssr: false });
 export default function Home() {
   return (
     <section className="container w-full h-full mx-auto max-w-5xl px-3 sm:px-10 ">
