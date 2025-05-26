@@ -1,6 +1,6 @@
 'use client';
 import Magnet from "@/components/commons/reactbits/magnet";
-// import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
+import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
 import Signature from "@/components/commons/signature/signature";
 import AnimatedContent from "@/components/animated-content";
 
@@ -24,7 +24,7 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center justify-center my-5 rounded-full shadow-md">
-              {/* <InteractiveIcon
+              <InteractiveIcon
                 iconUrl="https://cdn.lordicon.com/fiytezjs.json"
                 label="Contact me now"
                 sizeIcon={32}
@@ -33,7 +33,7 @@ const Footer = () => {
                 animationHover="hover-launch"
                 classNameContainer="pl-3.5 pr-1.5 py-1.5 text-white flex items-center cursor-pointer flex-row-reverse bg-amber-500 rounded-full hover:bg-amber-600 transition-all duration-300"
                 classNameLabel="p-0"
-              /> */}
+              />
             </div>
           </Magnet>
         </div>
@@ -42,7 +42,7 @@ const Footer = () => {
             © 2025 by Phuc. All rights reserved.
           </span>
           <span className="flex gap-2">
-            {/* <InteractiveIcon
+            <InteractiveIcon
               iconUrl="https://cdn.lordicon.com/jjxzcivr.json"
               label=""
               classNameContainer="cursor-pointer"
@@ -72,7 +72,7 @@ const Footer = () => {
               classNameContainer="cursor-pointer"
               classNameLabel=""
               sizeIcon={28}
-            /> */}
+            />
           </span>
         </div>
       </div>
