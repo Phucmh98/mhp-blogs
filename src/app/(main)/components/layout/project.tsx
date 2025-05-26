@@ -1,7 +1,7 @@
 'use client'
 import SpotlightCard from "@/components/commons/reactbits/spotlight-card";
 import Image from "next/image";
-import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
+// import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
 import { selectProjects } from "../../lib/select-project";
 import Link from "next/link";
 import BlurImage from "@/components/commons/image/blur-image";
@@ -52,7 +52,7 @@ const SelectProject = () => {
               <div className="flex items-center justify-end mr-2">
                 {/* Icon Demo */}
                 <Link href={project.urlDemo || "/about"} target="_blank">
-                  <InteractiveIcon
+                  {/* <InteractiveIcon
                     animationState="in-reveal"
                     animationHover="hover-pinch"
                     iconUrl="https://cdn.lordicon.com/ubpgwkmy.json"
@@ -63,12 +63,12 @@ const SelectProject = () => {
                     classNameLabel="max-w-0 opacity-0 overflow-hidden translate-x-full text-neutral-100 text-xs font-light 
              group-hover/icon:max-w-xs group-hover/icon:opacity-100 group-hover/icon:translate-x-0 bg border rounded-full bg-amber-500 px-1.5 py-0.5
              transition-all duration-500 whitespace-nowrap"
-                  />
+                  /> */}
                 </Link>
 
                 {/* Icon Github */}
                 <Link href={project.urlDemo || "/"} target="_blank">
-                  <InteractiveIcon
+                  {/* <InteractiveIcon
                     animationState="in-reveal"
                     animationHover="hover-pinch"
                     iconUrl="https://cdn.lordicon.com/jjxzcivr.json"
@@ -79,7 +79,7 @@ const SelectProject = () => {
                     classNameLabel="max-w-0 opacity-0 overflow-hidden translate-x-full text-neutral-100 text-xs font-light 
              group-hover/icon:max-w-xs group-hover/icon:opacity-100 group-hover/icon:translate-x-0 bg border rounded-full bg-amber-500 px-1.5 py-0.5
              transition-all duration-500 whitespace-nowrap"
-                  />
+                  /> */}
                 </Link>
               </div>
             </div>
@@ -90,7 +90,7 @@ const SelectProject = () => {
       </div>
 
       <div className="flex items-center justify-center my-5">
-          <InteractiveIcon
+          {/* <InteractiveIcon
             iconUrl="https://cdn.lordicon.com/fiytezjs.json"
             label="View All Projects"
             sizeIcon={32}
@@ -99,7 +99,7 @@ const SelectProject = () => {
             animationHover="hover-launch"
             classNameContainer="pl-3.5 pr-1.5 py-1.5 text-white flex items-center cursor-pointer shadow-md flex-row-reverse bg-amber-500 rounded-full hover:bg-amber-600 transition-all duration-300"
             classNameLabel="p-0"
-          />
+          /> */}
         </div>
     </>
   );

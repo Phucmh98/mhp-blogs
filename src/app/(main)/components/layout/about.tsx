@@ -4,7 +4,7 @@ import { getCurrentWeather } from "@/api/weatherApi";
 import FocusFrame from "@/components/true-focus";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
+// import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
 
 type Weather = {
   location: {
@@ -131,7 +131,7 @@ const About = () => {
 
           <div className=" grid grid-cols-2 gap-2 mt-3">
             <div className=" col-span-1  h-full justify-between items-center ml-0 sm:ml-8">
-              {/* Icon Link */}
+              {/* Icon Link
               <InteractiveIcon
                 iconUrl="https://cdn.lordicon.com/gsjfryhc.json"
                 label="Connect"
@@ -142,35 +142,35 @@ const About = () => {
               />
 
               {/* Icon Github */}
-              <InteractiveIcon
+              {/* <InteractiveIcon
                 iconUrl="https://cdn.lordicon.com/jjxzcivr.json"
                 label="Github"
-              />
+              /> */}
 
-              {/* Icon Linkedin */}
+              {/* Icon Linkedin
               <InteractiveIcon
                 iconUrl="https://cdn.lordicon.com/euybrknk.json"
                 label="Linkedin"
-              />
+              /> */}
               {/* Icon Facebook */}
-              <InteractiveIcon
+              {/* <InteractiveIcon
                 iconUrl="https://cdn.lordicon.com/lplofcfe.json"
                 label="Facebook"
-              />
+              /> */}
 
               {/* Icon Facebook */}
-              <InteractiveIcon
+              {/* <InteractiveIcon
                 iconUrl="https://cdn.lordicon.com/ozlkyfxg.json"
                 animationHover="hover-spin"
                 label="Email"
-              />
+              /> */} 
             </div>
 
             <div className="col-span-1 flex flex-col items-end mr-0 sm:mr-6 truncate">
               <div className="focusable select-none flex w-fit bg-amber-500 px-2 py-1 rounded-3xl text-white items-center">
                 {/* Icon Location */}
 
-                <InteractiveIcon
+                {/* <InteractiveIcon
                   iconUrl="https://cdn.lordicon.com/onmwuuox.json"
                   colors="primary:#ffffff,secondary:#ffffff"
                   animationState="in-roll-calm"
@@ -178,7 +178,7 @@ const About = () => {
                   classNameContainer="focusable flex items-center"
                   classNameLabel="text-lg"
                   label={weather?.location.country}
-                />
+                /> */}
               </div>
               <div className="focusable w-fit text-end mt-1.5 truncate">
                 {weather?.location.name}
