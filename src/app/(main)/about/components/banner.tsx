@@ -12,7 +12,7 @@ const Banner = () => {
         <GlitchText
           speed={1.4}
           enableShadows={true}
-          className="text-7xl font-bold mb-6 text-gray-500 cursor-default"
+          className="text-5xl font-bold mb-6 text-gray-500 cursor-default"
           colorAfter="var(--color-gray-500)"
           colorBefore="var(--color-gray-500)"
         >

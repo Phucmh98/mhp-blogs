@@ -83,6 +83,7 @@
   --phuc-separator: #e7e3e4;
 
   --phuc-text-primary-1:#6a7282;
+  --phuc-text-primary-2:#a1a1a1;
 }
 
 .dark {
@@ -124,6 +125,7 @@
   --phuc-separator: #3f3f3f;
 
   --phuc-text-primary-1:#a1a1a1;
+  --phuc-text-primary-2:#ffffff;
 }
 
 @layer base {
