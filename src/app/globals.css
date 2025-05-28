@@ -41,6 +41,24 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
 }
 
 :root {
@@ -78,7 +96,7 @@
   --sidebar-ring: oklch(0.705 0.213 47.604);
 
   --phuc-border-navlink: #e0e0e0;
-  
+
   --phuc-bg-navlink: #ffffff4d;
   --phuc-separator: #e7e3e4;
 
@@ -145,4 +163,3 @@ body {
   padding: 0;
    font-family: var(--font-kanit), sans-serif;
 }
-

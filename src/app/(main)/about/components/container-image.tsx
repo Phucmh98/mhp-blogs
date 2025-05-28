@@ -9,7 +9,7 @@ const InteractiveIcon = dynamic(
 
 const ContainerImage = () => {
   return (
-    <div className="flex flex-col items-center justify-start mt-15 mx-15">
+    <div className="flex flex-col items-center justify-start  md:mt-15 mx-0 md:mx-15 mb-5 md:mb-0">
       <AnimatedContent>
         <Image
           src={"/image/default-avt.png"}

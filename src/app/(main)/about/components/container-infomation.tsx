@@ -3,6 +3,7 @@ import BlurText from "@/components/commons/reactbits/blur-text";
 import ShinyText from "@/components/commons/reactbits/shiny-text";
 import { AnimatedBeamDemo } from "./animated-beam";
 
+
 const ContainerInfomation = () => {
   return (
     <div className="w-full">
@@ -11,14 +12,14 @@ const ContainerInfomation = () => {
         delay={300}
         animateBy="words"
         direction="top"
-        className="text-6xl text-gray-500 font-bold mb-3"
+        className="text-4xl sm:text-6xl text-gray-500 font-bold mb-1.5 sm:mb-3"
       />
       <BlurText
         text="Frontend Developer"
         delay={100}
         animateBy="letters"
         direction="bottom"
-        className="text-4xl text-[var(--phuc-text-primary-2)] font-medium"
+        className="text-2xl sm:text-4xl text-[var(--phuc-text-primary-2)] font-medium"
       />
       <AnimatedContent>
         <ShinyText
@@ -26,7 +27,7 @@ const ContainerInfomation = () => {
           disabled={false}
           speed={3}
           textColorGradiant={[254, 154, 0]}
-          className="text-[var(--phuc-text-primary-1)]/60 mt-10"
+          className="text-[var(--phuc-text-primary-1)]/60  mt-3 sm:mt-10"
         />
         <div className="mb-10">
           <AnimatedBeamDemo />

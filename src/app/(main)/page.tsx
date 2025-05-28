@@ -17,6 +17,7 @@ export default function Home() {
       </AnimatedContent>
       <AnimatedContent>
         <StackGallery autoplay={true} pauseOnHover={true} data={technologies} />
+        
         <div className="flex items-center justify-center my-5">
           <InteractiveIcon
             iconUrl="https://cdn.lordicon.com/fiytezjs.json"
