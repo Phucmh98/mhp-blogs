@@ -5,8 +5,8 @@ import Link from "next/link";
 const InfoAboutPage = () => {
   return (
     <AnimatedContent>
-      <div className="relative w-full text-gray-500 border rounded-xl p-1.5 sm:p-5 mt-3 overflow-hidden text-xs sm:text-base">
-        <h2 className="mb-2 text-base sm:text-2xl font-medium">About the page</h2>
+      <div className="relative w-full text-gray-400 dark:text-gray-300 border rounded-xl p-1.5 sm:p-5 my-5 sm:my-15  overflow-hidden ">
+        <h2 className="mb-2  font-medium text-gray-500 dark:text-gray-200">About the page</h2>
         <ul className="list-disc pl-7">
           <li>
             Framework:&nbsp;
@@ -70,7 +70,7 @@ const InfoAboutPage = () => {
           </span>
         </div>
         <BorderBeam
-          size={120}
+          size={200}
           transition={{
             type: "spring",
             stiffness: 50,
