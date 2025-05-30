@@ -1,5 +1,4 @@
 import AnimatedContent from "@/components/animated-content";
-import { BorderBeam } from "@/components/magicui/border-beam";
 import { MagicCard } from "@/components/magicui/magic-card";
 import { TextAnimate } from "@/components/magicui/text-animate";
 
