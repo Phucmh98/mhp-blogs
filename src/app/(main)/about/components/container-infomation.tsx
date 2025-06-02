@@ -1,7 +1,7 @@
 import AnimatedContent from "@/components/animated-content";
 import BlurText from "@/components/commons/reactbits/blur-text";
 import ShinyText from "@/components/commons/reactbits/shiny-text";
-import { AnimatedBeamDemo } from "./animated-beam";
+import { WorkDescriptionContaitainer } from "./work-description";
 
 
 const ContainerInfomation = () => {
@@ -30,7 +30,7 @@ const ContainerInfomation = () => {
           className="text-[var(--phuc-text-primary-1)]/60  mt-3 sm:mt-10"
         />
         <div className="mb-10">
-          <AnimatedBeamDemo />
+          <WorkDescriptionContaitainer />
         </div>
       </AnimatedContent>
     </div>

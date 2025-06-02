@@ -4,6 +4,8 @@ import React, { forwardRef, useRef } from "react";
 
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "@/components/magicui/animated-beam";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { technologies } from "../../lib/technologies";
 
 const Circle = forwardRef<
   HTMLDivElement,
@@ -24,7 +26,34 @@ const Circle = forwardRef<
 
 Circle.displayName = "Circle";
 
-export function AnimatedBeamDemo() {
+interface WorkDescription {
+  company: string;
+  urlimgCompany: string;
+  position: string;
+  duration: string;
+  description: string[];
+  technologies: string[];
+}
+
+export function WorkDescriptionContaitainer() {
+  const workDescriptions: WorkDescription[] = [
+    {
+      company: "CENTRAL CONSTRUCTION JOINT STOCK COMPANY",
+      urlimgCompany: "/image/work-experience/logo-central.png",
+      position: "Support Developer – Add-in Development & R&D",
+      duration: "2021 - 2023",
+      description: [
+        "Developed custom add-ins for technical software (Revit) to streamline the design and construction workflows for engineering teams.",
+        "Researched, prototyped, and implemented new technology solutions in the construction domain, including 3D visualization, task automation, and technical data processing.",
+        "Built internal tools to boost engineer productivity, such as automated data exports, report generation, model checking, and BIM model interactions.",
+        "Collaborated closely with technical teams and project managers to understand real-world construction needs and deliver software solutions aligned with design processes.",
+        "Acted as a support developer for the construction team, proactively identifying challenges and proposing tools tailored to engineers’ daily workflows.",
+        "Received hands-on training from the construction department on Revit-based 3D modeling processes, model management, and fundamental BIM knowledge to better align software with field requirements.",
+      ],
+      technologies: ["C#", "Python", "Revit API", "BIM"],
+    },
+  ];
+
   const containerRef = useRef<HTMLDivElement>(null);
   const div1Ref = useRef<HTMLDivElement>(null);
   const div2Ref = useRef<HTMLDivElement>(null);
@@ -39,30 +68,9 @@ export function AnimatedBeamDemo() {
         <div className="flex flex-col justify-between ">
           <div className="flex pb-5">
             <Circle ref={div1Ref}>
-              <Icons.user />
+              <IconsCompany urlImg={workDescriptions[0].urlimgCompany} />
             </Circle>
-            <div className="ml-2 text-gray-500 font-normal">
-              <p className="font-bold text-2xl">Lorem ipsum</p>
-              <p className="text-gray-400 mb-2">2018 - 2020</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
+            <DetailWorkDescriptions workDes={workDescriptions[0]} />
           </div>
 
           <div className="flex">
@@ -120,6 +128,35 @@ export function AnimatedBeamDemo() {
     </div>
   );
 }
+
+const IconsCompany = ({ urlImg }: { urlImg: string }) => {
+  return (
+    <Avatar>
+      <AvatarImage
+        src={urlImg}
+        alt={urlImg ? "Company Logo" : "Default Company Logo"}
+      />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+  );
+};
+
+const DetailWorkDescriptions = ({ workDes }: { workDes: WorkDescription }) => {
+  return (
+    <div className="ml-2 text-gray-500 font-normal">
+      <p className="font-bold text-2xl uppercase">{workDes.company}</p>
+      <p className="text-lg">{workDes.position}</p>
+      <p className="text-gray-400 mb-2">{workDes.duration}</p>
+      <ul className="list-disc pl-7">
+        {workDes.description.map((desc, index) => (
+          <li className="mb-2" key={index}>
+            {desc}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 const Icons = {
   openai: () => (
