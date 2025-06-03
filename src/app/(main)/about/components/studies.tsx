@@ -1,6 +1,6 @@
 import AnimatedContent from "@/components/animated-content";
-import { MagicCard } from "@/components/magicui/magic-card";
-import { TextAnimate } from "@/components/magicui/text-animate";
+import { MagicCard } from "@/components/commons/magicui/magic-card";
+import { TextAnimate } from "@/components/commons/magicui/text-animate";
 
 const Studies = () => {
   const educcations = [

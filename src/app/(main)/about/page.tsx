@@ -12,7 +12,7 @@ export default function About() {
   return (
     <>
       <Banner />
-      <div className="container w-full h-full mx-auto max-w-5xl px-3 sm:px-10">
+      <div className="container w-full mx-auto max-w-5xl px-3 sm:px-10">
         <div className=" w-full flex max-md:flex-col">
             <ContainerImage/>
             <ContainerInfomation/>

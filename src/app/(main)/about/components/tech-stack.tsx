@@ -1,9 +1,9 @@
 import { technologies, Technology } from "../../lib/technologies";
 import Link from "next/link";
 import { SVGIcons } from "@/components/commons/icons/svg-icons";
-import { Marquee } from "@/components/magicui/marquee";
+import { Marquee } from "@/components/commons/magicui/marquee";
 import AnimatedContent from "@/components/animated-content";
-import { TextAnimate } from "@/components/magicui/text-animate";
+import { TextAnimate } from "@/components/commons/magicui/text-animate";
 
 const TechStack = () => {
   return (

@@ -59,7 +59,7 @@ const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
     {
       name: "Project",
       icon: <FolderSymlink strokeWidth={1.5} className="size-5 mr-2" />,
-      href: "/project",
+      href: "/my-projects",
       group: "center",
       urlIcon: "https://cdn.lordicon.com/tsrgicte.json",
       iconState: "in-reveal",

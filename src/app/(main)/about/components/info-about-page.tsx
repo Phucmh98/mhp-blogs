@@ -1,5 +1,5 @@
 import AnimatedContent from "@/components/animated-content";
-import { BorderBeam } from "@/components/magicui/border-beam";
+import { BorderBeam } from "@/components/commons/magicui/border-beam";
 import Link from "next/link";
 
 const InfoAboutPage = () => {

@@ -1,8 +1,8 @@
 import AnimatedContent from "@/components/animated-content";
-import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
+import { InteractiveHoverButton } from "@/components/commons/magicui/interactive-hover-button";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { AnimatedSubscribeButton } from "@/components/magicui/animated-subscribe-button";
+import { AnimatedSubscribeButton } from "@/components/commons/magicui/animated-subscribe-button";
 import { ArrowDownToLine } from "lucide-react";
 const InteractiveIcon = dynamic(
   () =>

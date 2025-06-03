@@ -1,6 +1,6 @@
 import AnimatedContent from "@/components/animated-content";
 import InteractiveIcon from "@/components/commons/interactive-icon/interactive-icon";
-import { ShineBorder } from "@/components/magicui/shine-border";
+import { ShineBorder } from "@/components/commons/magicui/shine-border";
 
 const MyStory = () => {
   return (
