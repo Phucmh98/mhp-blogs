@@ -40,9 +40,7 @@ const DetailProject = () => {
 
           <Banner detailProject={detailProject} />
           {handleRenderContent({ detailProject })}
-          {/* <Title />
-          <TextContent />
-          <Image /> */}
+         
         </div>
       )}
     </section>
