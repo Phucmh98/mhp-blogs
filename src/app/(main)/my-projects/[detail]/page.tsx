@@ -59,13 +59,13 @@ const Banner = ({ detailProject }: { detailProject: Project }) => {
         height={300}
         width={400}
       />
-      <div className="flex justify-between gap-8 mt-4 text-gray-600 dark:text-gray-300">
+      <div className="flex flex-col sm:flex-row justify-between gap-8 mt-4 text-gray-600 dark:text-gray-300">
         <div className="">
-          <div className="text-4xl font-bold">{detailProject.name}</div>
-          <div className="mt-3.5">{detailProject.content}</div>
+          <div className="text-3xl sm:text-4xl font-bold">{detailProject.name}</div>
+          <div className="text-sm md:text-base mt-3.5">{detailProject.content}</div>
         </div>
         <div className="">
-          <div className="flex gap-4  font-base mb-3">
+          <div className="flex gap-4 font-base mb-3">
             <Link href={detailProject.urlDemo || "#"} target="_blank">
               <InteractiveHoverButton
                 className="shadow-md w-[120px] justify-center"
@@ -107,11 +107,11 @@ const Banner = ({ detailProject }: { detailProject: Project }) => {
               </InteractiveHoverButton>
             </Link>
           </div>
-          <div>
+          <div className="text-sm md:text-base">
             <span className="font-semibold mr-5.5">Role:</span>
             {detailProject.role}
           </div>
-          <div className="mt-1">
+          <div className="mt-1 text-sm md:text-base">
             <span className="font-semibold mr-3">Client:</span>
             {detailProject.client}
           </div>
@@ -124,7 +124,7 @@ const Banner = ({ detailProject }: { detailProject: Project }) => {
 const Title = ({ projectDetail }: { projectDetail: ProjectDetail }) => {
   return (
     <div className="w-full mt-8 mb-4">
-      <div className="text-3xl font-semibold border-b-1 text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-500 pb-2">
+      <div className="text-xl sm:text-3xl font-semibold border-b-1 text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-500 pb-2">
         {projectDetail.content}
       </div>
     </div>
@@ -133,7 +133,7 @@ const Title = ({ projectDetail }: { projectDetail: ProjectDetail }) => {
 
 const TextContent = ({ projectDetail }: { projectDetail: ProjectDetail }) => {
   return (
-    <div className="w-full my-4">
+    <div className="w-full my-4 text-sm md:text-base">
       <p className="text-gray-600 dark:text-gray-300">
         {projectDetail.content}
       </p>
@@ -157,7 +157,7 @@ const Image = ({ projectDetail }: { projectDetail: ProjectDetail }) => {
 
 const ContentList = ({ projectDetail }: { projectDetail: ProjectDetail }) => {
   return (
-    <div className="w-full mt-4">
+    <div className="w-full mt-4 text-sm md:text-base">
       <ul className="list-disc pl-6 text-gray-500 dark:text-gray-200">
         {projectDetail.contentList?.map((item, index) => (
           <li key={index}>{item}</li>

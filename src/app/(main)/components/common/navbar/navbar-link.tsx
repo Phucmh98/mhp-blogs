@@ -66,9 +66,9 @@ const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
       iconHover: "morph-open",
     },
     {
-      name: "Community",
+      name: "Galery",
       icon: <Users strokeWidth={1.5} className="size-5 mr-2" />,
-      href: "/community",
+      href: "/galery",
       group: "center",
       urlIcon: "https://cdn.lordicon.com/vqhlecvy.json",
       iconState: "in-reveal",
