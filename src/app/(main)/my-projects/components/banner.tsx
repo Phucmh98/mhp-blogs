@@ -1,5 +1,4 @@
 
-import Aurora from "@/components/commons/reactbits/aurora";
 import Threads from "@/components/commons/reactbits/threads";
 
 const Banner = () => {

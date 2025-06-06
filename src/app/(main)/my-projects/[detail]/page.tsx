@@ -141,7 +141,7 @@ const TextContent = ({ projectDetail }: { projectDetail: ProjectDetail }) => {
   );
 };
 
-const Image = ({ projectDetail }: { projectDetail: ProjectDetail }) => {
+const ImageType = ({ projectDetail }: { projectDetail: ProjectDetail }) => {
   return (
     <div className="w-full">
       <BlurImage
@@ -175,7 +175,7 @@ const handleRenderContent = ({ detailProject }: { detailProject: Project }) => {
       case "text":
         return <TextContent key={index} projectDetail={content} />;
       case "image":
-        return <Image key={index} projectDetail={content} />;
+        return <ImageType key={index} projectDetail={content} />;
       case "list":
         return <ContentList key={index} projectDetail={content} />;
       default:

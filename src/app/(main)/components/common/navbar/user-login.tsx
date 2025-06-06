@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useClerk } from "@clerk/shared/react/index";
 import { LogOut } from "lucide-react";
-import DialogUserLogin from "@/components/commons/dialog/user-login";
+import DialogUserLogin from "@/components/commons/dialog/dialog-user-login";
+import { Button } from "@/components/ui/button";
 
 const UserLogin = () => {
   const { signOut, user } = useClerk();
@@ -46,7 +47,11 @@ const UserLogin = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <DialogUserLogin />
+        <DialogUserLogin>
+          <Button variant="outline" className="cursor-pointer rounded-xl py-3">
+            Login
+          </Button>
+        </DialogUserLogin>
       )}
     </div>
   );

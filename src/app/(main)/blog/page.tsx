@@ -1,7 +1,7 @@
 "use client";
 
 import Banner from "./components/banner";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import BlurImage from "@/components/commons/image/blur-image";
 import { MagicCard } from "@/components/commons/magicui/magic-card";
 
@@ -10,11 +10,11 @@ export default function Blog() {
     <section className="w-full">
       <Banner />
       <div className="container w-full mx-auto max-w-5xl px-3 sm:px-10 text-gray-600 mt-10">
-        <h1 className="text-2xl sm:text-4xl font-bold  dark:text-gray-200">Little things I’ve realized.</h1>
+        <h1 className="text-2xl sm:text-4xl font-bold  dark:text-gray-200">Little things I&apos;ve realized.</h1>
         <p className="mt-3 text-sm sm:text-base dark:text-gray-300">
-          I'm excited to share my insights, showcase the projects I've worked
-          on, and talk about the lessons I've picked up along the way. These are
-          things I've learned and figured out through my own journey of
+          I&apos;m excited to share my insights, showcase the projects I&apos;ve worked
+          on, and talk about the lessons I&apos;ve picked up along the way. These are
+          things I&apos;ve learned and figured out through my own journey of
           self-learning and working on real projects.
         </p>
         <div className="w-full my-10 grid grid-cols-1 sm:grid-cols-2 gap-8">

@@ -8,11 +8,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Image from "next/image";
-import { useClerk, useClientContext } from "@clerk/shared/react/index";
+import {  useClientContext } from "@clerk/shared/react/index";
 import type { OAuthStrategy } from "@clerk/types";
 import { usePathname } from "next/navigation";
 
-const DialogUserLogin = () => {
+export default function DialogUserLogin({children}:{children:React.ReactNode}
+) {
   const clerkInstance = useClientContext();
   const pathname = usePathname();
 
@@ -26,9 +27,8 @@ const DialogUserLogin = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="cursor-pointer rounded-xl py-3">
-          Login
-        </Button>
+        
+        {children}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[350px] rounded-2xl">
         <DialogHeader>
@@ -84,4 +84,3 @@ const DialogUserLogin = () => {
   );
 };
 
-export default DialogUserLogin;

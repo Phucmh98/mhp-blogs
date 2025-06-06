@@ -6,7 +6,21 @@ export default defineSchema({
     comfirmAt: v.string(),
     createdAt: v.string(),
     email: v.string(),
-    url: v.string(),
+    idImg: v.string(),
     name: v.string(),
+    nameImg: v.string(),
+    type: v.string(),
+    url: v.string(),
+
+  }),
+
+  queueMeme: defineTable({
+    createdAt: v.string(),
+    email: v.string(),
+    idImg: v.string(),
+    name: v.string(),
+    nameImg: v.string(),
+    type: v.string(),
+    url: v.string(),
   }),
 });
