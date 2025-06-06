@@ -1,6 +1,11 @@
 import AnimatedContent from "@/components/animated-content";
-import InteractiveIcon from "@/components/commons/interactive-icon/interactive-icon";
+const InteractiveIcon = dynamic(
+  () =>
+    import("../../../../components/commons/interactive-icon/interactive-icon"),
+  { ssr: false }
+);
 import { ShineBorder } from "@/components/commons/magicui/shine-border";
+import dynamic from "next/dynamic";
 
 const MyStory = () => {
   return (
