@@ -1,16 +1,26 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import SmoothScrollProvider from "../lenis-scroll/smooth-scroll-provider";
+import { ClerkProvider } from "@clerk/nextjs";
+import ConvexClientProvider from "../convex/convexClientProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 function AppProvider({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem={true}
-      disableTransitionOnChange
+    <ClerkProvider
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!}
     >
-      <SmoothScrollProvider>{children}</SmoothScrollProvider>
-    </ThemeProvider>
+      <ConvexClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={true}
+          disableTransitionOnChange
+        >
+          <Toaster position="bottom-right"/>
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        </ThemeProvider>
+      </ConvexClientProvider>
+    </ClerkProvider>
   );
 }
 

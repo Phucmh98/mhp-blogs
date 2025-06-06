@@ -10,13 +10,14 @@ import SelectProject from "./components/layout/project";
 const InteractiveIcon = dynamic(() => import("../../components/commons/interactive-icon/interactive-icon"), { ssr: false });
 export default function Home() {
   return (
-    <section className="container w-full h-full mx-auto max-w-5xl px-3 sm:px-10 ">
+    <section className="container w-full mx-auto max-w-5xl px-3 sm:px-10 ">
         <Banner />
       <AnimatedContent>
         <About />
       </AnimatedContent>
       <AnimatedContent>
         <StackGallery autoplay={true} pauseOnHover={true} data={technologies} />
+        
         <div className="flex items-center justify-center my-5">
           <InteractiveIcon
             iconUrl="https://cdn.lordicon.com/fiytezjs.json"

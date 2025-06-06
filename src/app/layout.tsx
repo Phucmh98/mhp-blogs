@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Kanit } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import AppProvider from "@/components/commons/providers/app-provider/approvider";
 
 const geistSans = Geist({
@@ -31,7 +30,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body
           suppressHydrationWarning
@@ -42,6 +40,5 @@ export default function RootLayout({
           </AppProvider>
         </body>
       </html>
-    </ClerkProvider>
   );
 }

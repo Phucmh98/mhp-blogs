@@ -41,7 +41,60 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-}
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+  --animate-shine: shine var(--duration) infinite linear
+;
+  @keyframes shine {
+  0% {
+    background-position: 0% 0%;}
+  50% {
+    background-position: 100% 100%;}
+  to {
+    background-position: 0% 0%;}}
+  --animate-shiny-text: shiny-text 8s infinite;
+  @keyframes shiny-text {
+  0%, 90%, 100% {
+    background-position: calc(-100% - var(--shiny-width)) 0;}
+  30%, 60% {
+    background-position: calc(100% + var(--shiny-width)) 0;}}
+  --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
+  --color-color-5: var(--color-5);
+  --color-color-4: var(--color-4);
+  --color-color-3: var(--color-3);
+  --color-color-2: var(--color-2);
+  --color-color-1: var(--color-1);
+  @keyframes rainbow {
+  0% {
+    background-position: 0%;}
+  100% {
+    background-position: 200%;}}
+  --animate-meteor: meteor 5s linear infinite;
+  @keyframes meteor {
+  0% {
+    transform: rotate(var(--angle)) translateX(0);
+    opacity: 1;}
+  70% {
+    opacity: 1;}
+  100% {
+    transform: rotate(var(--angle)) translateX(-500px);
+    opacity: 0;}}}
 
 :root {
   --radius: 0.3rem;
@@ -78,11 +131,17 @@
   --sidebar-ring: oklch(0.705 0.213 47.604);
 
   --phuc-border-navlink: #e0e0e0;
-  
+
   --phuc-bg-navlink: #ffffff4d;
   --phuc-separator: #e7e3e4;
 
   --phuc-text-primary-1:#6a7282;
+  --phuc-text-primary-2:#a1a1a1;
+  --color-1: oklch(66.2% 0.225 25.9);
+  --color-2: oklch(60.4% 0.26 302);
+  --color-3: oklch(69.6% 0.165 251);
+  --color-4: oklch(80.2% 0.134 225);
+  --color-5: oklch(90.7% 0.231 133);
 }
 
 .dark {
@@ -124,6 +183,12 @@
   --phuc-separator: #3f3f3f;
 
   --phuc-text-primary-1:#a1a1a1;
+  --phuc-text-primary-2:#ffffff;
+  --color-1: oklch(66.2% 0.225 25.9);
+  --color-2: oklch(60.4% 0.26 302);
+  --color-3: oklch(69.6% 0.165 251);
+  --color-4: oklch(80.2% 0.134 225);
+  --color-5: oklch(90.7% 0.231 133);
 }
 
 @layer base {
@@ -143,4 +208,3 @@ body {
   padding: 0;
    font-family: var(--font-kanit), sans-serif;
 }
-
