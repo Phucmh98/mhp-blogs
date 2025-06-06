@@ -1,6 +1,5 @@
 "use client";
 import BlurImage from "@/components/commons/image/blur-image";
-import InteractiveIcon from "@/components/commons/interactive-icon/interactive-icon";
 import { InteractiveHoverButton } from "@/components/commons/magicui/interactive-hover-button";
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 import { ShinyButton } from "@/components/magicui/shiny-button";
@@ -13,6 +12,12 @@ import {
   selectProjects,
 } from "../../lib/select-project";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+const InteractiveIcon = dynamic(
+  () =>
+    import("../../../../components/commons/interactive-icon/interactive-icon"),
+  { ssr: false }
+);
 const DetailProject = () => {
   const router = useRouter();
   const param = useParams();
