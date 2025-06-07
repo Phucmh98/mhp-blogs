@@ -37,17 +37,43 @@ interface WorkDescription {
 export function WorkDescriptionContaitainer() {
   const workDescriptions: WorkDescription[] = [
     {
+      company: "DP-UNITY COMPANY",
+      urlimgCompany: "/image/work-experience/logo-dpu.png",
+      position: "Front-End Developer & R&D",
+      duration: "2024 - Present",
+      description: [
+        "Built a web application for managing construction data (CDE) in MEP projects using Blazor, with a focus on clear structure and easy maintenance.",
+        "Integrated Autodesk Viewer to display and interact with 3D models directly in the browser.",
+        "Created a feature that connects 3D models with Excel, allowing real-time data updates and interaction between the model and spreadsheet.",
+        "Created a feature that connects 3D models with Excel, allowing real-time data updates and interaction between the model and spreadsheet.",
+        "Developed and released DPUGisViewer as an npm package, making it easy to reuse and integrate 3D viewer components into other projects.",
+        "Worked on the front-end of the CDE platform using modern tools and frameworks to ensure the UI is fast, responsive, and user-friendly.",
+      ],
+      technologies: [
+        "C#",
+        "JavaScript",
+        "TypeScript",
+        "Blazor",
+        "Next.js",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Syncfusion",
+        "Fluent UI",
+        "BIM",
+      ],
+    },
+    {
       company: "CENTRAL CONSTRUCTION JOINT STOCK COMPANY",
       urlimgCompany: "/image/work-experience/logo-central.png",
-      position: "Support Developer – Add-in Development & R&D",
+      position: "Add-in Developer & R&D",
       duration: "2021 - 2023",
       description: [
-        "Developed custom add-ins for technical software (Revit) to streamline the design and construction workflows for engineering teams.",
-        "Researched, prototyped, and implemented new technology solutions in the construction domain, including 3D visualization, task automation, and technical data processing.",
-        "Built internal tools to boost engineer productivity, such as automated data exports, report generation, model checking, and BIM model interactions.",
-        "Collaborated closely with technical teams and project managers to understand real-world construction needs and deliver software solutions aligned with design processes.",
-        "Acted as a support developer for the construction team, proactively identifying challenges and proposing tools tailored to engineers’ daily workflows.",
-        "Received hands-on training from the construction department on Revit-based 3D modeling processes, model management, and fundamental BIM knowledge to better align software with field requirements.",
+        "Developed custom add-ins for Revit to help engineering teams work faster and more accurately in design and construction tasks.",
+        "Researched and built prototypes for new tools in 3D visualization, automation, and data processing for construction workflows.",
+        "Created internal tools that saved time for engineers, including automated data exports, report generation, model checks, and BIM model interactions.",
+        "Worked closely with technical teams and project managers to understand their needs and deliver software that fits real construction use cases.",
+        "Provided development support to construction teams by identifying common issues and building tools to solve them efficiently.",
+        "Learned 3D modeling and BIM workflows from construction experts to make sure the software tools matched real-world field requirements.",
       ],
       technologies: ["C#", "Python", "Revit API", "BIM"],
     },
@@ -75,34 +101,13 @@ export function WorkDescriptionContaitainer() {
           <div className="flex">
             <div className="flex flex-col justify-between">
               <Circle ref={div2Ref}>
-                <Icons.user />
+                <IconsCompany urlImg={workDescriptions[0].urlimgCompany} />
               </Circle>
-              <Circle ref={div3Ref}>
-                <Icons.user />
-              </Circle>
+              <div className="z-10 flex size-5 items-center justify-center rounded-full border-2 bg-white p-3 shadow-md ml-2.5" ref={div3Ref}>
+                {/* <Icons.user /> */}
+              </div>
             </div>
-            <div className="ml-2 text-gray-500 font-normal">
-              <p className="font-bold text-2xl">Lorem ipsum</p>
-              <p className="text-gray-400 mb-2">2018 - 2020</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
+            <DetailWorkDescriptions workDes={workDescriptions[1]} />
           </div>
         </div>
       </div>
