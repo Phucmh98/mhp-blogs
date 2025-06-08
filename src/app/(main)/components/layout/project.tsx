@@ -1,19 +1,22 @@
-'use client'
+"use client";
 import dynamic from "next/dynamic";
 
 import SpotlightCard from "@/components/commons/reactbits/spotlight-card";
 import Image from "next/image";
 // import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
-const InteractiveIcon = dynamic(() => import("../../../../components/commons/interactive-icon/interactive-icon"), { ssr: false });
+const InteractiveIcon = dynamic(
+  () =>
+    import("../../../../components/commons/interactive-icon/interactive-icon"),
+  { ssr: false }
+);
 
 import { selectProjects } from "../../lib/select-project";
 import Link from "next/link";
 import BlurImage from "@/components/commons/image/blur-image";
 import { useRouter } from "next/navigation";
 
-
 const SelectProject = () => {
-    const router = useRouter();
+  const router = useRouter();
   return (
     <>
       <div className="flex items-center justify-center text-4xl font-semibold text-gray-500 mt-10 mb-6">
@@ -38,7 +41,7 @@ const SelectProject = () => {
             key={index}
             className="w-full cursor-pointer rounded-xl shadow-md"
             spotlightColor="rgba(254, 154, 0, 0.3)"
-            onClick={() => router.push("/about")}
+            onClick={() => router.push(`/my-projects/${project.id}`)}
           >
             <BlurImage
               width={1280}
@@ -50,12 +53,16 @@ const SelectProject = () => {
 
             <div className="flex justify-between border-t border-gray-300">
               <div className="my-2 mx-3 flex-1 min-w-0">
-                <div className="text-sm sm:text-base lg:text-xl font-medium truncate">{project.name}</div>
-                <div className="text-xs md:text-sm lg:text-base text-gray-500 truncate">{project.description}</div>
+                <div className="text-sm sm:text-base lg:text-xl font-medium truncate">
+                  {project.name}
+                </div>
+                <div className="text-xs md:text-sm lg:text-base text-gray-500 truncate">
+                  {project.description}
+                </div>
               </div>
               <div className="flex items-center justify-end mr-2">
                 {/* Icon Demo */}
-                <Link href={project.urlDemo || "/about"} target="_blank">
+                <Link href={project.urlDemo || "/my-project"} target="_blank">
                   <InteractiveIcon
                     animationState="in-reveal"
                     animationHover="hover-pinch"
@@ -71,7 +78,7 @@ const SelectProject = () => {
                 </Link>
 
                 {/* Icon Github */}
-                <Link href={project.urlDemo || "/"} target="_blank">
+                <Link href={project.urlGithub || "/my-project"} target="_blank">
                   <InteractiveIcon
                     animationState="in-reveal"
                     animationHover="hover-pinch"
@@ -89,22 +96,20 @@ const SelectProject = () => {
             </div>
           </SpotlightCard>
         ))}
-
-  
       </div>
 
       <div className="flex items-center justify-center my-5">
-          <InteractiveIcon
-            iconUrl="https://cdn.lordicon.com/fiytezjs.json"
-            label="View All Projects"
-            sizeIcon={32}
-            colors="primary:#ffffff,secondary:#ffffff"
-            animationState="in-reveal"
-            animationHover="hover-launch"
-            classNameContainer="pl-3.5 pr-1.5 py-1.5 text-white flex items-center cursor-pointer shadow-md flex-row-reverse bg-amber-500 rounded-full hover:bg-amber-600 transition-all duration-300"
-            classNameLabel="p-0"
-          />
-        </div>
+        <InteractiveIcon
+          iconUrl="https://cdn.lordicon.com/fiytezjs.json"
+          label="View All Projects"
+          sizeIcon={32}
+          colors="primary:#ffffff,secondary:#ffffff"
+          animationState="in-reveal"
+          animationHover="hover-launch"
+          classNameContainer="pl-3.5 pr-1.5 py-1.5 text-white flex items-center cursor-pointer shadow-md flex-row-reverse bg-amber-500 rounded-full hover:bg-amber-600 transition-all duration-300"
+          classNameLabel="p-0"
+        />
+      </div>
     </>
   );
 };

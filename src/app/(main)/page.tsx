@@ -6,19 +6,24 @@ import AnimatedContent from "@/components/animated-content";
 import StackGallery from "./components/layout/stack-gallery";
 import { technologies } from "./lib/technologies";
 import SelectProject from "./components/layout/project";
+import Link from "next/link";
 // import { InteractiveIcon } from "../../components/commons/interactive-icon/interactive-icon";
-const InteractiveIcon = dynamic(() => import("../../components/commons/interactive-icon/interactive-icon"), { ssr: false });
+const InteractiveIcon = dynamic(
+  () => import("../../components/commons/interactive-icon/interactive-icon"),
+  { ssr: false }
+);
 export default function Home() {
   return (
     <section className="container w-full mx-auto max-w-5xl px-3 sm:px-10 ">
-        <Banner />
+      <Banner />
       <AnimatedContent>
         <About />
       </AnimatedContent>
       <AnimatedContent>
         <StackGallery autoplay={true} pauseOnHover={true} data={technologies} />
-        
+
         <div className="flex items-center justify-center my-5">
+          <Link href="/about">
           <InteractiveIcon
             iconUrl="https://cdn.lordicon.com/fiytezjs.json"
             label="Know me better"
@@ -29,6 +34,7 @@ export default function Home() {
             classNameContainer="pl-3.5 pr-1.5 py-1.5 text-white flex items-center shadow-md cursor-pointer flex-row-reverse bg-amber-500 rounded-full hover:bg-amber-600 transition-all duration-300 "
             classNameLabel="p-0"
           />
+          </Link>
         </div>
       </AnimatedContent>
       <AnimatedContent>
