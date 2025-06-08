@@ -45,7 +45,7 @@ export function WorkDescriptionContaitainer() {
         "Built a web application for managing construction data (CDE) in MEP projects using Blazor, with a focus on clear structure and easy maintenance.",
         "Integrated Autodesk Viewer to display and interact with 3D models directly in the browser.",
         "Created a feature that connects 3D models with Excel, allowing real-time data updates and interaction between the model and spreadsheet.",
-        "Created a feature that connects 3D models with Excel, allowing real-time data updates and interaction between the model and spreadsheet.",
+        "Used xeokit and Bryntum Gantt together to sync 3D models with construction schedules, helping teams plan and track progress visually.",
         "Developed and released DPUGisViewer as an npm package, making it easy to reuse and integrate 3D viewer components into other projects.",
         "Worked on the front-end of the CDE platform using modern tools and frameworks to ensure the UI is fast, responsive, and user-friendly.",
       ],
@@ -103,7 +103,10 @@ export function WorkDescriptionContaitainer() {
               <Circle ref={div2Ref}>
                 <IconsCompany urlImg={workDescriptions[1].urlimgCompany} />
               </Circle>
-              <div className="z-10 flex size-5 items-center justify-center rounded-full border-2 bg-white p-3 shadow-md ml-2.5" ref={div3Ref}>
+              <div
+                className="z-10 flex size-5 items-center justify-center rounded-full border-2 bg-white p-3 shadow-md ml-2.5"
+                ref={div3Ref}
+              >
                 {/* <Icons.user /> */}
               </div>
             </div>
@@ -161,5 +164,3 @@ const DetailWorkDescriptions = ({ workDes }: { workDes: WorkDescription }) => {
     </div>
   );
 };
-
-
