@@ -5,7 +5,7 @@ import SearchInput from "./search-input";
 import Upload from "./upload";
 import DetailImage from "./detail-image";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useEffect, useMemo, useState } from "react";
+import {  useMemo, useState } from "react";
 import { useClerk } from "@clerk/nextjs";
 
 const ContainerImages = () => {

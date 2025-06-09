@@ -4,7 +4,6 @@ import Banner from "./components/banner";
 import { Card, CardContent } from "@/components/ui/card";
 import BlurImage from "@/components/commons/image/blur-image";
 import { MagicCard } from "@/components/commons/magicui/magic-card";
-import { useUser } from "@clerk/nextjs";
 import { blogs, DetailBlog } from "../lib/blogs";
 import Link from "next/link";
 
