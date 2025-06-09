@@ -9,6 +9,7 @@ export default defineSchema({
     idImg: v.string(),
     name: v.string(),
     nameImg: v.string(),
+    thumbnail_url: v.string(),
     type: v.string(),
     url: v.string(),
 
@@ -20,6 +21,7 @@ export default defineSchema({
     idImg: v.string(),
     name: v.string(),
     nameImg: v.string(),
+    thumbnail_url: v.string(),
     type: v.string(),
     url: v.string(),
   }),

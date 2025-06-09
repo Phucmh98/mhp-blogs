@@ -9,16 +9,15 @@ import { api } from "../../../../../convex/_generated/api";
 import { toast } from "sonner";
 const Upload = () => {
   const { user } = useClerk();
-  const mutate = useMutation(api.galeryMeme.galery.uploadMeme);
+  const mutationUpload = useMutation(api.galeryMeme.galery.uploadMeme);
+  const mutationRemove = useMutation(api.galeryMeme.galery.removeMemes);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleUpload = (result: any) => {
-    console.log("Upload result:", result);
     if (
-      
       result?.info.resource_type === "image" ||
       result?.info.resource_type === "video"
     ) {
-      mutate({
+      mutationUpload({
         createdAt: new Date().toISOString(),
         email: user?.emailAddresses[0]?.emailAddress || "",
         idImg: result?.info.public_id || "",
@@ -26,6 +25,7 @@ const Upload = () => {
         type: result?.info.resource_type || "",
         name: user?.fullName || "Anonymous",
         nameImg: result?.info.original_filename || "Untitled",
+        thumbnail_url: result?.info.thumbnail_url || "",
       })
         .then(() => {
           toast.success("Upload successful!", {
@@ -40,10 +40,14 @@ const Upload = () => {
           });
         });
     } else {
-      toast.error("Upload failed!", {
-        description:
-          "Only images and videos are allowed.",
+      mutationRemove({
+        idImgs: [result?.info.public_id || ""],
+      }).then(() => {
+        toast.error("Upload failed!", {
+          description: "Only images and videos are allowed.",
+        });
       });
+
       return;
     }
   };

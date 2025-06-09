@@ -10,6 +10,7 @@ export type MemeGallery = {
     name: string,
     type: string,
     nameImg: string
+    thumbnail_url: string,
 }
 
 export const getAllMemes = query({
@@ -41,7 +42,8 @@ export const confirmMemes = mutation({
                 url: v.string(),
                 name: v.string(),
                 type: v.string(),
-                nameImg: v.string()
+                nameImg: v.string(),
+                thumbnail_url: v.string(),
             })
         )
     },
@@ -56,7 +58,8 @@ export const confirmMemes = mutation({
                     name: meme.name,
                     type: meme.type,
                     comfirmAt: meme.comfirmAt,
-                    nameImg: meme.nameImg
+                    nameImg: meme.nameImg,
+                    thumbnail_url: meme.thumbnail_url,
                 });
 
                 // Xóa meme khỏi queueMeme
@@ -98,6 +101,7 @@ export const uploadMeme = mutation({
         name: v.string(),
         type: v.string(),
         nameImg: v.string(),
+        thumbnail_url: v.string(),
     },
     handler: async (ctx, args) => {
         await ctx.db.insert("queueMeme", args);
