@@ -1,9 +1,10 @@
+
 import { ThemeProvider } from "@/components/theme-provider";
 import SmoothScrollProvider from "../lenis-scroll/smooth-scroll-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import ConvexClientProvider from "../convex/convexClientProvider";
 import { Toaster } from "@/components/ui/sonner";
-
+import MdxProvider from "../mdx-provider/mdx-provider";
 function AppProvider({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider
@@ -16,8 +17,12 @@ function AppProvider({ children }: { children: React.ReactNode }) {
           enableSystem={true}
           disableTransitionOnChange
         >
-          <Toaster position="bottom-right"/>
-          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          <Toaster position="bottom-right" />
+          <SmoothScrollProvider>
+            <MdxProvider >
+            {children}
+            </MdxProvider>
+          </SmoothScrollProvider>
         </ThemeProvider>
       </ConvexClientProvider>
     </ClerkProvider>

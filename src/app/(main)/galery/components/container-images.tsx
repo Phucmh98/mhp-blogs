@@ -5,11 +5,13 @@ import SearchInput from "./search-input";
 import Upload from "./upload";
 import DetailImage from "./detail-image";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useMemo, useState } from "react";
+import {  useMemo, useState } from "react";
+import { useClerk } from "@clerk/nextjs";
 
 const ContainerImages = () => {
   const memes = useQuery(api.galeryMeme.galery.getAllMemes);
-
+  const { user } = useClerk();
+  console.log("User role:", user);
   const [search, setSearch] = useState<string>("");
 
   const filteredMemes = useMemo(() => {
@@ -20,14 +22,14 @@ const ContainerImages = () => {
     );
   }, [memes, search]);
 
+
+
   if (!memes)
     return (
       <>
         <Skeleton className="h-9" />
         <div className="columns-1 md:columns-4 lg:columns-6 gap-4 space-y-4 mt-4 min-h-[250px]">
-              <Skeleton className="w-full h-[250px] rounded-lg" />
-
-         
+          <Skeleton className="w-full h-[250px] rounded-lg" />
         </div>
       </>
     );
@@ -46,7 +48,11 @@ const ContainerImages = () => {
       ) : (
         <div className="columns-2 md:columns-4 lg:columns-5 gap-3 space-y-5 my-8 min-h-[250px]">
           {filteredMemes.map((meme) => (
-            <DetailImage key={meme._id} src={{ ...meme }} />
+            <DetailImage
+              key={meme._id}
+              src={{ ...meme }}
+              role={(user?.publicMetadata.role as string) || "user"}
+            />
           ))}
         </div>
       )}

@@ -1,0 +1,138 @@
+# Create View Cesium on Nextjs 15
+Hey devs 👋 — today I’m going to walk you through how to integrate CesiumJS, the powerful 3D globe and map engine, into a Next.js 15 (App Router) project.
+### Step 1: Install CesiumJS
+
+Start by installing the Cesium package:
+```js
+npm install cesium
+```
+
+### Step 2: Configure Webpack in Next.js
+Why is this necessary?
+- **CesiumJS** requires its assets (like Web Workers and images) to be loaded from a static path. So, we need to copy these directories into Next.js’s `public` folder and configure Webpack to handle them properly.
+
+Open your `next.config.ts` file and add this configuration:
+<CodeHeader text="/next.config.ts" />
+
+```tsx
+import path from "path";
+import { Configuration, WebpackPluginInstance } from "webpack";
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import { NextConfig } from "next";
+
+const pathBuilder = (subpath: string): string =>
+  path.join(process.cwd(), subpath);
+
+const nextConfig: NextConfig = {
+  webpack: (
+    config: Configuration,
+    { webpack }: { webpack: typeof import("webpack") }
+  ): Configuration => {
+    const copyPlugin: WebpackPluginInstance = new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: pathBuilder("node_modules/cesium/Build/Cesium/Workers"),
+          to: "../public/cesium/Workers",
+          noErrorOnMissing: true,
+          info: { minimized: true },
+        },
+        {
+          from: pathBuilder("node_modules/cesium/Build/Cesium/ThirdParty"),
+          to: "../public/cesium/ThirdParty",
+          noErrorOnMissing: true,
+          info: { minimized: true },
+        },
+        {
+          from: pathBuilder("node_modules/cesium/Build/Cesium/Assets"),
+          to: "../public/cesium/Assets",
+          noErrorOnMissing: true,
+          info: { minimized: true },
+        },
+        {
+          from: pathBuilder("node_modules/cesium/Build/Cesium/Widgets"),
+          to: "../public/cesium/Widgets",
+          noErrorOnMissing: true,
+          info: { minimized: true },
+        },
+      ],
+    });
+    config.plugins = config.plugins || [];
+    config.plugins.push(copyPlugin);
+
+    const definePlugin: WebpackPluginInstance = new webpack.DefinePlugin({
+      CESIUM_BASE_URL: JSON.stringify("/cesium"),
+    });
+
+    config.plugins.push(definePlugin);
+
+    return config;
+  },
+  output: "standalone",
+};
+
+export default nextConfig;
+```
+
+### Step 3: Create a Cesium Viewer Component
+Next, let’s create a React component to render our Cesium 3D map.
+
+Important: CesiumJS interacts directly with `window` and the DOM, so it needs to run on the client side only. That’s why we’ll use the `"use client"` directive in Next.js 15 App Router.
+
+<CodeHeader text="app/components/CesiumViewer.tsx" />
+
+```tsx
+"use client";
+
+import { useEffect, useRef } from "react";
+import { Viewer, Ion } from "cesium";
+import "cesium/Build/Cesium/Widgets/widgets.css";
+
+export default function CesiumViewer() {
+  const cesiumContainer = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    Ion.defaultAccessToken = "YOUR_TOKEN";
+
+    if (cesiumContainer.current) {
+      const viewer = new Viewer(cesiumContainer.current, {
+        animation: false,
+        timeline: false,
+        baseLayerPicker: false,
+      });
+
+      viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(105.85, 21.03, 2000),
+      });
+
+      return () => {
+        viewer.destroy();
+      };
+    }
+  }, []);
+
+  return <div ref={cesiumContainer} className="w-full h-[600px]" />;
+}
+```
+
+### Step 4: Use the Component in a Page
+Now, let’s render this component on your homepage (or any other page you prefer):
+<CodeHeader text="app/page.tsx" />
+```tsx
+import CesiumViewer from "@/components/CesiumViewer";
+
+export default function HomePage() {
+  return (
+    <main className="p-6">
+      <h1 className="text-4xl font-bold mb-4">🌍 CesiumJS Viewer</h1>
+      <CesiumViewer />
+    </main>
+  );
+}
+```
+
+### Final Result
+✔️ CesiumJS renders beautifully inside a Next.js 15 app
+
+✔️ All required workers and assets are loaded without issues
+
+✔️ You can now customize base maps, imagery layers, and add entities however you like
