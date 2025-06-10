@@ -1,12 +1,15 @@
+import { useMutation } from "convex/react";
 import { DownloadIcon, TrashIcon } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
+import { api } from "../../../../../convex/_generated/api";
 
 interface IDetailImageProps {
   url: string;
   nameImg?: string;
   type?: string;
   thumbnail_url?: string;
+  idImg?: string;
 }
 
 const DetailImage = ({
@@ -15,10 +18,27 @@ const DetailImage = ({
 }: {
   src: IDetailImageProps;
   role?: string;
+
 }) => {
+  const mutationRemove = useMutation(api.galeryMeme.galery.removeMemeDirects);
+
+  const handleRemove = async () => {
+    mutationRemove({ idImgs: [src.idImg || ""] })
+      .then(() => {
+        toast.success("Image removed successfully!");
+      })
+      .catch(() => {
+        toast.error("Failed to remove image!");
+      });
+  };
+
   return (
     <>
-      {src.type === "image" ? <ImageView src={src} role={role}/> : <VideoView src={src} role={role}/>}
+      {src.type === "image" ? (
+        <ImageView src={src} role={role} removeFunc={handleRemove}/>
+      ) : (
+        <VideoView src={src} role={role}  removeFunc={handleRemove}/>
+      )}
     </>
   );
 };
@@ -28,11 +48,12 @@ export default DetailImage;
 const ImageView = ({
   src,
   role,
+  removeFunc,
 }: {
   src: IDetailImageProps;
   role?: string;
+  removeFunc?: () => void;
 }) => {
-  console.log("role", role);
   // Hàm tải ảnh
   const handleDownload = async () => {
     try {
@@ -68,17 +89,27 @@ const ImageView = ({
             className="cursor-pointer size-5"
             onClick={handleDownload}
           />
-          {(role && role === "admin") ?? <TrashIcon  className="cursor-pointer size-5"/>}
+          {role && role === "admin" && (
+            <TrashIcon className="cursor-pointer size-5" onClick={removeFunc} />
+          )}
         </span>
       </div>
     </div>
   );
 };
 
-const VideoView = ({ src ,role}: { src: IDetailImageProps,role?:string }) => {
+const VideoView = ({
+  src,
+  role,
+  removeFunc,
+}: {
+  src: IDetailImageProps;
+  role?: string;
+  removeFunc?: () => void;
+}) => {
   const cleanUrl = src?.thumbnail_url?.replace(/c_limit,h_\d+,w_\d+\//, "");
   return (
-    <div className="group text-gray-300 ">
+    <div className="group text-gray-700 dark:text-gray-300 ">
       <video
         width="auto"
         height="auto"
@@ -90,10 +121,10 @@ const VideoView = ({ src ,role}: { src: IDetailImageProps,role?:string }) => {
         <source src={src.url} type="video/mp4" />
       </video>
       <div className="flex mx-1 justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-      <p className="truncate text-sm ">
-        {src.nameImg}
-      </p>
-      {(role && role === "admin") ?? <TrashIcon  className="cursor-pointer size-5"/>}
+        <p className="truncate text-sm ">{src.nameImg}</p>
+        {role && role === "admin" && (
+          <TrashIcon className="cursor-pointer size-5" onClick={removeFunc} />
+        )}
       </div>
     </div>
   );

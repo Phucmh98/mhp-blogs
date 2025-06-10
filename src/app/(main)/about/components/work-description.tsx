@@ -5,6 +5,7 @@ import React, { forwardRef, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "@/components/commons/magicui/animated-beam";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { TextAnimate } from "@/components/commons/magicui/text-animate";
 
 const Circle = forwardRef<
   HTMLDivElement,
@@ -106,9 +107,7 @@ export function WorkDescriptionContaitainer() {
               <div
                 className="z-10 flex size-5 items-center justify-center rounded-full border-2 bg-white p-3 shadow-md ml-2.5"
                 ref={div3Ref}
-              >
-                {/* <Icons.user /> */}
-              </div>
+              ></div>
             </div>
             <DetailWorkDescriptions workDes={workDescriptions[1]} />
           </div>
@@ -151,13 +150,27 @@ const IconsCompany = ({ urlImg }: { urlImg: string }) => {
 const DetailWorkDescriptions = ({ workDes }: { workDes: WorkDescription }) => {
   return (
     <div className="ml-2 text-gray-500 font-normal">
-      <p className="font-bold text-2xl uppercase">{workDes.company}</p>
-      <p className="text-lg">{workDes.position}</p>
-      <p className="text-gray-400 mb-2">{workDes.duration}</p>
+      <div className="font-bold text-2xl uppercase">
+        <TextAnimate animation="blurInDown" as="h1">
+          {workDes.company}
+        </TextAnimate>
+      </div>
+      <div className="text-lg">
+        <TextAnimate animation="blurInDown" as="h1">
+          {workDes.position}
+        </TextAnimate>
+      </div>
+      <div className="text-gray-400 mb-2">
+        <TextAnimate animation="blurInDown" as="h1">
+          {workDes.duration}
+        </TextAnimate>
+      </div>
       <ul className="list-disc pl-7">
         {workDes.description.map((desc, index) => (
           <li className="mb-2" key={index}>
-            {desc}
+            <TextAnimate animation="blurInDown" as="h1">
+              {desc}
+            </TextAnimate>
           </li>
         ))}
       </ul>

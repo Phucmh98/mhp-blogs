@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 
 import SpotlightCard from "@/components/commons/reactbits/spotlight-card";
 import Image from "next/image";
-// import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
 const InteractiveIcon = dynamic(
   () =>
     import("../../../../components/commons/interactive-icon/interactive-icon"),
@@ -100,6 +99,7 @@ const SelectProject = () => {
 
       <div className="flex items-center justify-center my-5">
         <InteractiveIcon
+          onClick={() => router.push("/my-projects")}
           iconUrl="https://cdn.lordicon.com/fiytezjs.json"
           label="View All Projects"
           sizeIcon={32}

@@ -1,14 +1,20 @@
 import AnimatedContent from "@/components/animated-content";
 import { BorderBeam } from "@/components/commons/magicui/border-beam";
+import { TextAnimate } from "@/components/commons/magicui/text-animate";
 import Link from "next/link";
 
 const InfoAboutPage = () => {
   return (
     <AnimatedContent>
       <div className="relative w-full text-gray-400 dark:text-gray-300 border rounded-xl p-1.5 sm:p-5 my-5 sm:my-15  overflow-hidden ">
-        <h2 className="mb-2  font-medium text-gray-500 dark:text-gray-200">About the page</h2>
+        <div className="mb-2 text-xl font-medium text-gray-500 dark:text-gray-200">
+          <TextAnimate animation="slideRight" as="h1">
+            About the page
+          </TextAnimate>
+        </div>
         <ul className="list-disc pl-7">
           <li>
+            
             Framework:&nbsp;
             <Link
               href="https://nextjs.org/"
@@ -57,8 +63,8 @@ const InfoAboutPage = () => {
               className="font-medium text-green-500 hover:text-green-600 hover:underline"
             >
               Hieu-buiminh
-            </Link>
-            {" "}for creating his blog.
+            </Link>{" "}
+            for creating his blog.
           </span>
           <span>
             When I didn’t know how to start my own blog, his project gave me an

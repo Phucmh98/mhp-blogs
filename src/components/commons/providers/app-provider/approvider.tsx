@@ -1,4 +1,3 @@
-
 import { ThemeProvider } from "@/components/theme-provider";
 import SmoothScrollProvider from "../lenis-scroll/smooth-scroll-provider";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -18,11 +17,9 @@ function AppProvider({ children }: { children: React.ReactNode }) {
           disableTransitionOnChange
         >
           <Toaster position="bottom-right" />
-          <SmoothScrollProvider>
-            <MdxProvider >
-            {children}
-            </MdxProvider>
-          </SmoothScrollProvider>
+          <MdxProvider>
+            <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          </MdxProvider>
         </ThemeProvider>
       </ConvexClientProvider>
     </ClerkProvider>

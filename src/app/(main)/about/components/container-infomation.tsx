@@ -3,7 +3,6 @@ import BlurText from "@/components/commons/reactbits/blur-text";
 import ShinyText from "@/components/commons/reactbits/shiny-text";
 import { WorkDescriptionContaitainer } from "./work-description";
 
-
 const ContainerInfomation = () => {
   return (
     <div className="w-full">

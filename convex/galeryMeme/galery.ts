@@ -92,6 +92,24 @@ export const removeMemes = mutation({
     },
 });
 
+export const removeMemeDirects = mutation({
+    args: {
+        idImgs: v.array(v.string())
+    },
+    handler: async (ctx, args: { idImgs: string[] }) => {
+        for (const idImg of args.idImgs) {
+            const memes = await ctx.db
+                .query("memeCommunity")
+                .filter((q) => q.eq(q.field("idImg"), idImg))
+                .collect();
+
+            for (const meme of memes) {
+                await ctx.db.delete(meme._id);
+            }
+        }
+    },
+});
+
 export const uploadMeme = mutation({
     args: {
         idImg: v.string(),

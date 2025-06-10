@@ -31,17 +31,26 @@ const Studies = () => {
         <MagicCard gradientColor={"#D9D9D955"} className="rounded-xl">
           <div className=" w-full flex flex-col p-2.5 sm:p-5 gap-3">
             {educcations.map((edu, index) => (
-              <div key={index} className="w-full sm:flex sm:justify-between gap-3">
+              <div
+                key={index}
+                className="w-full sm:flex sm:justify-between gap-3"
+              >
                 <div className="flex flex-col text-gray-500">
                   <span className="text-xl font-medium dark:text-gray-300">
-                    {edu.school}
+                    <TextAnimate animation="blurInDown" as="h2">
+                      {edu.school}
+                    </TextAnimate>
                   </span>
                   <span className="text-base text-amber-600">
-                    {edu.major}
+                    <TextAnimate animation="slideRight" as="h2">
+                      {edu.major}
+                    </TextAnimate>
                   </span>
                 </div>
                 <span className="text-base text-gray-400 text-end">
-                  {edu.endDate}
+                    <TextAnimate animation="slideLeft" as="h2">
+                      {edu.endDate}
+                    </TextAnimate>  
                 </span>
               </div>
             ))}

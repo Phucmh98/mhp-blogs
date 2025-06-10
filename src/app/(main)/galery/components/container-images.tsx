@@ -11,7 +11,6 @@ import { useClerk } from "@clerk/nextjs";
 const ContainerImages = () => {
   const memes = useQuery(api.galeryMeme.galery.getAllMemes);
   const { user } = useClerk();
-  console.log("User role:", user);
   const [search, setSearch] = useState<string>("");
 
   const filteredMemes = useMemo(() => {
