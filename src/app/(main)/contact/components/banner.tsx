@@ -7,7 +7,7 @@ const Banner = () => {
       <Meteors number={40} />
       <SparklesText className="text-5xl font-normal ">
         <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center leading-none text-transparent dark:from-white dark:to-slate-900/10">
-          LET'S WORK TOGETHER
+          LET&apos;S WORK TOGETHER
         </span>
       </SparklesText>
     </div>

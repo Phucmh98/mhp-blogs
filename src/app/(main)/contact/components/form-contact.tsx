@@ -107,7 +107,7 @@ const FormContact = () => {
                 )}
               </div>
               <p className="text-sm">
-                I'll never share your data with anyone else.
+                I&apos;ll never share your data with anyone else.
               </p>
             </div>
             <CardFooter className="p-0">

@@ -11,10 +11,7 @@ import Signature from "@/components/commons/signature/signature";
 import AnimatedContent from "@/components/animated-content";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-
 const Footer = () => {
-  const router = useRouter();
   return (
     <AnimatedContent>
       <div className="container w-full mx-auto max-w-5xl px-3 sm:px-10 pb-20 sm:pb-0">
