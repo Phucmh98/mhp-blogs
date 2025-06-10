@@ -5,8 +5,13 @@ import { getCurrentWeather } from "@/api/weatherApi";
 import FocusFrame from "@/components/true-focus";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 // import { InteractiveIcon } from "../../../../components/commons/interactive-icon/interactive-icon";
-const InteractiveIcon = dynamic(() => import("../../../../components/commons/interactive-icon/interactive-icon"), { ssr: false });
+const InteractiveIcon = dynamic(
+  () =>
+    import("../../../../components/commons/interactive-icon/interactive-icon"),
+  { ssr: false }
+);
 
 type Weather = {
   location: {
@@ -34,7 +39,6 @@ const About = () => {
     getCurrentWeather("Ho Chi Minh").then((data) => {
       if (data) {
         setWeather(data);
-        console.log(data);
 
         // ✅ Lấy giờ Việt Nam từ API
         const localTimeString = data.location.localtime;
@@ -145,31 +149,44 @@ const About = () => {
               />
 
               {/* Icon Github */}
-
-              <InteractiveIcon
-                iconUrl="https://cdn.lordicon.com/jjxzcivr.json"
-                label="Github"
-              />
-
+              <Link href="https://github.com/Phucmh98" target="_blank">
+                <InteractiveIcon
+                  iconUrl="https://cdn.lordicon.com/jjxzcivr.json"
+                  label="Github"
+                />
+              </Link>
               {/* Icon Linkedin*/}
-
-              <InteractiveIcon
-                iconUrl="https://cdn.lordicon.com/euybrknk.json"
-                label="Linkedin"
-              />
-
+              <Link
+                href="https://www.linkedin.com/in/mhphuc98/"
+                target="_blank"
+              >
+                <InteractiveIcon
+                  iconUrl="https://cdn.lordicon.com/euybrknk.json"
+                  label="Linkedin"
+                />
+              </Link>
               {/* Icon Facebook */}
-              <InteractiveIcon
-                iconUrl="https://cdn.lordicon.com/lplofcfe.json"
-                label="Facebook"
-              />
+              <Link
+                href="https://www.linkedin.com/in/mhphuc98/"
+                target="_blank"
+              >
+                <InteractiveIcon
+                  iconUrl="https://cdn.lordicon.com/lplofcfe.json"
+                  label="Facebook"
+                />
+              </Link>
 
-              {/* Icon Facebook */}
-              <InteractiveIcon
-                iconUrl="https://cdn.lordicon.com/ozlkyfxg.json"
-                animationHover="hover-spin"
-                label="Email"
-              />
+              {/* Icon Email */}
+              <Link
+                href="/contact"
+                target="_blank"
+              >
+                <InteractiveIcon
+                  iconUrl="https://cdn.lordicon.com/ozlkyfxg.json"
+                  animationHover="hover-spin"
+                  label="Email"
+                />
+              </Link>
             </div>
 
             <div className="col-span-1 flex flex-col items-end mr-0 sm:mr-6 truncate">

@@ -10,7 +10,7 @@ export default function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full">
+    <>
       {/* Navbar Web */}
       <div className="fixed w-full flex justify-center top-0 left-1/2 -translate-x-1/2 p-4 z-50 bg-[linear-gradient(0deg,transparent_0%,transparent_60%,var(--color-background)_100%)] transform">
         <Navbar />
@@ -25,6 +25,6 @@ export default function HomeLayout({
       <footer className="w-full">
         <Footer />
       </footer>
-    </div>
+    </>
   );
 }

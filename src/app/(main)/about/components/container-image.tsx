@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { AnimatedSubscribeButton } from "@/components/commons/magicui/animated-subscribe-button";
 import { ArrowDownToLine } from "lucide-react";
+import Link from "next/link";
 const InteractiveIcon = dynamic(
   () =>
     import("../../../../components/commons/interactive-icon/interactive-icon"),
@@ -54,60 +55,66 @@ const ContainerImage = () => {
         </div>
         <div className="w-full max-w-[250px] mt-3 text-gray-600 dark:text-gray-300">
           <p className="mb-3">Connect me:</p>
-          <InteractiveHoverButton
-            className="shadow-md w-full justify-center"
-            icon={
-              <InteractiveIcon
-                iconUrl="https://cdn.lordicon.com/jjxzcivr.json"
-                label=""
-                sizeIcon={30}
-                colors="primary:#ffffff,secondary:#ffffff"
-                animationState="loop-roll"
-                animationHover="loop-roll"
-                classNameContainer="flex reverse items-center justify-center"
-                classNameLabel=""
-                isLoop={true}
-              />
-            }
-          >
-            GitHub
-          </InteractiveHoverButton>
-          <InteractiveHoverButton
-            className="shadow-md w-full justify-center mt-3"
-            icon={
-              <InteractiveIcon
-                iconUrl="https://cdn.lordicon.com/euybrknk.json"
-                label=""
-                sizeIcon={30}
-                colors="primary:#ffffff,secondary:#ffffff"
-                animationState="loop-roll"
-                animationHover="loop-roll"
-                classNameContainer="flex reverse items-center justify-center"
-                classNameLabel=""
-                isLoop={true}
-              />
-            }
-          >
-            LinkedIn
-          </InteractiveHoverButton>
-          <InteractiveHoverButton
-            className="shadow-md w-full justify-center mt-3"
-            icon={
-              <InteractiveIcon
-                iconUrl="https://cdn.lordicon.com/ozlkyfxg.json"
-                label=""
-                sizeIcon={30}
-                colors="primary:#ffffff,secondary:#ffffff"
-                animationState="loop-spin"
-                animationHover="loop-spin"
-                classNameContainer="flex reverse items-center justify-center"
-                classNameLabel=""
-                isLoop={true}
-              />
-            }
-          >
-            Email
-          </InteractiveHoverButton>
+          <Link href={"https://github.com/Phucmh98"} target="_blank">
+            <InteractiveHoverButton
+              className="shadow-md w-full justify-center"
+              icon={
+                <InteractiveIcon
+                  iconUrl="https://cdn.lordicon.com/jjxzcivr.json"
+                  label=""
+                  sizeIcon={30}
+                  colors="primary:#ffffff,secondary:#ffffff"
+                  animationState="loop-roll"
+                  animationHover="loop-roll"
+                  classNameContainer="flex reverse items-center justify-center"
+                  classNameLabel=""
+                  isLoop={true}
+                />
+              }
+            >
+              GitHub
+            </InteractiveHoverButton>
+          </Link>
+          <Link href={"https://www.linkedin.com/in/mhphuc98/"} target="_blank">
+            <InteractiveHoverButton
+              className="shadow-md w-full justify-center mt-3"
+              icon={
+                <InteractiveIcon
+                  iconUrl="https://cdn.lordicon.com/euybrknk.json"
+                  label=""
+                  sizeIcon={30}
+                  colors="primary:#ffffff,secondary:#ffffff"
+                  animationState="loop-roll"
+                  animationHover="loop-roll"
+                  classNameContainer="flex reverse items-center justify-center"
+                  classNameLabel=""
+                  isLoop={true}
+                />
+              }
+            >
+              LinkedIn
+            </InteractiveHoverButton>
+          </Link>
+          <Link href={"/contact"} target="_blank">
+            <InteractiveHoverButton
+              className="shadow-md w-full justify-center mt-3"
+              icon={
+                <InteractiveIcon
+                  iconUrl="https://cdn.lordicon.com/ozlkyfxg.json"
+                  label=""
+                  sizeIcon={30}
+                  colors="primary:#ffffff,secondary:#ffffff"
+                  animationState="loop-spin"
+                  animationHover="loop-spin"
+                  classNameContainer="flex reverse items-center justify-center"
+                  classNameLabel=""
+                  isLoop={true}
+                />
+              }
+            >
+              Email
+            </InteractiveHoverButton>
+          </Link>
         </div>
       </div>
     </AnimatedContent>

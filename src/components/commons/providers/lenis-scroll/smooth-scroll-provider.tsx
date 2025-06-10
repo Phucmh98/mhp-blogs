@@ -10,7 +10,7 @@ export default function SmoothScrollProvider({
   useEffect(() => {
     const lenis = new Lenis({
       smoothWheel: true,
-      lerp: 0.06, // càng thấp càng mượt, giống physical scroll
+      lerp: 0.06,
       orientation: "vertical",
       gestureOrientation: "vertical",
     });
