@@ -14,6 +14,7 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as galeryMeme_galery from "../galeryMeme/galery.js";
+import type * as projectManage_projectManage from "../projectManage/projectManage.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -25,6 +26,7 @@ import type * as galeryMeme_galery from "../galeryMeme/galery.js";
  */
 declare const fullApi: ApiFromModules<{
   "galeryMeme/galery": typeof galeryMeme_galery;
+  "projectManage/projectManage": typeof projectManage_projectManage;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,
