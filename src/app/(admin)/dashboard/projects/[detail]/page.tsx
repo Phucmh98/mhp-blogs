@@ -32,9 +32,8 @@ import { useMutation } from "convex/react";
 import { api } from "../../../../../../convex/_generated/api";
 import { toast } from "sonner";
 import { useProjectStore } from "@/zustand/useProjectStore";
-import { useParams, usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Project } from "../components/data-table-project";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
 
 // Component cho contentList khi typeContent === 'list'
 function ListContentFields({
@@ -184,7 +183,9 @@ export default function ProjectDetailPage() {
       }
       console.log("defaultValue", defaultValue);
     }
+    // console.log("fields",fields);
   }, [projects]);
+  
   const mutationAdd = useMutation(
     api.projectManage.projectManage.addNewProject
   );
@@ -466,7 +467,7 @@ export default function ProjectDetailPage() {
             />
           </div>
 
-          <div className="space-y-4">
+          <div  className="space-y-4">
             {fields.map((field, index) => (
               <Card
                 key={field.id}
@@ -556,7 +557,7 @@ export default function ProjectDetailPage() {
                 })
               }
             >
-              <Plus className="mr-2" /> Thêm Content
+              <Plus className="mr-2" /> Add Content
             </Button>
           </div>
           <Button type="submit">Submit</Button>

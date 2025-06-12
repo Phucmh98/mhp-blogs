@@ -14,7 +14,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <AnimatedContent>
-      <div className="container w-full mx-auto max-w-5xl px-3 sm:px-10 pb-20 sm:pb-0">
+      <div className="container w-full mx-auto max-w-5xl px-3 sm:px-10 pb-20 sm:pb-0 backdrop-blur-lg">
         <div className="py-10 px-5 rounded-lg border">
           <Magnet
             padding={5}
