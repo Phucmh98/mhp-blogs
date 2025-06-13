@@ -12,8 +12,8 @@ export const technologies = [
         url: 'https://tailwindcss.com',
     },
     {
-        name: 'CShape',
-        icon: 'CShape',
+        name: 'C#',
+        icon: 'CSharp',
         url: 'https://learn.microsoft.com/en-us/dotnet/csharp/',
     },
     {

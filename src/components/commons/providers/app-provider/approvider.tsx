@@ -12,7 +12,7 @@ function AppProvider({ children }: { children: React.ReactNode }) {
       <ConvexClientProvider>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           enableSystem={true}
           disableTransitionOnChange
         >
