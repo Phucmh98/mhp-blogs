@@ -10,7 +10,6 @@ export default function HomeLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <Preloader>
       {/* Navbar Web */}
@@ -23,9 +22,8 @@ export default function HomeLayout({
       </div>
       <div className=" w-full">{children}</div>
       {/* Footer */}
-      <footer className="w-full">
-        <Footer />
-      </footer>
+
+      <Footer />
     </Preloader>
   );
 }
