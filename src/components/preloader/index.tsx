@@ -37,7 +37,7 @@ export const usePreloader = () => {
   return context;
 };
 const LOADING_TIME = 2.5;
-function Preloader({ children, disabled = false }: PreloaderProps) {
+function Preloader({ children }: PreloaderProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingPercent, setLoadingPercent] = useState(0);
   const loadingTween = useRef<gsap.core.Tween | null>(null);
@@ -70,9 +70,13 @@ function Preloader({ children, disabled = false }: PreloaderProps) {
       value={{ isLoading, bypassLoading, loadingPercent }}
     >
       <AnimatePresence mode="wait">{isLoading && <Loader />}</AnimatePresence>
+      {/* <AnimatePresence mode="wait">{isLoading && <LoaderTest />}</AnimatePresence> */}
+
       {children}
     </preloaderContext.Provider>
   );
 }
 
 export default Preloader;
+
+

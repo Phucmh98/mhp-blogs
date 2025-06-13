@@ -29,18 +29,32 @@ const InteractiveIcon = dynamic(
 const AboutSection = () => {
   return (
     <section id="about" className="container max-w-5xl mx-auto w-full">
-      <div className="top-[70px] sticky mb-96">
+      <div className="top-[70px] sticky mb-36">
         <h2
           className={cn(
             "bg-clip-text text-4xl text-center text-transparent md:text-7xl font-semibold",
             "bg-gradient-to-b from-black/80 to-black/50",
             "dark:bg-gradient-to-b dark:from-white/80 dark:to-white/20 dark:bg-opacity-50 ",
-            "mt-20"
+            "mt-20 mb-30"
           )}
         >
-          About me
+          ABOUT ME
         </h2>
         <ContentBackground />
+        <div className="flex items-center justify-center my-10">
+          <Link href="/about">
+            <InteractiveIcon
+              iconUrl="https://cdn.lordicon.com/fiytezjs.json"
+              label="Know me better"
+              sizeIcon={32}
+              colors="primary:#ffffff,secondary:#ffffff"
+              animationState="in-reveal"
+              animationHover="hover-launch"
+              classNameContainer="pl-3.5 pr-1.5 py-1.5 text-white flex items-center shadow-md cursor-pointer flex-row-reverse bg-amber-500 rounded-full hover:bg-amber-600 transition-all duration-300 "
+              classNameLabel="p-0"
+            />
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -127,7 +141,7 @@ const ContentBackground = () => {
       interval={2500}
     >
       {/* About Header */}
-      <div className="mb-10 mt-20 bg-gray-100/20 dark:bg-transparent backdrop-blur-xl dark:text-gray-200 text-gray-800">
+      <div className="mb-10 mt-20 bg-gray-100/20 dark:bg-gray-800/20 backdrop-blur-xl dark:text-gray-200 text-gray-800">
         <div className=" border rounded-lg p-4 shadow-md space-y-5">
           <div className="w-full flex items-center justify-between">
             <div className="focusable w-fit text-amber-700 border-1 rounded-2xl px-2.5 py-0.5 font-medium">

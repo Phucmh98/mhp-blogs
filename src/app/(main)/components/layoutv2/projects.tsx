@@ -1,6 +1,6 @@
 "use client";
+
 import SpotlightCard from "@/components/commons/reactbits/spotlight-card";
-import Image from "next/image";
 import React from "react";
 import { selectProjects } from "../../lib/select-project";
 import BlurImage from "@/components/commons/image/blur-image";
@@ -26,7 +26,7 @@ const ProjectsSection = () => {
               "dark:bg-gradient-to-b dark:from-white/80 dark:to-white/20 dark:bg-opacity-50 "
             )}
           >
-            Select project
+            SELECT PROJECT
           </h2>
         </Link>
         <SelectProject />

@@ -19,7 +19,7 @@ const steps = [
 ];
 
 export default function Index() {
-  const { isLoading, loadingPercent } = usePreloader();
+  const { loadingPercent } = usePreloader();
   const [index, setIndex] = useState(0);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
@@ -58,26 +58,41 @@ export default function Index() {
   };
 
   return (
-    <motion.div
-      variants={slideUp}
-      initial="initial"
-      exit="exit"
-      className={styles.introduction}
-    >
-      {dimension.width > 0 && (
-        <>
-          <motion.p variants={opacity} initial="initial" animate="enter">
-            {(loadingPercent - (loadingPercent % 5)).toFixed(0)} %
-          </motion.p>
-          <svg>
-            <motion.path
-              variants={curve}
-              initial="initial"
-              exit="exit"
-            ></motion.path>
-          </svg>
-        </>
-      )}
-    </motion.div>
+    <div className="w-full h-full fixed top-0 left-0 z-[200] bg-black">
+      <motion.div
+        variants={slideUp}
+        initial="initial"
+        exit="exit"
+        className={styles.introduction}
+      >
+        {dimension.width > 0 && (
+          <>
+            <motion.p variants={opacity} initial="initial" animate="enter">
+              {(loadingPercent - (loadingPercent % 5)).toFixed(0)} %
+            </motion.p>
+            <svg
+              width="100%"
+              height="100%"
+              viewBox={`0 0 ${dimension.width} ${dimension.height}`}
+              preserveAspectRatio="none"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <motion.path
+                variants={curve}
+                initial="initial"
+                exit="exit"
+                fill="#000"
+              ></motion.path>
+            </svg>
+          </>
+        )}
+      </motion.div>
+    </div>
   );
 }

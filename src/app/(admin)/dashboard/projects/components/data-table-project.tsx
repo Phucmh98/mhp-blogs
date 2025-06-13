@@ -32,10 +32,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import BlurImage from "@/components/commons/image/blur-image";
 import { useMutation, useQuery } from "convex/react";
 
-import { deleteImages } from "@/app/api/cloudinary/cloudinaryApi";
 import { toast } from "sonner";
 import { useClerk } from "@clerk/nextjs";
 import { api } from "../../../../../../convex/_generated/api";
@@ -228,8 +226,12 @@ export function DataTable() {
   const [rowSelection, setRowSelection] = React.useState({});
   const setProjects = useProjectStore((state) => state.setProjects);
   // Map lại dữ liệu cho đúng type Project
+  //
+  
+  // @typescript-eslint/ban-ts-comment
   const allProject: Project[] = React.useMemo(() => {
     if (!allProjectRaw) return [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mapped = allProjectRaw.map((item: any) => ({
       ...item,
       contentDetail: item.contentDetail
@@ -241,7 +243,8 @@ export function DataTable() {
     setProjects(mapped);
 
     return mapped;
-  }, [allProjectRaw]);
+  }, [allProjectRaw,setProjects]);
+
   const table = useReactTable({
     data: allProject ?? [],
     columns: colummsRef,

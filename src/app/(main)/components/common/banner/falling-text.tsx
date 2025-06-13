@@ -58,9 +58,9 @@ const FallingText: React.FC<FallingTextProps> = ({
           if (index === 0)
             return "text-[14px] md:text-[18px] lgtext-[28px] flex flex-wrap gap-x-2 mb-2 text-neutral-300 ";
           if (index === 1)
-            return "text-[28px] md:text-[38px] lg:text-[48px] flex flex-wrap gap-x-2 text-neutral-400 mb-2";
+            return "text-[28px] md:text-[82px] lg:text-[108px] flex flex-wrap gap-x-2 text-neutral-400 mb-2";
           if (index === 2)
-            return "text-[28px] md:text-[38px] lg:text-[48px] flex flex-wrap gap-x-1.5 text-neutral-400 mb-2";
+            return "text-[28px] md:text-[64px] lg:text-[64px] flex flex-wrap gap-x-2 text-neutral-400 mb-2";
           if (index === 3)
             return "text-[18px] md:text-[28px] lg:text-[36px] flex flex-wrap gap-x-1.5 text-neutral-400";
           return "flex flex-wrap gap-x-2 mb-2";

@@ -19,7 +19,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -51,7 +50,7 @@ const FormContact = () => {
     },
   });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: SendMailParams) => {
     setLoading(true);
     const result = await sendMail(data);
     if (result.success) {
@@ -79,79 +78,15 @@ const FormContact = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {/* <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 ">
-            <div className="grid gap-4">
-              <div className="flex gap-2">
-                <div className="flex flex-col gap-2">
-                  <Label>Your name</Label>
-                  <Input
-                    {...register("name", {
-                      required: "Name is required",
-                    })}
-                    placeholder="Your Name"
-                  />
-                  {errors.name && (
-                    <p className="text-red-500 text-sm font-light">
-                      {errors.name.message}
-                    </p>
-                  )}
-                </div>
-                <div className="flex flex-col gap-2">
-                  <Label>Email Address</Label>
-                  <Input
-                    {...register("email", {
-                      required: "Email is required",
-                      pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: "Invalid email address",
-                      },
-                    })}
-                    placeholder="you@example.com"
-                  />
-                  {errors.email && (
-                    <p className="text-red-500 text-sm font-light">
-                      {errors.email.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className="grid gap-2">
-                <Label>Your Message</Label>
-                <Textarea
-                  {...register("message", {
-                    required: "Message is required",
-                  })}
-                  placeholder="Tell me about your project..."
-                />
-                {errors.message && (
-                  <p className="text-red-500 text-sm font-light">
-                    {errors.message.message}
-                  </p>
-                )}
-              </div>
-              <p className="text-sm">
-                I&apos;ll never share your data with anyone else.
-              </p>
-            </div>
-            <CardFooter className="p-0">
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full cursor-pointer flex items-center gap-2"
-              >
-                {loading && <Loader2 className="w-4 h-4 animate-spin" />}
-                {loading ? "Sending..." : "Send message"}
-              </Button>
-            </CardFooter>
-          </form> */}
+        
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <div className="flex gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="flex flex-col gap-2">
                     <FormLabel>Your name</FormLabel>
                     <FormControl>
                       <Input placeholder="Your Name" {...field} />
@@ -164,7 +99,7 @@ const FormContact = () => {
                 control={form.control}
                 name="email"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="flex flex-col gap-2">
                     <FormLabel>Your email</FormLabel>
                     <FormControl>
                       <Input placeholder="you@example.com" {...field} />

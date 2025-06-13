@@ -40,6 +40,7 @@ function ListContentFields({
   form,
   parentIndex,
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: any;
   parentIndex: number;
 }) {
@@ -149,46 +150,6 @@ const formSchema = z.object({
 export default function ProjectDetailPage() {
   const projects = useProjectStore((state) => state.projects);
   const { detail } = useParams();
-
-
-  useEffect(() => {
-    if (detail !== "new") {
-      const foundProject = projects.find((p) => p.id === detail);
-      const defaultValue = foundProject
-        ? {
-            id: foundProject.id ?? "",
-            name: foundProject.name ?? "",
-            description: foundProject.description ?? "",
-            content: foundProject.content ?? "",
-            image: foundProject.image ?? "",
-            urlGithub: foundProject.urlGithub ?? "",
-            urlDemo: foundProject.urlDemo ?? "",
-            role: foundProject.role ?? "",
-            client: foundProject.client ?? "",
-            type: (foundProject.type as "web" | "mobile" | "desktop") ?? "web", // Default to "web" if not provided
-            status: (foundProject.status as "completed" | "in-progress" | "upcoming") ?? "completed",
-            backgroundColor: foundProject.backgroundColor ?? "",
-            startDate: foundProject.startDate ?? "",
-            contentDetail:
-              typeof foundProject.contentDetail === "string"
-                ? JSON.parse(foundProject.contentDetail)
-                : Array.isArray(foundProject.contentDetail)
-                  ? foundProject.contentDetail
-                  : [],
-          }
-        : undefined;
-      if (defaultValue) {
-        form.reset(defaultValue);
-        
-      }
-      console.log("defaultValue", defaultValue);
-    }
-    // console.log("fields",fields);
-  }, [projects]);
-  
-  const mutationAdd = useMutation(
-    api.projectManage.projectManage.addNewProject
-  );
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -208,8 +169,49 @@ export default function ProjectDetailPage() {
     },
   });
 
-  const onSubmit = (values: DetailProject) => {
+  useEffect(() => {
+    if (detail !== "new") {
+      const foundProject = projects.find((p) => p.id === detail);
+      const defaultValue = foundProject
+        ? {
+            id: foundProject.id ?? "",
+            name: foundProject.name ?? "",
+            description: foundProject.description ?? "",
+            content: foundProject.content ?? "",
+            image: foundProject.image ?? "",
+            urlGithub: foundProject.urlGithub ?? "",
+            urlDemo: foundProject.urlDemo ?? "",
+            role: foundProject.role ?? "",
+            client: foundProject.client ?? "",
+            type: (foundProject.type as "web" | "mobile" | "desktop") ?? "web", // Default to "web" if not provided
+            status:
+              (foundProject.status as
+                | "completed"
+                | "in-progress"
+                | "upcoming") ?? "completed",
+            backgroundColor: foundProject.backgroundColor ?? "",
+            startDate: foundProject.startDate ?? "",
+            contentDetail:
+              typeof foundProject.contentDetail === "string"
+                ? JSON.parse(foundProject.contentDetail)
+                : Array.isArray(foundProject.contentDetail)
+                  ? foundProject.contentDetail
+                  : [],
+          }
+        : undefined;
+      if (defaultValue) {
+        form.reset(defaultValue);
+      }
+      console.log("defaultValue", defaultValue);
+    }
+    // console.log("fields",fields);
+  }, [projects, detail, form]);
 
+  const mutationAdd = useMutation(
+    api.projectManage.projectManage.addNewProject
+  );
+
+  const onSubmit = (values: DetailProject) => {
     const newValue = {
       ...values,
       urlGithub: values.urlGithub ?? "",
@@ -467,7 +469,7 @@ export default function ProjectDetailPage() {
             />
           </div>
 
-          <div  className="space-y-4">
+          <div className="space-y-4">
             {fields.map((field, index) => (
               <Card
                 key={field.id}

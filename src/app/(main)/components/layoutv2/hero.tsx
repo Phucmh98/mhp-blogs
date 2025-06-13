@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import React, { useMemo, useState } from "react";
 import FallingText from "../common/banner/falling-text";
 import AnimatedContent from "@/components/animated-content";

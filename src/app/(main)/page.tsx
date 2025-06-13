@@ -1,37 +1,41 @@
 "use client";
-import dynamic from "next/dynamic";
-import About from "./components/layout/about";
-import Banner from "./components/layout/banner";
-import AnimatedContent from "@/components/animated-content";
-import StackGallery from "./components/layout/stack-gallery";
-import { technologies } from "./lib/technologies";
-import SelectProject from "./components/layout/project";
-import Link from "next/link";
+
 import AnimatedBackground from "@/components/commons/background/animated-background";
-import FallingText from "./components/common/banner/falling-text";
 import HeroSection from "./components/layoutv2/hero";
 import SkillsSection from "./components/layoutv2/skills";
 import ContactSection from "./components/layoutv2/contact";
 import ProjectsSection from "./components/layoutv2/projects";
 import AboutSection from "./components/layoutv2/about";
-// import { InteractiveIcon } from "../../components/commons/interactive-icon/interactive-icon";
-const InteractiveIcon = dynamic(
-  () => import("../../components/commons/interactive-icon/interactive-icon"),
-  { ssr: false }
-);
+import Particles from "@/components/commons/reactbits/particles";
+// const InteractiveIcon = dynamic(
+//   () => import("../../components/commons/interactive-icon/interactive-icon"),
+//   { ssr: false }
+// );
 
 export default function Home() {
   return (
-    <section className="overflow-hidden">
-      <div className="top-0 z-0 fixed w-full h-screen">
+    <section className="relative overflow-hidden">
+      <div className="fixed inset-0 z-0">
+        <Particles
+          particleColors={["#d4d4d4", "#d4d4d4"]}
+          particleCount={100}
+          particleSpread={12}
+          speed={0.1}
+          particleBaseSize={150}
+          moveParticlesOnHover={false}
+          alphaParticles={false}
+          disableRotation={false}
+          className="bg-transparent w-full h-screen"
+        />
+      </div>
+      <div className="top-0 z-0 fixed w-full h-screen ">
         <AnimatedBackground />
       </div>
       <HeroSection />
-      <AboutSection/>
+      <AboutSection />
       <SkillsSection />
       <ProjectsSection />
       <ContactSection />
-      
     </section>
   );
 }
