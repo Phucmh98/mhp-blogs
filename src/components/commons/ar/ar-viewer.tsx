@@ -34,10 +34,7 @@ export default function ArViewer() {
     // src: "/glb/phantom__titanfall_fan_concept.glb",
 
     "ios-src": "",
-    ar: true,
-
-    autoplay: true,
-    "animation-loop": false,
+    ar: true,    
     "ar-modes": "webxr scene-viewer quick-look",
     "camera-controls": true,
     "auto-rotate": false,
