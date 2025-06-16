@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.21.0",
+    "@google/model-viewer": "^4.1.0",
     "@hookform/resolvers": "^5.0.1",
     "@lordicon/react": "^1.11.0",
     "@mdx-js/loader": "^3.1.0",
