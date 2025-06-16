@@ -3,6 +3,7 @@ import "@google/model-viewer";
 import React, { useEffect, useRef } from "react";
 
 export default function ArViewer() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const modelViewerRef = useRef<any>(null);
 
   useEffect(() => {
