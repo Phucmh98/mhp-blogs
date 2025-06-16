@@ -30,7 +30,9 @@ export default function ArViewer() {
 
   return React.createElement("model-viewer", {
     ref: modelViewerRef,
-    src: "/glb/phantom__titanfall_fan_concept.glb",
+    src: "/glb/kawaiimeka.glb",
+    // src: "/glb/phantom__titanfall_fan_concept.glb",
+
     "ios-src": "",
     ar: true,
 
