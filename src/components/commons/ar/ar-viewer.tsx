@@ -16,25 +16,26 @@ export default function ArViewer() {
         }
       }, 500);
 
-      //  6.667s thì pause animation
-      const stopTimer = setTimeout(() => {
-        viewer.pause();
-      }, 9400);
+      // //  6.667s thì pause animation
+      // const stopTimer = setTimeout(() => {
+      //   viewer.pause();
+      // }, 9400);
 
       return () => {
         clearTimeout(arTimer);
-        clearTimeout(stopTimer);
+        // clearTimeout(stopTimer);
       };
     }
   }, []);
 
   return React.createElement("model-viewer", {
     ref: modelViewerRef,
-    src: "/glb/kawaiimeka.glb",
-    // src: "/glb/phantom__titanfall_fan_concept.glb",
+    // src: "/glb/kawaiimeka.glb",
+    src: "https://res.cloudinary.com/dhi6hykdl/image/upload/v1750046258/toyota_ae86_drift_nfkmur.glb",
 
     "ios-src": "",
-    ar: true,    
+    ar: true,
+    autoplay: true,
     "ar-modes": "webxr scene-viewer quick-look",
     "camera-controls": true,
     "auto-rotate": false,
