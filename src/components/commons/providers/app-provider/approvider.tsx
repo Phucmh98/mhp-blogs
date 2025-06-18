@@ -4,6 +4,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import ConvexClientProvider from "../convex/convexClientProvider";
 import { Toaster } from "@/components/ui/sonner";
 import MdxProvider from "../mdx-provider/mdx-provider";
+import AppBProgressProvider from "../bprogress/bprogress-provider";
+
 function AppProvider({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider
@@ -18,7 +20,9 @@ function AppProvider({ children }: { children: React.ReactNode }) {
         >
           <Toaster position="bottom-right" />
           <MdxProvider>
-            <SmoothScrollProvider>{children}</SmoothScrollProvider>
+            <SmoothScrollProvider>
+              <AppBProgressProvider>{children}</AppBProgressProvider>
+            </SmoothScrollProvider>
           </MdxProvider>
         </ThemeProvider>
       </ConvexClientProvider>
