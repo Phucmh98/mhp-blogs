@@ -5,7 +5,6 @@ import React, { forwardRef, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "@/components/commons/magicui/animated-beam";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { TextAnimate } from "@/components/commons/magicui/text-animate";
 
 const Circle = forwardRef<
   HTMLDivElement,
@@ -151,26 +150,18 @@ const DetailWorkDescriptions = ({ workDes }: { workDes: WorkDescription }) => {
   return (
     <div className="ml-2 text-gray-500 font-normal">
       <div className="font-bold text-2xl uppercase">
-        <TextAnimate animation="blurInDown" as="h1">
           {workDes.company}
-        </TextAnimate>
       </div>
       <div className="text-lg">
-        <TextAnimate animation="blurInDown" as="h1">
           {workDes.position}
-        </TextAnimate>
       </div>
       <div className="text-gray-400 mb-2">
-        <TextAnimate animation="blurInDown" as="h1">
           {workDes.duration}
-        </TextAnimate>
       </div>
       <ul className="list-disc pl-7">
         {workDes.description.map((desc, index) => (
           <li className="mb-2" key={index}>
-            <TextAnimate animation="blurInDown" as="h1">
               {desc}
-            </TextAnimate>
           </li>
         ))}
       </ul>

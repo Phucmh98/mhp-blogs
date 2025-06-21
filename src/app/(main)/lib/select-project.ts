@@ -7,8 +7,8 @@ export interface Project {
     image: string;
     urlGithub?: string;
     urlDemo?: string;
-    type?: "web" | "mobile" | "desktop";
-    status?: "completed" | "in-progress" | "upcoming";
+    type?: string;
+    status?: string;
     backgroundColor: string
     startDate?: string;
     contentDetail?: ProjectDetail[];
@@ -84,7 +84,7 @@ export const selectProjects: Project[] = [
         description: "A clone of Messenger",
         image: "/image/projects/banner-messenger-clone.png",
         urlGithub: "https://github.com/Phucmh98/clone-messenger",
-        urlDemo: "/https://clone-messenger-rho.vercel.app/",
+        urlDemo: "https://clone-messenger-rho.vercel.app/",
         type: "web",
         client: "Project Personal",
         role: "Frontend Developer",

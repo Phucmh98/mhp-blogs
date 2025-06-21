@@ -1,16 +1,18 @@
 import AnimatedContent from "@/components/animated-content";
 import GlitchText from "@/components/commons/reactbits/glitch-text";
-import Threads from "@/components/commons/reactbits/threads";
+import { Meteors } from "@/components/magicui/meteors";
 
 const Banner = () => {
   return (
     <AnimatedContent>
-      <div className="w-full h-[300px] relative sm:pt-20">
+      <div className="w-full h-[300px] relative overflow-hidden sm:pt-20">
         <div className="absolute left-0 top-0 w-full h-full z-[5]">
-          <Threads amplitude={1} distance={0} enableMouseInteraction={true} />
+          {/* <Threads amplitude={1} distance={0} enableMouseInteraction={true} />
+           */}
+            <Meteors number={40} />
         </div>
 
-        <div className="absolute top-[175px] flex w-full items-center justify-center z-[4]">
+        <div className="absolute top-[150px] flex w-full items-center justify-center z-[4]">
           <GlitchText
             speed={1.4}
             enableShadows={true}

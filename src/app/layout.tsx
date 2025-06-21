@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   title: "Phuc-MH",
   description: "MHP-Portfolio",
   icons: {
-    icon: "/image/logo_mhp_head.svg",
-    shortcut: "/image/logo_mhp_head.svg",
-    apple: "/image/logo_mhp_head.svg",
+    icon: "/image/logo_mhp_32.png",
+    shortcut: "/image/logo_mhp_32.png",
+    apple: "/image/logo_mhp_32.png",
   },
 };
 

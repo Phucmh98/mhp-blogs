@@ -150,6 +150,12 @@ const formSchema = z.object({
 export default function ProjectDetailPage() {
   const projects = useProjectStore((state) => state.projects);
   const { detail } = useParams();
+  const mutationAdd = useMutation(
+    api.projectManage.projectManage.addNewProject
+  );
+  const mutaionUpdate = useMutation(
+    api.projectManage.projectManage.updateProject
+  );
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -207,10 +213,6 @@ export default function ProjectDetailPage() {
     // console.log("fields",fields);
   }, [projects, detail, form]);
 
-  const mutationAdd = useMutation(
-    api.projectManage.projectManage.addNewProject
-  );
-
   const onSubmit = (values: DetailProject) => {
     const newValue = {
       ...values,
@@ -218,15 +220,27 @@ export default function ProjectDetailPage() {
       urlDemo: values.urlDemo ?? "",
       contentDetail: JSON.stringify(values.contentDetail),
     };
-    // Here you can handle the form submission, e.g., send data to an API or update state
-    mutationAdd(newValue)
-      .then(() => {
-        toast.success("Project added successfully");
-        form.reset();
-      })
-      .catch((error) => {
-        toast.error("Error adding project:", error);
-      });
+    if (detail === "new") {
+      // Here you can handle the form submission, e.g., send data to an API or update state
+      mutationAdd(newValue)
+        .then(() => {
+          toast.success("Project added successfully");
+          form.reset();
+        })
+        .catch((error) => {
+          toast.error("Error adding project:", error);
+        });
+    } else {
+      console.log("Update project with values:", newValue);
+      mutaionUpdate(newValue)
+        .then(() => {
+          toast.success("Project updated successfully");
+          form.reset();
+        })
+        .catch((error) => {
+          toast.error("Error adding project:", error);
+        });
+    }
   };
   const { fields, append, remove } = useFieldArray({
     control: form.control,

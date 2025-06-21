@@ -4,7 +4,7 @@ import Banner from "./components/banner";
 import ContainerImage from "./components/container-image";
 import ContainerInfomation from "./components/container-infomation";
 import InfoPage from "./components/info-about-page";
-import MyStory from "./components/my-story";
+// import MyStory from "./components/my-story";
 import Studies from "./components/studies";
 import TechStack from "./components/tech-stack";
 
@@ -19,7 +19,7 @@ export default function About() {
         </div>
          <TechStack/>
          <Studies/>
-         <MyStory/>
+         {/* <MyStory/> */}
          <InfoPage/>
       </div>
      
