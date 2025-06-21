@@ -637,7 +637,7 @@ const AnimatedBackground = () => {
 
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div></div>}>
         <Spline
           ref={splineContainer}
           onLoad={(app: Application) => {

@@ -1,15 +1,15 @@
 import { TextAnimate } from "@/components/commons/magicui/text-animate";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
-
+import  Image  from "next/image";
 const ContentMe = () => {
   return (
     <div className="flex items-center justify-center col-span-1">
-      <div className="flex flex-col items-center gap-8">
+      <div className="flex flex-col items-center gap-6">
         <PingAnimate />
-        <Avatar className="h-32 w-32 shadow-lg">
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          <AvatarFallback>ER</AvatarFallback>
+        <Avatar className="shadow-lg w-[200px] h-[200px]">
+          <Image src="/image/avt_phuc.jpg" width={200} height={200} alt="avt-phuc" className="rounded-full border-3 border-amber-500 object-cover aspect-square"/>
+          <AvatarFallback>PHUC</AvatarFallback>
         </Avatar>
         <TextAnimate
           className="text-gray-600 dark:text-gray-300 text-sm md:text-base"

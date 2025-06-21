@@ -9,10 +9,11 @@ import { useEffect, useState } from "react";
 import {
   Project,
   ProjectDetail,
-  selectProjects,
 } from "../../lib/select-project";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useQuery } from "convex/react";
+import { api } from "../../../../../convex/_generated/api";
 const InteractiveIcon = dynamic(
   () =>
     import("../../../../components/commons/interactive-icon/interactive-icon"),
@@ -22,18 +23,47 @@ const DetailProject = () => {
   const router = useRouter();
   const param = useParams();
   const [detailProject, setDetailProject] = useState<Project | null>(null);
-  useEffect(() => {
-    if (!param.detail) return;
+  const queryProject = useQuery(
+    api.projectManage.projectManage.getProjectById,
+    {
+      id: param.detail as string,
+    }
+  );
+  console.log("queryProject", queryProject);
 
-    const project = selectProjects.find((p) => p.id === param.detail);
+  useEffect(() => {
+    if (!queryProject) return;
+
+    const project: Project = {
+      id: queryProject?.id ?? "unknown-id",
+      name: queryProject?.name ?? "Untitled Project",
+      description: queryProject?.description ?? "No description provided.",
+      content: queryProject?.content ?? "",
+      image: queryProject?.image ?? "/default-image.png", // thay thế bằng ảnh mặc định
+      urlGithub: queryProject?.urlGithub,
+      urlDemo: queryProject?.urlDemo,
+      type: queryProject?.type ?? "web", // đảm bảo đúng type
+      status: queryProject?.status ?? "completed", // hoặc undefined nếu bạn muốn để trống
+      backgroundColor: queryProject?.backgroundColor ?? "bg-gray-200",
+      startDate: queryProject?.startDate,
+      contentDetail: queryProject?.contentDetail
+        ? JSON.parse(queryProject.contentDetail)
+        : [],
+      role: queryProject?.role,
+      client: queryProject?.client,
+    };
+
     setDetailProject(project || null);
-  }, [param.detail]);
+  }, [queryProject]);
   return (
     <section className="w-full">
       {detailProject && (
         <div className="container w-full mx-auto max-w-5xl px-3 sm:px-10 mt-25 mb-10">
           <div className="flex items-center justify-between font-medium text-gray-500 dark:text-gray-200">
-            <ShinyButton className="flex rounded-xl" onClick={() => router.push("/my-projects")}>
+            <ShinyButton
+              className="flex rounded-xl"
+              onClick={() => router.push("/my-projects")}
+            >
               <div className="flex items-center gap-2 ">
                 <MoveLeft /> Back to project
               </div>
@@ -45,7 +75,6 @@ const DetailProject = () => {
 
           <Banner detailProject={detailProject} />
           {handleRenderContent({ detailProject })}
-         
         </div>
       )}
     </section>
@@ -66,8 +95,12 @@ const Banner = ({ detailProject }: { detailProject: Project }) => {
       />
       <div className="flex flex-col sm:flex-row justify-between gap-8 mt-4 text-gray-600 dark:text-gray-300">
         <div className="">
-          <div className="text-3xl sm:text-4xl font-bold">{detailProject.name}</div>
-          <div className="text-sm md:text-base mt-3.5">{detailProject.content}</div>
+          <div className="text-3xl sm:text-4xl font-bold">
+            {detailProject.name}
+          </div>
+          <div className="text-sm md:text-base mt-3.5">
+            {detailProject.content}
+          </div>
         </div>
         <div className="">
           <div className="flex gap-4 font-base mb-3">

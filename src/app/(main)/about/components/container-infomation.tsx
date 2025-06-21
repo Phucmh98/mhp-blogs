@@ -5,7 +5,7 @@ import { WorkDescriptionContaitainer } from "./work-description";
 
 const ContainerInfomation = () => {
   return (
-    <div className="w-full">
+    <div className="w-full ml-0 md:ml-10">
       <BlurText
         text="MAI HOAI PHUC"
         delay={300}

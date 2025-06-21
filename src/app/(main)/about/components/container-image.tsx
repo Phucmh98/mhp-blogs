@@ -14,13 +14,13 @@ const InteractiveIcon = dynamic(
 const ContainerImage = () => {
   return (
     <AnimatedContent>
-      <div className="h-full flex flex-col items-center justify-start md:mt-[20px] mx-0 md:mx-15 mb-5 md:mb-0 sticky top-0">
+      <div className="h-full flex flex-col items-center justify-start md:mt-[20px] mx-0 md:mx-4 mb-5 md:mb-0 sticky top-0">
         <Image
-          src={"/image/default-avt.png"}
+          src={"/image/avt_phuc.jpg"}
           alt="avatar"
-          width={150}
-          height={150}
-          className="rounded-full border-4 border-amber-500 shadow-md"
+          width={200}
+          height={200}
+          className="rounded-full border-4 border-amber-500 shadow-md object-cover aspect-square "
         />
         <InteractiveIcon
           iconUrl="https://cdn.lordicon.com/rpviwvwn.json"

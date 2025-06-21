@@ -3,16 +3,13 @@ import Link from "next/link";
 import { SVGIcons } from "@/components/commons/icons/svg-icons";
 import { Marquee } from "@/components/commons/magicui/marquee";
 import AnimatedContent from "@/components/animated-content";
-import { TextAnimate } from "@/components/commons/magicui/text-animate";
 
 const TechStack = () => {
   return (
     <>
       <AnimatedContent>
         <div className="text-3xl tsm:text-4xl text-gray-400 dark:text-gray-300 font-medium mb-2">
-          <TextAnimate animation="blurIn" as="h1">
             My tech stack
-          </TextAnimate>
         </div>
         <div className="w-full max-w-[calc(100% - 50px)] py-8">
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
