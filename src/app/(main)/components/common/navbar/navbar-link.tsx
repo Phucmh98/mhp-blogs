@@ -11,70 +11,85 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 // import { InteractiveIcon } from "../../../../../components/commons/interactive-icon/interactive-icon";
-const InteractiveIcon = dynamic(() => import("../../../../../components/commons/interactive-icon/interactive-icon"), { ssr: false });
+const InteractiveIcon = dynamic(
+  () =>
+    import(
+      "../../../../../components/commons/interactive-icon/interactive-icon"
+    ),
+  { ssr: false }
+);
+const navLinks = [
+  {
+    name: "Home",
+    icon: <House strokeWidth={1.5} className="size-5" />,
+    href: "/",
+    group: "left",
+
+    urlIcon: "https://cdn.lordicon.com/jeuxydnh.json",
+    iconState: "in-reveal",
+    iconHover: "hover-3d-roll",
+  },
+  {
+    name: "About",
+    icon: <UserCircle2 strokeWidth={1.5} className="size-5 mr-2" />,
+    href: "/about",
+    group: "center",
+    urlIcon: "https://cdn.lordicon.com/kdduutaw.json",
+    iconState: "in-reveal",
+    iconHover: "hover-looking-around",
+  },
+  {
+    name: "Blog",
+    icon: <BookMarked strokeWidth={1.5} className="size-5 mr-2" />,
+    href: "/blog",
+    group: "center",
+    urlIcon: "https://cdn.lordicon.com/xmaezqzk.json",
+    iconState: "in-reveal",
+    iconHover: "hover-flutter",
+  },
+  {
+    name: "Project",
+    icon: <FolderSymlink strokeWidth={1.5} className="size-5 mr-2" />,
+    href: "/my-projects",
+    group: "center",
+    urlIcon: "https://cdn.lordicon.com/tsrgicte.json",
+    iconState: "in-reveal",
+    iconHover: "morph-open",
+  },
+  {
+    name: "Galery",
+    icon: <Users strokeWidth={1.5} className="size-5 mr-2" />,
+    href: "/galery",
+    group: "center",
+    urlIcon: "https://cdn.lordicon.com/vqhlecvy.json",
+    iconState: "in-reveal",
+    iconHover: "hover-pinch",
+  },
+];
 
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { ThemeToggleButton, useThemeTransition } from "@/components/ui/theme-toggle-button";
 const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { startTransition } = useThemeTransition()
+ const handleThemeToggle = useCallback(() => {
+    const newMode = resolvedTheme === 'dark' ? 'light' : 'dark'
+    
+    startTransition(() => {
+      
+      setTheme(newMode)
+    })
+  }, [setTheme, startTransition])
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
+  
   if (!mounted) return;
-
-  const navLinks = [
-    {
-      name: "Home",
-      icon: <House strokeWidth={1.5} className="size-5" />,
-      href: "/",
-      group: "left",
-
-      urlIcon: "https://cdn.lordicon.com/jeuxydnh.json",
-      iconState: "in-reveal",
-      iconHover: "hover-3d-roll",
-    },
-    {
-      name: "About",
-      icon: <UserCircle2 strokeWidth={1.5} className="size-5 mr-2" />,
-      href: "/about",
-      group: "center",
-      urlIcon: "https://cdn.lordicon.com/kdduutaw.json",
-      iconState: "in-reveal",
-      iconHover: "hover-looking-around",
-    },
-    {
-      name: "Blog",
-      icon: <BookMarked strokeWidth={1.5} className="size-5 mr-2" />,
-      href: "/blog",
-      group: "center",
-      urlIcon: "https://cdn.lordicon.com/xmaezqzk.json",
-      iconState: "in-reveal",
-      iconHover: "hover-flutter",
-    },
-    {
-      name: "Project",
-      icon: <FolderSymlink strokeWidth={1.5} className="size-5 mr-2" />,
-      href: "/my-projects",
-      group: "center",
-      urlIcon: "https://cdn.lordicon.com/tsrgicte.json",
-      iconState: "in-reveal",
-      iconHover: "morph-open",
-    },
-    {
-      name: "Galery",
-      icon: <Users strokeWidth={1.5} className="size-5 mr-2" />,
-      href: "/galery",
-      group: "center",
-      urlIcon: "https://cdn.lordicon.com/vqhlecvy.json",
-      iconState: "in-reveal",
-      iconHover: "hover-pinch",
-    },
-  ];
 
   return (
     <div
@@ -140,8 +155,13 @@ const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
       />
 
       {/* Dark Mode Toggle */}
-      <button
-        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      <ThemeToggleButton 
+        variant="circle"
+        start="top-right"
+        theme={resolvedTheme === "dark" ? "light" : "dark"}
+
+        // onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+        onClick={handleThemeToggle}
         className="flex items-center cursor-pointer text-sm py-1 px-3 border border-transparent rounded-xl transition-all duration-200 hover:border hover:border-[#9595954D] hover:bg-[#9595951A]"
       >
         {resolvedTheme === "dark" ? (
@@ -185,7 +205,7 @@ const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
             })}
           />
         )}
-      </button>
+      </ThemeToggleButton>
     </div>
   );
 };
