@@ -83,7 +83,7 @@ const NavLink = ({ isBottom = false }: { isBottom?: boolean }) => {
       
       setTheme(newMode)
     })
-  }, [setTheme, startTransition])
+  }, [resolvedTheme,setTheme, startTransition])
 
   useEffect(() => {
     setMounted(true);
