@@ -44,36 +44,45 @@
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
-  from {
-    transform: translateX(0);
+    from {
+      transform: translateX(0);
     }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+    from {
+      transform: translateY(0);
     }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
-  --animate-shine: shine var(--duration) infinite linear
-;
+  --animate-shine: shine var(--duration) infinite linear;
   @keyframes shine {
-  0% {
-    background-position: 0% 0%;}
-  50% {
-    background-position: 100% 100%;}
-  to {
-    background-position: 0% 0%;}}
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    to {
+      background-position: 0% 0%;
+    }
+  }
   --animate-shiny-text: shiny-text 8s infinite;
   @keyframes shiny-text {
-  0%, 90%, 100% {
-    background-position: calc(-100% - var(--shiny-width)) 0;}
-  30%, 60% {
-    background-position: calc(100% + var(--shiny-width)) 0;}}
+    0%,
+    90%,
+    100% {
+      background-position: calc(-100% - var(--shiny-width)) 0;
+    }
+    30%,
+    60% {
+      background-position: calc(100% + var(--shiny-width)) 0;
+    }
+  }
   --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
   --color-color-5: var(--color-5);
   --color-color-4: var(--color-4);
@@ -81,20 +90,28 @@
   --color-color-2: var(--color-2);
   --color-color-1: var(--color-1);
   @keyframes rainbow {
-  0% {
-    background-position: 0%;}
-  100% {
-    background-position: 200%;}}
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 200%;
+    }
+  }
   --animate-meteor: meteor 5s linear infinite;
   @keyframes meteor {
-  0% {
-    transform: rotate(var(--angle)) translateX(0);
-    opacity: 1;}
-  70% {
-    opacity: 1;}
-  100% {
-    transform: rotate(var(--angle)) translateX(-500px);
-    opacity: 0;}}}
+    0% {
+      transform: rotate(var(--angle)) translateX(0);
+      opacity: 1;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(var(--angle)) translateX(-500px);
+      opacity: 0;
+    }
+  }
+}
 
 :root {
   --radius: 0.3rem;
@@ -135,8 +152,8 @@
   --phuc-bg-navlink: #ffffff4d;
   --phuc-separator: #e7e3e4;
 
-  --phuc-text-primary-1:#6a7282;
-  --phuc-text-primary-2:#a1a1a1;
+  --phuc-text-primary-1: #6a7282;
+  --phuc-text-primary-2: #a1a1a1;
   --color-1: oklch(66.2% 0.225 25.9);
   --color-2: oklch(60.4% 0.26 302);
   --color-3: oklch(69.6% 0.165 251);
@@ -146,8 +163,7 @@
 
 .dark {
   --background: oklch(0.141 0.005 285.823);
-  --foreground: #fffdfa
-  --card: oklch(0.21 0.006 285.885);
+  --foreground: #fffdfa --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);
@@ -182,8 +198,8 @@
 
   --phuc-separator: #3f3f3f;
 
-  --phuc-text-primary-1:#a1a1a1;
-  --phuc-text-primary-2:#ffffff;
+  --phuc-text-primary-1: #a1a1a1;
+  --phuc-text-primary-2: #ffffff;
   --color-1: oklch(66.2% 0.225 25.9);
   --color-2: oklch(60.4% 0.26 302);
   --color-3: oklch(69.6% 0.165 251);
@@ -206,10 +222,17 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-   font-family: var(--font-kanit), sans-serif;
+  font-family: var(--font-kanit), sans-serif;
 }
 
 
+
+
 .bprogress .bar {
-	background: linear-gradient(90deg, #f3ca4d 0%, #ff979a 45.3125%, #cbabff 100%) !important;
+  background: linear-gradient(
+    90deg,
+    #f3ca4d 0%,
+    #ff979a 45.3125%,
+    #cbabff 100%
+  ) !important;
 }
